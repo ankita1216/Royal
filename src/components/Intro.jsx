@@ -5,13 +5,13 @@ import React, { useState, useEffect } from "react";
 export default function Intro({ onComplete }) {
   const [stage, setStage] = useState("building"); // building -> reveal -> complete
   const [textIndex, setTextIndex] = useState(0);
-  const brandName = "SUBHAM";
+  const brandName = "ROYAL ";
 
   // Official Brand Palette
   const colors = {
-    blackish: "#041a14",      // Deeper architectural dark base
+    blackish: "#765229",      // Deeper architectural dark base
     brightOrange: "#F2A71D", // High-energy orange
-    darkOrange: "#D64B27",   // Red-Orange branding accent
+    darkOrange: "#dfab5e",   // Red-Orange branding accent
   };
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function Intro({ onComplete }) {
           {/* Project Tagline */}
           <div className={`overflow-hidden transition-all duration-1000 ${textIndex === brandName.length ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'}`}>
             <p className="text-[11px] font-black uppercase tracking-[0.6em] mt-6" style={{ color: colors.brightOrange }}>
-              Kishori Heights
+              PRESIDENCY
             </p>
           </div>
         </div>
