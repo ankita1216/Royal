@@ -16,11 +16,12 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
   const [confirmationResult, setConfirmationResult] = useState(null);
   const navigate = useNavigate();
 
-  const colors = {
-    blackish: "#041a14",
-    brightOrange: "#F2A71D",
-    mediumOrange: "#E97323",
-    darkOrange: "#D64B27",
+ const colors = {
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
   };
 
   const [formData, setFormData] = useState({
@@ -159,7 +160,7 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
                       <Sparkles className="w-4 h-4" /> Quick Connect
                     </div>
                     <h3 className="font-serif text-3xl md:text-4xl leading-tight">
-                      Experience <br /> <span className="italic font-light text-[#F2A71D]">Subham Kishori Heights.</span>
+                      Experience <br /> <span className="italic font-light text-[#F2A71D]">Royal Presidency.</span>
                     </h3>
                   </div>
                </div>
@@ -236,7 +237,7 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
                       >
                         <option>3 BHK</option>
                         <option>4 BHK</option>
-                        <option>Duplex</option>
+                        {/* <option>Duplex</option> */}
                       </select>
                       <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                     </div>

@@ -10,11 +10,11 @@ export default function SubhamHeader({ onOpenPopup }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const colors = {
-    blackish: "#041a14",      
-    vibrantOrange: "#F36F21", 
-    goldenYellow: "#F4B400",  
-    deepOrange: "#D84315",    
+ const colors = {
+    blackish: "#765229",      
+    vibrantOrange: "#dfab5e", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
     warmCream: "#FFF4E6",     
   };
 
@@ -62,17 +62,17 @@ export default function SubhamHeader({ onOpenPopup }) {
           ${isScrolled ? "py-3" : "py-8"}`}
       >
         <div 
-          className="max-w-7xl mx-auto rounded-full px-6 md:px-10 py-3 flex justify-between items-center shadow-[0_15px_40px_rgba(243,111,33,0.15)] transition-all duration-300 border border-[#F36F21]/10 backdrop-blur-md"
+          className="max-w-7xl mx-auto rounded-full px-6 md:px-10 h-[80px] flex justify-between items-center shadow-[0_15px_40px_rgba(243,111,33,0.15)] transition-all duration-300 border border-[#F36F21]/10 backdrop-blur-md"
           style={{ 
             backgroundColor: isScrolled ? "rgba(255, 244, 230, 0.96)" : colors.warmCream, 
             transform: isScrolled ? "scale(0.98)" : "scale(1)" 
           }}
         >
-          <div className="cursor-pointer group py-1" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <img src="/Logo.png" alt="Subham Logo" className="h-10 md:h-14 w-auto object-contain transition-transform group-hover:scale-105" />
+          <div className="cursor-pointer group py-1 -ml-20" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <img src="/logo_2.png" alt="Royal Presidency Logo" className="h-48 w-auto object-contain transition-transform group-hover:scale-105" />
           </div>
 
-          <nav className="hidden lg:flex items-center space-x-8 text-[11px] font-black uppercase tracking-widest">
+          <nav className="hidden lg:flex items-center space-x-8 text-[11px] font-black uppercase tracking-widest -ml-18">
             {mainNav.map((item) => (
               <a 
                 key={item.id} 

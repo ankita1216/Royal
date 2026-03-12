@@ -3,100 +3,120 @@
 import React, { useState, useEffect } from "react";
 
 export default function Intro({ onComplete }) {
-  const [stage, setStage] = useState("building"); // building -> reveal -> complete
-  const [textIndex, setTextIndex] = useState(0);
-  const brandName = "ROYAL ";
+  const [isDrawing, setIsDrawing] = useState(true);
+  const [isExpanding, setIsExpanding] = useState(false);
 
-  // Official Brand Palette
+  // Luxury Palette
   const colors = {
-    blackish: "#765229",      // Deeper architectural dark base
-    brightOrange: "#F2A71D", // High-energy orange
-    darkOrange: "#dfab5e",   // Red-Orange branding accent
+    gold: "#F2A71D",
+    deepBrown: "#1a130c", // Darker, richer than before
+    accent: "#dfab5e",
   };
 
   useEffect(() => {
-    // 1. Typing Phase
-    if (textIndex < brandName.length) {
-      const timer = setTimeout(() => {
-        setTextIndex(prev => prev + 1);
-      }, 150);
-      return () => clearTimeout(timer);
-    } else {
-      // 2. Hold, then trigger reveal
-      const revealTimer = setTimeout(() => {
-        setStage("reveal");
-        // 3. Final completion
-        setTimeout(() => {
-          if (onComplete) onComplete();
-        }, 1500);
+    // Phase 1: Drawing duration
+    const drawTimer = setTimeout(() => setIsDrawing(false), 2000);
+    
+    // Phase 2: Reveal duration
+    const revealTimer = setTimeout(() => {
+      setIsExpanding(true);
+      setTimeout(() => {
+        if (onComplete) onComplete();
       }, 1200);
-      return () => clearTimeout(revealTimer);
-    }
-  }, [textIndex, onComplete]);
+    }, 3500);
+
+    return () => {
+      clearTimeout(drawTimer);
+      clearTimeout(revealTimer);
+    };
+  }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 z-[9999] overflow-hidden font-sans" style={{ backgroundColor: colors.blackish }}>
-      
-      {/* ARCHITECTURAL FRAMEWORK (Subtle Orange Lines) */}
+    <div 
+      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+      style={{ backgroundColor: colors.deepBrown }}
+    >
+      {/* BACKGROUND BLUEPRINT GRID */}
       <div 
-        className={`absolute inset-10 border transition-all duration-1000 ${stage === 'reveal' ? 'scale-150 opacity-0' : 'scale-100 opacity-100'}`} 
-        style={{ borderColor: `${colors.brightOrange}10` }}
+        className="absolute inset-0 opacity-10 transition-opacity duration-1000"
+        style={{ 
+          backgroundImage: `linear-gradient(${colors.gold} 1px, transparent 1px), linear-gradient(90deg, ${colors.gold} 1px, transparent 1px)`,
+          backgroundSize: '50px 50px',
+          display: isExpanding ? 'none' : 'block'
+        }}
       />
 
-      {/* MAIN TYPOGRAPHIC CENTER */}
-      <div className="relative h-full w-full flex flex-col items-center justify-center">
-        
-        <div className={`flex flex-col items-center transition-all duration-1000 ${stage === 'reveal' ? 'tracking-[2em] opacity-0' : 'tracking-normal opacity-100'}`}>
-          {/* Brand Name with Orange Cursor */}
-          <h1 className="font-serif text-white text-7xl md:text-9xl font-bold uppercase leading-none flex items-baseline">
-            {brandName.substring(0, textIndex)}
-            <span 
-              className={`w-1 h-12 md:h-20 ml-2 ${textIndex === brandName.length ? 'animate-none opacity-0' : 'animate-pulse'}`} 
-              style={{ backgroundColor: colors.brightOrange }}
-            />
-          </h1>
-
-          {/* Vertical Separator */}
-          <div 
-            className={`w-[1px] transition-all duration-1000 ease-out mt-8 ${textIndex > 3 ? 'h-16 opacity-100' : 'h-0 opacity-0'}`} 
-            style={{ backgroundColor: colors.brightOrange }}
+      {/* CENTRAL LOGO MARK (SVG Animation) */}
+      <div className="relative z-10 flex flex-col items-center">
+        <svg 
+          width="120" 
+          height="120" 
+          viewBox="0 0 100 100" 
+          className={`transition-all duration-1000 ${isExpanding ? 'scale-150 opacity-0' : 'scale-100'}`}
+        >
+          {/* Abstract Royal Hexagon/Crown */}
+          <path
+            d="M50 5 L85 25 L85 75 L50 95 L15 75 L15 25 Z"
+            fill="none"
+            stroke={colors.gold}
+            strokeWidth="1"
+            className={`path-draw ${isDrawing ? 'drawing' : 'drawn'}`}
           />
+          <path
+            d="M30 40 L50 30 L70 40 L70 60 L50 70 L30 60 Z"
+            fill="none"
+            stroke={colors.accent}
+            strokeWidth="0.5"
+            className={`path-draw-delayed ${isDrawing ? 'drawing' : 'drawn'}`}
+          />
+        </svg>
 
-          {/* Project Tagline */}
-          <div className={`overflow-hidden transition-all duration-1000 ${textIndex === brandName.length ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'}`}>
-            <p className="text-[11px] font-black uppercase tracking-[0.6em] mt-6" style={{ color: colors.brightOrange }}>
-              PRESIDENCY
-            </p>
-          </div>
-        </div>
-
-        {/* DATA-DRIVEN FOOTNOTE */}
-        <div className={`absolute bottom-20 flex flex-col items-center transition-opacity duration-700 ${stage === 'reveal' ? 'opacity-0' : 'opacity-100'}`}>
-           <p className="text-[9px] font-bold uppercase tracking-[0.4em] text-white/30 mb-2">
-             10+ Years of Expertise
-           </p>
-           <div className="flex items-center gap-4">
-              <span className="w-8 h-[1px] opacity-30" style={{ backgroundColor: colors.brightOrange }} />
-              <span className="text-[8px] font-black uppercase tracking-widest" style={{ color: colors.darkOrange }}>Defining Active Living</span>
-              <span className="w-8 h-[1px] opacity-30" style={{ backgroundColor: colors.brightOrange }} />
-           </div>
+        {/* TYPOGRAPHY */}
+        <div className="mt-8 text-center overflow-hidden">
+          <h1 
+            className={`text-white text-4xl md:text-6xl font-light tracking-[1em] transition-all duration-[2000ms] ease-out
+            ${isDrawing ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}
+            style={{ fontFamily: 'serif', color: 'white' }}
+          >
+            ROYAL
+          </h1>
+          <p 
+            className={`text-[10px] uppercase tracking-[0.8em] mt-4 transition-all duration-[1500ms] delay-500
+            ${isDrawing ? 'opacity-0' : 'opacity-100'}`}
+            style={{ color: colors.gold }}
+          >
+            Presidency
+          </p>
         </div>
       </div>
 
-      {/* THE "LENS SHUTTER" REVEAL (Clean blackish curtains) */}
-      <div className={`absolute inset-0 z-50 pointer-events-none flex`}>
-        <div 
-          className={`h-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.77,0,0.175,1)] w-1/2 origin-left ${stage === 'reveal' ? 'scale-x-0' : 'scale-x-1'}`} 
-          style={{ backgroundColor: colors.blackish }}
-        />
-        <div 
-          className={`h-full transition-transform duration-[1200ms] ease-[cubic-bezier(0.77,0,0.175,1)] w-1/2 origin-right ${stage === 'reveal' ? 'scale-x-0' : 'scale-x-1'}`} 
-          style={{ backgroundColor: colors.blackish }}
-        />
-      </div>
+      {/* LENS APERTURE EXIT */}
+      <div 
+        className={`absolute inset-0 transition-all duration-[1200ms] ease-[cubic-bezier(0.7,0,0.3,1)] pointer-events-none
+        ${isExpanding ? 'clip-open' : 'clip-closed'}`}
+        style={{ backgroundColor: colors.gold, mixBlendMode: 'overlay', opacity: isExpanding ? 0 : 0.2 }}
+      />
 
-      <style>{`
-        .font-serif { font-family: 'Playfair Display', serif; }
+      <style jsx>{`
+        .path-draw {
+          stroke-dasharray: 300;
+          stroke-dashoffset: 300;
+          animation: draw 2.5s ease-out forwards;
+        }
+        .path-draw-delayed {
+          stroke-dasharray: 200;
+          stroke-dashoffset: 200;
+          animation: draw 2s ease-out 0.5s forwards;
+        }
+        @keyframes draw {
+          to { stroke-dashoffset: 0; }
+        }
+        .clip-closed {
+          clip-path: circle(0% at 50% 50%);
+        }
+        .clip-open {
+          clip-path: circle(150% at 50% 50%);
+        }
       `}</style>
     </div>
   );

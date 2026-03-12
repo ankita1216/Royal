@@ -1,17 +1,17 @@
 "use client";
 
 import React from "react";
-import { ArrowUpRight, Activity, MapPin, Building2 } from "lucide-react";
+import { ArrowUpRight, Leaf, MapPin, Building2 } from "lucide-react";
 
 // ✅ Receive onOpenPopup from App.js
 export default function ActiveLivingHero({ onOpenPopup }) {
 
   const colors = {
-    blackish: "#041a14",
-    brightOrange: "#F2A71D",
-    mediumOrange: "#E97323",
-    darkOrange: "#D64B27",
-    deepOrange: "#D84315", 
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
   };
 
   return (
@@ -21,13 +21,13 @@ export default function ActiveLivingHero({ onOpenPopup }) {
       <div className="w-full py-4 overflow-hidden border-b" style={{ backgroundColor: colors.blackish, borderBottomColor: `${colors.brightOrange}20` }}>
         <div className="flex whitespace-nowrap animate-marquee">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="flex items-center text-xs font-bold uppercase tracking-[0.3em] px-4" style={{ color: colors.brightOrange }}>
-              <span className="mx-8">To be active is to live</span>
-              <Activity className="w-4 h-4 opacity-50" />
-              <span className="mx-8">Activeness flows seven days a week</span>
-              <Activity className="w-4 h-4 opacity-50" />
-              <span className="mx-8">Step into a world designed to energize</span>
-              <Activity className="w-4 h-4 opacity-50" />
+            <div key={i} className="flex items-center text-xs font-bold uppercase tracking-[0.3em] px-4 text-white">
+              <span className="mx-8">Air View Living</span>
+              <Leaf className="w-4 h-4 text-white " />
+              <span className="mx-8">Luxury Wrapped in Nature</span>
+              <Leaf className="w-4 h-4 text-white " />
+              <span className="mx-8">Where Lifestyle Meets Wellness</span>
+              <Leaf className="w-4 h-4 text-white" />
             </div>
           ))}
         </div>
@@ -38,7 +38,7 @@ export default function ActiveLivingHero({ onOpenPopup }) {
         {/* --- LEFT IMAGE --- */}
         <div className="absolute left-0 xl:left-[2%] top-[25%] w-40 h-56 rounded-[3rem] overflow-hidden shadow-2xl hidden xl:block hover:scale-105 transition-transform duration-500 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=600" 
+            src="/gate.png" 
             alt="Modern Architecture" 
             className="w-full h-full object-cover opacity-100" 
           />
@@ -46,11 +46,11 @@ export default function ActiveLivingHero({ onOpenPopup }) {
         </div>
         
         {/* --- RIGHT IMAGE --- */}
-        <div className="absolute right-0 xl:right-[2%] top-[20%] w-48 h-48 rounded-full overflow-hidden shadow-2xl hidden xl:block border-8 border-white hover:rotate-3 transition-transform duration-500 z-0">
+        <div className="absolute right-0 xl:right-[2%] top-[20%] w-44 h-44 rounded-full overflow-hidden shadow-2xl hidden xl:block border-6 border-white hover:rotate-3 transition-transform duration-500 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=600" 
+            src="/about22 .jpg" 
             alt="Wellness Lifestyle" 
-            className="w-full h-full object-cover opacity-100" 
+            className="w-full h-full object-cover object-[50%_30%]" 
           />
         </div>
 
@@ -59,39 +59,45 @@ export default function ActiveLivingHero({ onOpenPopup }) {
           
           <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.4em] mb-4" style={{ color: colors.darkOrange }}>
             <MapPin className="w-3 h-3" />
-            Dibrugarh, Assam
+            Raghunathpur, Bhubaneswar
+
           </div>
 
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.blackish }}>
-            Subham <br />
-            <span className="italic font-light" style={{ color: colors.deepOrange }}>Kishori</span> Heights
+           Royal <br />
+            <span className="italic font-light" style={{ color: colors.deepOrange }}>Presidency</span>
           </h1>
 
           <div className="max-w-2xl mb-12">
             <p className="text-lg md:text-xl font-medium leading-relaxed" style={{ color: colors.blackish }}>
-              An architectural icon standing tall as Dibrugarh’s first "Active Lifestyle" landmark. 
-              Designed specifically for the modern family, our spaces ensure that everyone 
-              stays physically vibrant and emotionally connected every single day.
+              The Royal Presidency is a landmark of refined living, nestled in one
+of Bhubaneswar’s most sought-after neighborhoods. Designed to
+elevate every moment, it offers spacious, airy residences that open
+up to panoramic views from multiple balconies.
             </p>
           </div>
 
           {/* --- GRID --- */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 w-full">
             <div className="p-6 rounded-[2rem] border border-orange-100 flex flex-col items-center justify-center shadow-sm bg-white hover:bg-orange-50 transition-colors" >
-               <span className="block text-3xl font-serif font-bold italic" style={{ color: colors.deepOrange }}>78%</span>
-               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center">Open Space</span>
+               <span className="block text-3xl font-serif font-bold italic" style={{ color: colors.deepOrange }}>71%</span>
+               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center">Open to Sky
+Area</span>
             </div>
             <div className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center justify-center" style={{ backgroundColor: colors.blackish }}>
-               <span className="block text-3xl font-serif font-bold italic text-white" >65</span>
-               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center text-white">Exclusive Units</span>
+               <span className="block text-3xl font-serif font-bold italic text-white" >30+</span>
+               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center text-white">World-Class
+Amenities</span>
             </div>
             <div className="p-6 rounded-[2rem] flex flex-col items-center justify-center shadow-xl bg-white" >
-               <span className="block text-xl font-serif font-bold italic " style={{ color: colors.deepOrange }}>3 & 4 BHK</span>
-               <span className=" text-[10px] uppercase font-bold tracking-widest opacity-60 text-center">Duplex Available</span>
+               <span className="block text-xl font-serif font-bold italic " style={{ color: colors.deepOrange }}>4/5</span>
+               <span className=" text-[10px] uppercase font-bold tracking-widest opacity-60 text-center">Balconies in
+Every Apartment</span>
             </div>
             <div className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center justify-center" style={{ backgroundColor: colors.blackish }}>
-               <span className="block text-xl font-serif font-bold italic text-white" >B + G + 14</span>
-               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center text-white">Tallest Towers</span>
+               <span className="block text-xl font-serif font-bold italic text-white" >180°</span>
+               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center text-white">View from Each
+Apartments</span>
             </div>
           </div>
 

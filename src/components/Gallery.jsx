@@ -9,10 +9,11 @@ export default function Gallery() {
 
   // Official Brand Palette
   const colors = {
-    blackish: "#041a14",      
-    brightOrange: "#F2A71D", 
-    mediumOrange: "#E97323", 
-    darkOrange: "#D64B27",   
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
   };
 
   const galleryImages = [

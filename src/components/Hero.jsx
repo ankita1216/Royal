@@ -16,10 +16,10 @@ export default function HeroSection() {
 
   // Syncing with SubhamHeader Palette
   const colors = {
-    blackish: "#041a14",      
-    vibrantOrange: "#F36F21", 
-    goldenYellow: "#F4B400",  
-    deepOrange: "#D84315",    // Used in "Contact Now"
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
     warmCream: "#FFF4E6",     
   };
 
@@ -39,11 +39,11 @@ export default function HeroSection() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-[#F36F21]/10 rounded-full -mr-20 -mt-20 blur-3xl" />
 
           <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tighter relative z-10 text-white">
-            Elevate Your <br /> Everyday <span className="italic font-light" style={{ color: colors.vibrantOrange }}>Living.</span>
+            Experience Your Air-View <br />  <span className="italic font-light" style={{ color: colors.vibrantOrange }}>Living.</span>
           </h1>
 
           <p className="mt-8 text-white/60 text-lg max-w-md font-medium leading-relaxed relative z-10">
-            Discover Subham Kishori Heights—Dibrugarh’s first "Active Lifestyle" landmark designed for 65 exclusive families.
+            Where luxury wraps you like air and every home opens to breathtaking views.
           </p>
 
           {/* --- UPDATED BUTTON: NOW USING CHEVRONDOWN --- */}
@@ -82,7 +82,7 @@ export default function HeroSection() {
           className="relative h-full min-h-[500px] rounded-[3rem] overflow-hidden group shadow-sm"
         >
           <img 
-            src="/hero23.jpg" 
+            src="/hero22.png" 
             alt="Subham Kishori Heights" 
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
           />
@@ -94,7 +94,8 @@ export default function HeroSection() {
               className="w-1.5 h-1.5 rounded-full animate-pulse" 
               style={{ backgroundColor: colors.vibrantOrange }}
             />
-            Dibrugarh, Assam
+            Raghunathpur, Bhubaneswar
+
           </div>
         </motion.div>
 

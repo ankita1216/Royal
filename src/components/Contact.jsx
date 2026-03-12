@@ -22,11 +22,12 @@ export default function Contact() {
 
   const navigate = useNavigate();
 
-  const colors = {
-    blackish: "#041a14",
-    brightOrange: "#F2A71D",
-    mediumOrange: "#E97323",
-    darkOrange: "#D64B27",
+ const colors = {
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
   };
 
   const [formData, setFormData] = useState({

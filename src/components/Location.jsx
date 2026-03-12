@@ -9,11 +9,12 @@ export default function Location() {
   };
 
   // Official Brand Palette
-  const colors = {
-    blackish: "#041a14",      // Deeper, darker Forest Green for a blackish feel
-    brightOrange: "#F2A71D", // Accent Highlight
-    mediumOrange: "#E97323", // Primary Action
-    darkOrange: "#D64B27",   // Red-Orange Accent
+ const colors = {
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
   };
 
   return (
@@ -22,7 +23,7 @@ export default function Location() {
         
         {/* --- PART 1: PROJECT IDENTITY --- */}
         <div className="border-b border-white/10 pb-12 mb-12">
-          <p className="text-[10px] font-black uppercase tracking-[0.5em] opacity-40 mb-4" style={{ color: colors.brightOrange }}>
+          <p className="text-[10px] font-black uppercase tracking-[0.5em]  mb-4 text-white" >
             Strategically Positioned
           </p>
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase leading-none text-white">
@@ -38,8 +39,8 @@ export default function Location() {
           <div className="flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <MapPin className="w-4 h-4" style={{ color: colors.brightOrange }} />
-                <p className="text-[10px] font-black uppercase tracking-widest opacity-40 text-white">The Address</p>
+                <MapPin className="w-4 h-4 text-white"  />
+                <p className="text-[10px] font-black uppercase tracking-widest  text-white">The Address</p>
               </div>
               <p className="text-xl md:text-2xl font-medium leading-relaxed mb-8 text-white">
                 Subham Kishori Heights, <br />
@@ -49,14 +50,14 @@ export default function Location() {
             </div>
             
             <div className="pt-8 border-t border-white/5">
-              <p className="text-[10px] font-black uppercase tracking-widest opacity-40 mb-4 text-white">Home Types</p>
-              <div className="flex gap-6 text-xl font-serif italic" style={{ color: colors.brightOrange }}>
+              <p className="text-[10px] font-black uppercase tracking-widest  mb-4 text-white">Home Types</p>
+              <div className="flex gap-6 text-xl font-serif italic text-white" >
                 <span>3 BHK</span>
                 <span>4 BHK</span>
-                <span>Duplex</span>
+                
               </div>
-              <p className="mt-4 text-[10px] font-black uppercase tracking-[0.3em] opacity-30 text-white">
-                B+G+14 · 65 Exclusive Homes
+              <p className="mt-4 text-[10px] font-black uppercase tracking-[0.3em]  text-white">
+                LB+UB+G+27 · High Resident-to-open Space Ratio
               </p>
             </div>
           </div>
@@ -65,7 +66,7 @@ export default function Location() {
           <div className="lg:col-span-2">
             <div className="relative w-full h-[350px] md:h-[450px] rounded-[3rem] overflow-hidden border border-white/10 group grayscale transition-all duration-700 hover:grayscale-0 shadow-2xl">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7079.215212334554!2d94.931217!3d27.481473!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x374099001efa57bd%3A0x663a1239c1e15167!2sSUBHAM%20KISHORI%20HEIGHTS!5e0!3m2!1sen!2sin!4v1770731429352!5m2!1sen!2sin" 
+                src="https://www.google.com/maps?q=Royal+Presidency+Nandankanan+Road+Bhubaneswar&output=embed" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
@@ -77,7 +78,7 @@ export default function Location() {
               
               {/* Directions Button Overlay */}
               <a 
-                href="https://maps.google.com/?q=Subham+Kishori+Heights+Dibrugarh" 
+                href="https://www.google.com/maps?q=20.3649,85.8339" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="absolute bottom-8 right-8 px-6 py-4 rounded-full shadow-2xl flex items-center gap-3 font-bold text-[10px] uppercase tracking-widest hover:scale-105 transition-transform"
@@ -93,11 +94,11 @@ export default function Location() {
         {/* --- FOOTER ACTION --- */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/10 gap-8">
           <div className="flex flex-col gap-1">
-            <p className="text-[9px] font-black uppercase tracking-widest opacity-30 text-white">
-               Legacy Since 2007
+            <p className="text-[9px] font-black uppercase tracking-widest  text-white">
+               20 Years of Glorious Journey
             </p>
-            <p className="text-[9px] font-black uppercase tracking-widest opacity-30 text-white">
-              78% Open Space · Vastu Compliant
+            <p className="text-[9px] font-black uppercase tracking-widest  text-white">
+              108 Curated Air-Conditioned Apartments · Signature Tower
             </p>
           </div>
 

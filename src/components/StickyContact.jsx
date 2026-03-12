@@ -217,7 +217,7 @@ const StickyContact = ({ isOpen, setIsOpen, hideSticky }) => {
                    >
                      <option className="text-black">3 BHK</option>
                      <option className="text-black">4 BHK</option>
-                     <option className="text-black">Duplex</option>
+                     {/* <option className="text-black">Duplex</option> */}
                    </select>
                    <ChevronDown className="w-3 h-3 text-gray-400 ml-1" />
                 </div>
@@ -349,7 +349,7 @@ const StickyContact = ({ isOpen, setIsOpen, hideSticky }) => {
                           onChange={(e) => setFormData({...formData, interest: e.target.value})}>
                           <option>3 BHK</option>
                           <option>4 BHK</option>
-                          <option>Duplex</option>
+                          {/* <option>Duplex</option> */}
                         </select>
                         <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                       </div>
