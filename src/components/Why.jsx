@@ -88,7 +88,7 @@ corner reflects sophistication.
               Structure
             </p>
             <p className="text-lg md:text-xl font-serif text-white">
-              Signature Tower
+              LB+UB+G+27
             </p>
           </div>
 

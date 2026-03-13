@@ -78,7 +78,7 @@ const StickyContact = ({ isOpen, setIsOpen, hideSticky }) => {
       });
 
       // 2. Send to Webhook
-      await fetch("https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTZjMDYzMTA0MzA1MjZkNTUzMjUxMzMi_pc", {
+      await fetch("https://connect.pabbly.com/workflow/sendwebfjqabfvqhookdata/IjU3NjcwNTZjMDYzMTA0MzA1MjZkNTUzMjUxMzMi_pc", {
         method: "POST",
         mode: "no-cors", // Bypasses preflight checks
         headers: {

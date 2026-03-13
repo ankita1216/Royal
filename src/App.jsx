@@ -10,6 +10,7 @@ import Hero from "./components/Hero";
 import AboutProject from "./components/AboutProject";
 import Amenities from "./components/Amenities";
 import Why from "./components/Why";
+import Plan from "./components/Plan";
 import Location from "./components/Location";
 import Walkthrough from "./components/Walkthrough";
 import Gallery from "./components/Gallery";
@@ -76,6 +77,7 @@ export default function App() {
                   <AboutProject onOpenPopup={handleContactTrigger} />
                   
                   <Why />
+                  <Plan />
                   <Amenities />
                   <Location />
                   <Highlights />

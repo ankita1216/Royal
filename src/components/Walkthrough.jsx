@@ -1,21 +1,17 @@
 "use client";
 
-// Change this line
 import React, { useState, useRef, useEffect } from "react";
-// Added ArrowUpRight to the imports below
 import { 
-  Play, Pause, X, Volume2, VolumeX, 
-  ArrowUpRight, ArrowRight, Sparkles, Building2, 
-  Trees, ShieldCheck 
+  Play, Pause, Volume2, VolumeX, 
+  Building2, Trees, ShieldCheck 
 } from "lucide-react";
 
 export default function Walkthrough() {
   const [isActive, setIsActive] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  const videoRef = useRef(null);
-  // --- INSERT THIS BLOCK HERE ---
   const [isMobile, setIsMobile] = useState(false);
+  const videoRef = useRef(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -23,22 +19,10 @@ export default function Walkthrough() {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  // -
 
   const colors = {
-    blackish: "#765229",      
-    vibrantOrange: "#ffdead", 
-    goldenYellow: "#dfab5e",  
-    deepOrange: "#dfab5e",    // Used in "Contact Now"
-    warmCream: "#FFF4E6",     
-  };
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      const yOffset = -100;
-      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
+    blackish: "#765229",
+    goldenYellow: "#dfab5e",
   };
 
   const handleStart = () => {
@@ -46,13 +30,6 @@ export default function Walkthrough() {
     setIsMuted(false);
     setIsPlaying(true);
     videoRef.current?.play();
-  };
-
-  const handleExit = () => {
-    setIsActive(false);
-    setIsPlaying(false);
-    videoRef.current?.pause();
-    if (videoRef.current) videoRef.current.currentTime = 0; 
   };
 
   const togglePlay = () => {
@@ -66,128 +43,156 @@ export default function Walkthrough() {
   };
 
   return (
-    <section id="walkthrough" className="relative w-full h-screen min-h-[750px] overflow-hidden font-sans" style={{ backgroundColor: colors.blackish }}>
-      {/* STAGE 1: CINEMATIC MASK */}
-      <div 
-        className={`absolute inset-0 z-20 flex items-center justify-center transition-all duration-1000 ease-in-out
-          ${isActive ? "opacity-0 pointer-events-none scale-110" : "opacity-100"}`}
-      >
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
-        
-        <div className="relative z-30 text-center flex flex-col items-center">
-          <button 
-            onClick={handleStart}
-            className="group relative w-32 h-32 md:w-44 md:h-44 flex items-center justify-center mb-10"
-          >
-            <div className="absolute inset-0 rounded-full border animate-ping" style={{ borderColor: `${colors.brightOrange}30` }} />
-            <div className="absolute inset-2 rounded-full border animate-pulse" style={{ borderColor: `${colors.brightOrange}50` }} />
-            
-            <div className="w-full h-full rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110 shadow-2xl" style={{ backgroundColor: colors.brightOrange, color: colors.blackish }}>
-              <Play className="w-12 h-12 fill-current ml-2" />
-            </div>
-          </button>
-          
-          <h2 className="font-serif text-5xl md:text-8xl text-white italic leading-none mb-6">
-            Witness the <br /> <span className="not-italic font-bold uppercase tracking-tighter" style={{ color: colors.brightOrange }}>Ascent.</span>
-          </h2>
-          <p className="text-[10px] font-black uppercase tracking-[0.6em] text-white/50">
-            Click to start the immersive walkthrough
-          </p>
-        </div>
+    <section
+      id="walkthrough"
+      className="w-full py-20 font-sans"
+      style={{ backgroundColor: colors.blackish }}
+    >
+
+      {/* HEADING ABOVE VIDEO */}
+      <div className="text-center mb-14 px-4">
+        <span
+          className="text-[10px] font-black uppercase tracking-[0.5em]"
+          style={{ color: colors.goldenYellow }}
+        >
+          Experience
+        </span>
+
+        <h2 className="text-3xl md:text-5xl font-serif italic text-white mt-3">
+          Walkthrough
+        </h2>
       </div>
 
-      {/* STAGE 2: THE SPLIT THEATER */}
-      <div className="flex h-full w-full">
-        <div className={`relative h-full transition-all duration-1000 ease-[cubic-bezier(0.2,0,0,1)] 
-          ${isActive ? "w-full lg:w-[78%]" : "w-full"}`}>
-          <video
-  key={isMobile ? "mobile" : "desktop"} // This resets the player when screen size changes
-  ref={videoRef}
-  loop
-  muted={isMuted}
-  playsInline
-  autoPlay // Add this if you want it to play immediately
-  className={`w-full h-full ${isMobile ? "object-contain" : "object-contain"}`}
-  style={{ objectPosition: 'center' }} // Ensures the video stays centered
->
-  <source 
-    src={isMobile ? "/mobile-walkthrough.mp4" : "https://subhamgroup.com/video/SubhamKishoriHeights.mp4"} 
-    type="video/mp4" 
-  />
-</video>
+      {/* VIDEO SECTION */}
+      <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden flex items-center justify-center">
 
-          <div className={`absolute bottom-10 left-10 flex gap-4 transition-opacity duration-1000 ${isActive ? "opacity-100" : "opacity-0"}`}>
-            <button 
-              onClick={togglePlay}
-              className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all"
+        {/* STAGE 1 OVERLAY */}
+        <div
+          className={`absolute inset-0 z-20 flex items-center justify-center transition-all duration-1000 ease-in-out
+          ${isActive ? "opacity-0 pointer-events-none scale-110" : "opacity-100"}`}
+        >
+          <div className="absolute inset-0 bg-black/50 backdrop-blur-[4px]" />
+
+          <div className="relative z-30 text-center flex flex-col items-center px-4">
+            <button
+              onClick={handleStart}
+              className="group relative w-28 h-28 md:w-40 md:h-40 flex items-center justify-center mb-8"
             >
-              {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5 ml-1" />}
-            </button>
-
-            <button 
-              onClick={() => setIsMuted(!isMuted)}
-              className="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all"
-            >
-              {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-            </button>
-
-            <button 
-              onClick={handleExit}
-              className="px-8 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center gap-3"
-            >
-              <X className="w-4 h-4" /> Exit Theater
-            </button>
-          </div>
-        </div>
-
-        <div className={`relative h-full bg-[#fafaf8] transition-all duration-1000 ease-[cubic-bezier(0.2,0,0,1)] flex flex-col
-          ${isActive ? "w-0 lg:w-[22%] opacity-100" : "w-0 opacity-0 overflow-hidden"}`}>
-          
-          <div className="p-6 lg:p-8 flex flex-col h-full justify-between text-[#041a14]">
-            <div>
-              <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] mb-12" style={{ color: colors.darkOrange }}>
-                <Sparkles className="w-4 h-4" style={{ color: colors.brightOrange }} />
-                Visual Tour
+              <div
+                className="absolute inset-0 rounded-full border animate-ping"
+                style={{ borderColor: `${colors.goldenYellow}40` }}
+              />
+              <div
+                className="w-full h-full rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110 shadow-2xl"
+                style={{
+                  backgroundColor: colors.goldenYellow,
+                  color: colors.blackish,
+                }}
+              >
+                <Play className="w-10 h-10 md:w-14 md:h-14 fill-current ml-2" />
               </div>
-              
-              <h3 className="font-serif text-2xl lg:text-3xl mb-16 italic leading-tight">
-                Architectural <br /> Verticality.
-              </h3>
+            </button>
 
-              <div className="space-y-6">
-                <div className="flex gap-6 items-start">
-                  <Building2 className="w-5 h-5 mt-1 shrink-0" style={{ color: colors.brightOrange }} />
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Scale</p>
-                    <p className="text-xs font-bold">B+G+14 Modern Towers</p>
-                  </div>
-                </div>
-                <div className="flex gap-6 items-start">
-                  <Trees className="w-6 h-6 mt-1 shrink-0" style={{ color: colors.brightOrange }} />
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Landscape</p>
-                    <p className="text-sm font-bold">78% Open Space Living</p>
-                  </div>
-                </div>
-                <div className="flex gap-6 items-start">
-                  <ShieldCheck className="w-6 h-6 mt-1 shrink-0" style={{ color: colors.brightOrange }} />
-                  <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest opacity-40 mb-1">Safety</p>
-                    <p className="text-sm font-bold">Earthquake Resistant Structure</p>
-                  </div>
-                </div>
-              </div>
+            <h2 className="font-serif text-5xl md:text-8xl text-white italic leading-none mb-6">
+              Witness the <br />
+              <span
+                className="not-italic font-bold uppercase tracking-tighter"
+                style={{ color: colors.goldenYellow }}
+              >
+                Air.
+              </span>
+            </h2>
+
+            <div className="flex items-center gap-4">
+              <div className="h-[1px] w-8 bg-white/30" />
+              <p className="text-[10px] font-black uppercase tracking-[0.6em] text-white/60">
+                Start Immersive Tour
+              </p>
+              <div className="h-[1px] w-8 bg-white/30" />
             </div>
-
-            <button 
-              onClick={scrollToContact}
-              className="group w-full py-4 rounded-xl font-bold uppercase tracking-widest text-[10px] flex items-center justify-center gap-4 hover:scale-[1.02] transition-transform shadow-lg"
-              style={{ backgroundColor: colors.blackish, color: colors.brightOrange }}
-            >
-              Book Site Visit <ArrowUpRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
-            </button>
           </div>
         </div>
+
+        {/* VIDEO */}
+        <video
+          key={isMobile ? "mobile" : "desktop"}
+          ref={videoRef}
+          loop
+          muted={isMuted}
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source
+            src="/Royal Presidency walkthrough.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {/* CONTROLS */}
+        <div
+          className={`absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4 md:gap-6 transition-all duration-1000 delay-300 ${
+            isActive
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="flex items-center bg-black/40 backdrop-blur-xl border border-white/10 rounded-full p-2 gap-2">
+
+            <button
+              onClick={togglePlay}
+              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:bg-white/10 text-white"
+            >
+              {isPlaying ? (
+                <Pause className="w-5 h-5" />
+              ) : (
+                <Play className="w-5 h-5 ml-1" />
+              )}
+            </button>
+
+            <button
+              onClick={() => setIsMuted(!isMuted)}
+              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:bg-white/10 text-white"
+            >
+              {isMuted ? (
+                <VolumeX className="w-5 h-5" />
+              ) : (
+                <Volume2 className="w-5 h-5" />
+              )}
+            </button>
+
+          </div>
+        </div>
+
+        {/* INFO OVERLAY DESKTOP */}
+        {!isMobile && (
+          <div
+            className={`absolute right-12 top-1/2 -translate-y-1/2 flex flex-col gap-8 transition-all duration-1000 delay-500 ${
+              isActive
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-10"
+            }`}
+          >
+            {[
+              { Icon: Building2, label: "Scale", val: "LB+UB+G+27" },
+              { Icon: Trees, label: "Open Space", val: "1.3 Acres of Space" },
+              { Icon: ShieldCheck, label: "Safety", val: "Signature Tower" },
+            ].map((item, idx) => (
+              <div
+                key={idx}
+                className="flex flex-col items-end text-right group"
+              >
+                <item.Icon
+                  className="w-5 h-5 mb-2 opacity-50 group-hover:opacity-100 transition-opacity"
+                  style={{ color: colors.goldenYellow }}
+                />
+                <p className="text-[9px] font-black uppercase tracking-widest text-white/40">
+                  {item.label}
+                </p>
+                <p className="text-xs font-bold text-white">{item.val}</p>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

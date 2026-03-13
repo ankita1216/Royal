@@ -4,50 +4,52 @@ import React from "react";
 import { 
   Train, Hospital, School, 
   ShoppingBag, GraduationCap, Compass, 
-  Sparkles, Target, Zap, Waves
+  Sparkles, MapPin, Building2, 
+  Wind, Navigation, ArrowUpRight, Zap
 } from "lucide-react";
 
 const Amenities = () => {
-  // Official Brand Palette
   const colors = {
-    blackish: "#041a14",
-    brightOrange: "#F2A71D",
-    mediumOrange: "#E97323",
-    darkOrange: "#D64B27",
-    lightOrangeBG: "#F2A71D15", // Lighter transparent shade for badges
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
   };
 
   const connectivityData = [
     {
       category: "Transport",
-      icon: <Train className="w-6 h-6" />,
+      icon: <Train className="w-5 h-5" />,
       items: [
-        { name: "Dibrugarh Railway Station", dist: "3.4 km" },
-        { name: "ASTC Bus Stand", dist: "4.4 km" },
-        { name: "Dibrugarh Airport", dist: "13 km" },
+        { name: "New Bhubaneswar Railway Station", dist: "2.5 kms" },
+        { name: "Patia Chowk Bus Stop", dist: "5.5 kms" },
+        { name: "Upcoming Metro Railway Station", dist: "5.5 kms" },
+        { name: "Bhubaneswar Station (Master Canteen)", dist: "15.7 kms" },
+        { name: "Biju Patnaik International Airport", dist: "17.1 kms" },
       ],
     },
     {
       category: "Healthcare",
-      icon: <Hospital className="w-6 h-6" />,
+      icon: <Hospital className="w-5 h-5" />,
       items: [
-        { name: "Srishti Hospital", dist: "1.5 km" },
-        { name: "Assam Medical College", dist: "3.5 km" },
-        { name: "Dibrugarh Cancer Centre", dist: "3.8 km" },
+        { name: "Kalinga Institute of Medical Sciences", dist: "6.5 kms" },
+        { name: "Apollo Hospital", dist: "9.3 kms" },
       ],
     },
     {
       category: "Schools",
-      icon: <School className="w-6 h-6" />,
+      icon: <School className="w-5 h-5" />,
       items: [
-        { name: "Little Flower High School", dist: "1.1 km" },
-        { name: "St. Mary’s High School", dist: "1.2 km" },
-        { name: "DPS Dibrugarh", dist: "9.7 km" },
+        { name: "St. Xavier's International School", dist: "5.1 kms" },
+        { name: "ODM Public School", dist: "6.6 kms" },
+        { name: "Sai International School", dist: "7.0 kms" },
+        { name: "Loyola High School", dist: "10.9 kms" },
       ],
     },
     {
       category: "University",
-      icon: <GraduationCap className="w-6 h-6" />,
+      icon: <GraduationCap className="w-5 h-5" />,
       items: [
         { name: "DHSK College", dist: "850 m" },
         { name: "St. Fernando Nursing", dist: "3.1 km" },
@@ -55,127 +57,119 @@ const Amenities = () => {
       ],
     },
     {
-      category: "Leisure",
-      icon: <ShoppingBag className="w-6 h-6" />,
+      category: "Shopping",
+      icon: <ShoppingBag className="w-5 h-5" />,
       items: [
-        { name: "Smart Shopping Mall", dist: "01 km" },
-        { name: "Zudio", dist: "2.3 km" },
-        { name: "Junction Mall", dist: "03 km" },
+        { name: "Royal Arcade", dist: "2.0 kms" },
+        { name: "Galaxy Mall", dist: "3.1 kms" },
+        { name: "Reliance Fresh", dist: "3.1 kms" },
+        { name: "V-Mart", dist: "4.0 kms" },
+        { name: "Maruti Mall", dist: "4.7 kms" },
       ],
     },
     {
-      category: "Attractions",
-      icon: <Compass className="w-6 h-6" />,
+      category: "Colleges",
+      icon: <Compass className="w-5 h-5" />,
       items: [
-        { name: "Sri Jagannath Temple", dist: "Nearby" },
-        { name: "Brahmaputra Point", dist: "Walking" },
-        { name: "Tea Garden", dist: "Scenic" },
+        { name: "KIIT University", dist: "3.1 kms" },
+        { name: "NIFT Bhubaneswar", dist: "5.7 kms" },
+        { name: "College of Engineering Bhubaneswar", dist: "6.3 kms" },
+        { name: "Utkal University", dist: "13.4 kms" },
       ],
     },
   ];
 
   return (
-    <section id="amenities" className="relative w-full bg-[#fafaf8] py-24 lg:py-40 overflow-hidden font-sans text-[#041a14]">
+    <section id="location" className="relative w-full bg-[#fdfdfb] py-24 lg:py-32 overflow-hidden font-sans text-[#041a14]">
       
-      {/* --- NEW CUSTOM VECTOR ART: TOP RIGHT --- */}
-      {/* Created with CSS shapes and icons to replace profile_2 image */}
-      <div className="absolute -right-20 top-20 w-[300px] h-[300px] pointer-events-none z-0 select-none opacity-20">
-        <div className="relative w-full h-full">
-            <div className="absolute inset-0 border-[40px] rounded-full animate-spin-slow" style={{ borderColor: `${colors.brightOrange}10` }} />
-            <div className="absolute inset-10 border-[2px] border-dashed rounded-full animate-reverse-spin" style={{ borderColor: colors.brightOrange }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <Waves className="w-20 h-20" style={{ color: colors.darkOrange }} />
-            </div>
-        </div>
-      </div>
-
-      <div className="absolute right-[15%] top-[20%] opacity-20 animate-pulse">
-        <Target className="w-8 h-8" style={{ color: colors.darkOrange }} />
-      </div>
-      <div className="absolute left-[10%] bottom-[30%] opacity-20 animate-bounce">
-        <Zap className="w-6 h-6" style={{ color: colors.brightOrange }} />
-      </div>
-
-      {/* --- KEPT ASSET: profile_1.png BOTTOM LEFT --- */}
-      <div className="absolute -left-12 -bottom-12 w-[250px] md:w-[350px] pointer-events-none z-0 select-none rotate-6">
-        <img src="/profile_1.png" alt="Design Element" className="w-full h-auto drop-shadow-xl" />
-      </div>
+      {/* BACKGROUND DECOR */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F2A71D]/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* --- HEADER --- */}
-        <div className="relative mb-32">
-          <div className="flex items-center gap-3 text-[11px] font-black uppercase tracking-[0.5em] mb-8" style={{ color: colors.darkOrange }}>
-            <Sparkles className="w-4 h-4 animate-spin-slow" style={{ color: colors.brightOrange }} />
-            Strategic Connectivity
-          </div>
-          <h2 className="font-serif text-6xl md:text-8xl lg:text-[100px] leading-[0.85] text-[#041a14] mb-12">
-            In the Heart of <br />
-            <span className="italic font-light" style={{ color: colors.darkOrange }}>Everything.</span>
-          </h2>
-          <div className="max-w-xl border-l-4 pl-8" style={{ borderLeftColor: colors.brightOrange }}>
-              <p className="text-[#041a14]/70 text-lg md:text-xl font-medium leading-relaxed">
-                  Subham Kishori Heights is strategically located in Dibrugarh, offering 
-                  effortless access to premier education, healthcare, and transport hubs.
-              </p>
-          </div>
+        {/* TOP SPECIFICATION BAR */}
+        <div className="flex flex-wrap items-center justify-between gap-6 mb-16 p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
+           <div className="flex items-center gap-4">
+             <div className="p-3 bg-orange-100 rounded-xl text-[#D64B27]"><Building2 size={24}/></div>
+             <div>
+               <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Structure</p>
+               <p className="font-bold text-sm text-[#041a14]">2B + Stilt + 27 Floors</p>
+             </div>
+           </div>
+           <div className="h-10 w-px bg-gray-100 hidden md:block" />
+           <div className="flex items-center gap-4">
+             <div className="p-3 bg-orange-100 rounded-xl text-[#D64B27]"><Zap size={24}/></div>
+             <div>
+               <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Luxury Units</p>
+               <p className="font-bold text-sm text-[#041a14]">108 AC Apartments</p>
+             </div>
+           </div>
+           <div className="h-10 w-px bg-gray-100 hidden md:block" />
+           <div className="flex items-center gap-4">
+             <div className="p-3 bg-orange-100 rounded-xl text-[#D64B27]"><Navigation size={24}/></div>
+             <div>
+               <p className="text-[10px] uppercase font-black text-gray-400 tracking-widest">Location</p>
+               <p className="font-bold text-sm text-[#041a14]">Nandankanan Road, Raghunathpur</p>
+             </div>
+           </div>
         </div>
 
-        {/* --- CONNECTIVITY GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
-          {connectivityData.map((section, idx) => (
-            <div key={idx} className="group relative">
-              <span className="absolute -left-6 -top-10 text-9xl font-serif italic select-none transition-all duration-700 opacity-[0.05] group-hover:opacity-20 group-hover:-translate-y-2" style={{ color: colors.blackish }}>
-                0{idx + 1}
-              </span>
+        {/* HEADER SECTION */}
+        <div className="mb-20">
+          <div className="flex items-center gap-3 text-[#D64B27] mb-4">
+            <Sparkles size={18} className="animate-pulse" />
+            <span className="text-xs font-black uppercase tracking-[0.4em]">Prime Residential Zone</span>
+          </div>
+          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] text-[#041a14] mb-8">
+            The World at <br />
+            <span className="italic font-light text-[#D64B27]">Your Doorstep.</span>
+          </h2>
+          <p className="max-w-2xl text-lg text-gray-500 font-medium">
+            3 BHK & 4 BHK residences in the heart of Bhubaneswar's ultra-luxurious high-rise district. 
+            Designed for those who demand effortless connectivity.
+          </p>
+        </div>
 
-              <div className="relative bg-white/40 backdrop-blur-sm p-8 rounded-[3rem] border border-transparent hover:border-gray-200 transition-all duration-500 hover:shadow-2xl">
-                <div className="flex items-center justify-between mb-8 border-b pb-6" style={{ borderBottomColor: `${colors.blackish}10` }}>
-                  <div className="w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all duration-500 group-hover:rotate-[360deg] group-hover:scale-110" style={{ backgroundColor: colors.blackish, color: colors.brightOrange }}>
+        {/* FULL CONTENT GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {connectivityData.map((section, idx) => (
+            <div key={idx} className="group bg-white p-8 rounded-[2rem] border border-gray-100 hover:border-[#F2A71D] shadow-sm hover:shadow-xl transition-all duration-500">
+              <div className="flex items-center justify-between mb-8 border-b border-gray-50 pb-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-[#041a14] text-[#F2A71D] rounded-xl flex items-center justify-center">
                     {section.icon}
                   </div>
-                  <h3 className="font-serif text-3xl italic">{section.category}</h3>
+                  <h3 className="font-serif text-xl font-bold">{section.category}</h3>
                 </div>
-
-                <ul className="space-y-6">
-                  {section.items.map((item, i) => (
-                    <li key={i} className="flex flex-col gap-2 group/item">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm font-bold tracking-tight text-[#041a14]/80 group-hover/item:text-[#041a14] transition-colors">
-                            {item.name}
-                        </span>
-                        <span className="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md shadow-sm border border-[#F2A71D30]" style={{ backgroundColor: colors.lightOrangeBG, color: colors.darkOrange }}>
-                          {item.dist}
-                        </span>
-                      </div>
-                      <div className="w-full h-[1px] relative overflow-hidden" style={{ backgroundColor: `${colors.blackish}05` }}>
-                        <div className="absolute top-0 left-0 h-full w-0 transition-all duration-1000 ease-out group-hover:w-full" style={{ backgroundColor: colors.brightOrange }} />
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+                <span className="text-xs font-black text-gray-200 uppercase tracking-widest">0{idx + 1}</span>
               </div>
+
+              <ul className="space-y-5">
+                {section.items.map((item, i) => (
+                  <li key={i} className="flex flex-col gap-1 group/item">
+                    <div className="flex justify-between items-start gap-4">
+                      <span className="text-sm font-semibold text-gray-600 group-hover/item:text-[#041a14] transition-colors">
+                        {item.name}
+                      </span>
+                      <span className="text-[10px] font-black text-[#D64B27] bg-[#F2A71D10] px-2 py-1 rounded whitespace-nowrap">
+                        {item.dist}
+                      </span>
+                    </div>
+                    <div className="w-full h-[1px] bg-gray-50 overflow-hidden">
+                      <div className="h-full w-0 group-hover/item:w-full transition-all duration-700 bg-[#F2A71D]" />
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
-      </div>
 
-      <style jsx>{`
-        .animate-spin-slow {
-          animation: spin 12s linear infinite;
-        }
-        .animate-reverse-spin {
-          animation: spin-reverse 8s linear infinite;
-        }
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes spin-reverse {
-          from { transform: rotate(360deg); }
-          to { transform: rotate(0deg); }
-        }
-      `}</style>
+        {/* T&C FOOTNOTE */}
+        <div className="mt-12 text-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+          *T&C Apply. High-Rise Ultra-Luxurious Living in Bhubaneswar.
+        </div>
+      </div>
     </section>
   );
 };

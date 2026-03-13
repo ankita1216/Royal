@@ -1,14 +1,10 @@
 "use client";
-import { useEffect } from "react";
-import React, { useState } from "react";
-
-// ✅ FIXED: Use 'react-router-dom' for Vite
+import { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom"; 
-
 import { 
-  Send, MapPin, Phone, ShieldCheck, 
-  Target, CheckCircle2, Sparkles, Lock,
-  Home, Clock, ChevronDown
+  Send, MapPin, ShieldCheck, Sparkles, Lock,
+  Clock, ChevronDown, CheckCircle2, PhoneIncoming, ArrowRight
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "../lib/firebase";
@@ -22,12 +18,11 @@ export default function Contact() {
 
   const navigate = useNavigate();
 
- const colors = {
-    blackish: "#765229",      
-    vibrantOrange: "#ffdead", 
-    goldenYellow: "#dfab5e",  
-    deepOrange: "#dfab5e",    // Used in "Contact Now"
-    warmCream: "#FFF4E6",     
+  const colors = {
+    blackish: "#765229",      // Rich Brown
+    brightOrange: "#F2A71D",   // Accent
+    deepOrange: "#E97323",     // Primary CTA
+    warmCream: "#fdfdfc", 
   };
 
   const [formData, setFormData] = useState({
@@ -36,14 +31,13 @@ export default function Contact() {
     phone: "",
     interest: "3 BHK", 
     callTime: "Morning (9 AM - 12 PM)",
-    utm_source: "",
+    utm_source: "direct",
     utm_medium: "",
     utm_campaign: "",
     utm_term: "",
     utm_content: ""
   });
 
-  // Capture UTM parameters from URL on load
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setFormData(prev => ({
@@ -56,10 +50,6 @@ export default function Contact() {
     }));
   }, []);
 
-  // ==========================================
-  // FIREBASE LOGIC
-  // ==========================================
-  
   const setupRecaptcha = () => {
     if (!window.recaptchaVerifier) {
       window.recaptchaVerifier = new RecaptchaVerifier(
@@ -67,9 +57,7 @@ export default function Contact() {
         "recaptcha-container",
         {
           size: "invisible",
-          callback: () => {
-            console.log("reCAPTCHA verified");
-          }
+          callback: () => console.log("reCAPTCHA verified")
         }
       );
     }
@@ -96,12 +84,9 @@ export default function Contact() {
       const result = await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
       setConfirmationResult(result);
       setIsOtpSent(true);
-      alert("OTP sent to " + phoneNumber);
-
     } catch (error) {
       console.error(error);
       alert(error.message || "Error sending OTP");
-      // Reset reCAPTCHA on error to allow retry
       if (window.recaptchaVerifier) {
         window.recaptchaVerifier.clear();
         window.recaptchaVerifier = null;
@@ -113,187 +98,208 @@ export default function Contact() {
 
   const handleFinalSubmit = async (e) => {
     e.preventDefault();
-
     if (!isOtpSent) return alert("Please verify phone first");
     if (!otp || otp.length < 6) return alert("Please enter the 6-digit OTP");
-
     setLoading(true);
 
     try {
-      // 1. Verify OTP with Firebase
       await confirmationResult.confirm(otp);
       
-      // 2. Prepare data for Pabbly (using URLSearchParams to avoid CORS/404 issues)
       const payload = new URLSearchParams();
-      Object.entries(formData).forEach(([key, value]) => {
-        payload.append(key, value);
-      });
+      Object.entries(formData).forEach(([key, value]) => payload.append(key, value));
 
-      // 3. Send to Webhook
-      // Ensure the Workflow in Pabbly is "ON" and "Waiting for Response"
       await fetch("https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTZjMDYzMTA0MzA1MjZkNTUzMjUxMzMi_pc", {
         method: "POST",
-        mode: "no-cors", // Bypasses preflight checks that cause 404s
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
+        mode: "no-cors",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: payload.toString(),
       });
 
-      // 4. Update UI and Redirect
       setSubmitted(true);
-      setTimeout(() => {
-        navigate("/Info/Thankyou");
-      }, 1500);
-
+      setTimeout(() => navigate("/Info/Thankyou"), 2000);
     } catch (error) {
-      console.error("Submission Error:", error);
-      alert("Invalid OTP or session expired. Please try again.");
+      alert("Invalid OTP or session expired.");
     } finally {
       setLoading(false);
     }
   };
 
-  const inputStyle = "w-full bg-gray-50 border border-gray-200 rounded-xl px-5 py-4 outline-none focus:border-[#E97323] focus:ring-4 focus:ring-[#E97323]/10 transition-all duration-300 placeholder:text-gray-400 text-[#041a14] font-medium";
+  const inputStyle = "w-full bg-gray-50/50 border border-gray-200 rounded-2xl px-6 py-4 outline-none focus:border-[#765229] focus:ring-4 focus:ring-[#765229]/5 transition-all duration-300 placeholder:text-gray-300 text-[#041a14] font-medium";
 
   return (
-    <section id="contact" className="relative w-full bg-[#fafaf8] py-24 lg:py-40 overflow-hidden font-sans text-[#041a14]">
+    <section id="contact" className="relative w-full bg-[#fdfdfc] py-24 lg:py-40 overflow-hidden font-sans">
       <div id="recaptcha-container"></div>
+      
+      {/* Background Decorative Element */}
+      <div className="absolute top-0 right-0 w-[50%] h-full bg-[#765229]/[0.02] -skew-x-12 translate-x-20 z-0" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col lg:flex-row items-stretch bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-[#041a14]/5">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col lg:flex-row items-stretch bg-white rounded-[4rem] shadow-[0_40px_100px_-20px_rgba(118,82,41,0.15)] overflow-hidden border border-black/5"
+        >
           
-          {/* LEFT SIDE */}
-          <div className="lg:w-2/5 p-12 lg:p-16 text-white flex flex-col justify-between relative overflow-hidden" style={{ backgroundColor: colors.blackish }}>
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#E97323] opacity-10 blur-[80px] rounded-full pointer-events-none"></div>
-
+          {/* LEFT SIDE: Brand & Info */}
+          <div className="lg:w-5/12 p-12 lg:p-20 text-white flex flex-col justify-between relative overflow-hidden" style={{ backgroundColor: colors.blackish }}>
+            <div className="absolute -top-20 -left-20 w-80 h-80 bg-[#F2A71D] opacity-10 blur-[100px] rounded-full"></div>
+            
             <div className="relative z-10">
-              <span className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.4em] mb-6" style={{ color: colors.brightOrange }}>
-                <Sparkles className="w-3 h-3" /> Exclusive Inquiry
-              </span>
-              <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-6">
-                Let's Discuss <br />
-                <span className="italic font-light" style={{ color: colors.brightOrange }}>Your Future.</span>
-              </h2>
-              <p className="text-white/70 text-base lg:text-lg font-medium leading-relaxed max-w-xs">
-                Subham Kishori Heights offers a lifestyle-focused residential experience in the heart of Dibrugarh.
-              </p>
-            </div>
-
-            <div className="space-y-6 pt-10 relative z-10">
-              <div className="flex items-center gap-4 text-xs font-bold uppercase tracking-widest bg-white/5 p-4 rounded-xl backdrop-blur-sm border border-white/10">
-                <MapPin className="w-4 h-4" style={{ color: colors.brightOrange }} /> Near Brahmaputra, Dibrugarh
+              <div className="flex items-center gap-3 mb-10">
+                <div className="h-[1px] w-10 bg-orange-400/50" />
+                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-orange-400">
+                  Concierge
+                </span>
               </div>
-            </div>
-          </div>
 
-          {/* RIGHT SIDE (Form) */}
-          <div className="lg:w-3/5 p-8 lg:p-16 flex flex-col justify-center bg-white relative">
-            {!submitted ? (
-              <form onSubmit={handleFinalSubmit} className="space-y-6">
+              <h2 className="font-serif text-5xl lg:text-7xl leading-[0.9] mb-8 tracking-tighter">
+                Request <br />
+                <span className="italic font-light opacity-80">A Private View.</span>
+              </h2>
+              
+              <p className="text-white/60 text-lg leading-relaxed max-w-sm mb-12">
+                Begin your journey to Royal Presidency. Leave your details, and our specialist will curate a tailored walkthrough for you.
+              </p>
 
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 block ml-1">Full Name</label>
-                  <input 
-                    type="text"
-                    required
-                    placeholder="e.g. Rahul Sharma"
-                    className={inputStyle}
-                    onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  />
-                </div>
-
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 block ml-1">Phone Number</label>
-                  <div className="relative">
-                    <input 
-                      type="tel"
-                      required
-                      placeholder="10-digit mobile number"
-                      disabled={isOtpSent}
-                      className={`${inputStyle} pr-28`} 
-                      onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    />
-
-                    {formData.phone.length >= 10 && !isOtpSent && (
-                      <button 
-                        type="button"
-                        onClick={handleSendOtp}
-                        disabled={loading}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#041a14] hover:bg-[#0a2e24] text-[#F2A71D] px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wide transition-colors"
-                      >
-                        {loading ? "Sending..." : "Get OTP"}
-                      </button>
-                    )}
-                    
-                    {isOtpSent && (
-                       <div className="absolute right-4 top-1/2 -translate-y-1/2 text-green-600">
-                          <CheckCircle2 className="w-5 h-5" />
-                       </div>
-                    )}
+              <div className="space-y-4">
+                <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-3xl group hover:bg-white/10 transition-colors">
+                  <div className="p-3 bg-orange-500/20 rounded-2xl">
+                    <MapPin className="w-5 h-5 text-orange-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Location</p>
+                    <p className="text-sm font-bold">Raghunathpur, Bhubaneswar</p>
                   </div>
                 </div>
 
+                <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-3xl group hover:bg-white/10 transition-colors">
+                  <div className="p-3 bg-orange-500/20 rounded-2xl">
+                    <ShieldCheck className="w-5 h-5 text-orange-400" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Privacy</p>
+                    <p className="text-sm font-bold">100% Encrypted Communication</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-16 pt-8 border-t border-white/5 flex items-center justify-between opacity-40">
+               <span className="text-[9px] font-black uppercase tracking-widest">© 2026 Royal Presidency</span>
+               <Sparkles className="w-4 h-4" />
+            </div>
+          </div>
+
+          {/* RIGHT SIDE: Interactive Form */}
+          <div className="lg:w-7/12 p-8 lg:p-20 flex flex-col justify-center bg-white relative">
+            {!submitted ? (
+              <form onSubmit={handleFinalSubmit} className="space-y-8">
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Name Field */}
+                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }}>
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3 block ml-1">Full Name</label>
+                    <input 
+                      type="text"
+                      required
+                      placeholder="Rahul Sharma"
+                      className={inputStyle}
+                      onChange={(e) => setFormData({...formData, name: e.target.value})}
+                    />
+                  </motion.div>
+
+                  {/* Phone Field */}
+                  <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3 block ml-1">Mobile Access</label>
+                    <div className="relative group">
+                      <input 
+                        type="tel"
+                        required
+                        placeholder="10-digit number"
+                        disabled={isOtpSent}
+                        className={`${inputStyle} ${isOtpSent ? 'border-green-100 bg-green-50/30' : ''}`} 
+                        onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                      />
+
+                      <AnimatePresence>
+                        {formData.phone.length === 10 && !isOtpSent && (
+                          <motion.button 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0 }}
+                            type="button"
+                            onClick={handleSendOtp}
+                            disabled={loading}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#765229] hover:bg-[#5d4121] text-white px-5 py-2.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all shadow-lg active:scale-95"
+                          >
+                            {loading ? "..." : "Verify"}
+                          </motion.button>
+                        )}
+                      </AnimatePresence>
+                      
+                      {isOtpSent && (
+                         <div className="absolute right-5 top-1/2 -translate-y-1/2 text-green-600 flex items-center gap-2">
+                            <span className="text-[9px] font-bold">Verified</span>
+                            <CheckCircle2 className="w-5 h-5" />
+                         </div>
+                      )}
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* OTP Section */}
                 <AnimatePresence>
                   {isOtpSent && (
                     <motion.div 
                       initial={{ height: 0, opacity: 0 }} 
                       animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
                       className="overflow-hidden"
                     >
-                      <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 block ml-1">Verification Code</label>
-                      <div className="relative">
-                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                        <input 
-                          type="text"
-                          required
-                          placeholder="Enter 6-digit OTP"
-                          className={`${inputStyle} pl-11`}
-                          onChange={(e) => setOtp(e.target.value)}
-                        />
+                      <div className="bg-[#765229]/5 p-6 rounded-3xl border border-[#765229]/10">
+                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#765229] mb-3 block ml-1">Secret Code Sent to Phone</label>
+                        <div className="relative">
+                          <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#765229]/40" />
+                          <input 
+                            type="text"
+                            required
+                            placeholder="Enter 6-digit OTP"
+                            className="w-full bg-white border border-[#765229]/20 rounded-2xl px-12 py-4 outline-none focus:border-[#765229] transition-all text-lg tracking-[0.5em] font-bold"
+                            onChange={(e) => setOtp(e.target.value)}
+                          />
+                        </div>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
 
-                <div>
-                  <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 block ml-1">Interested In</label>
-                  <div className="grid grid-cols-3 gap-3">
-                    {["3 BHK", "4 BHK", "Duplex"].map((type) => (
-                      <button
-                        key={type}
-                        type="button"
-                        onClick={() => setFormData({...formData, interest: type})}
-                        className={`py-3 px-2 rounded-xl text-sm font-bold border transition-all duration-200 ${
-                          formData.interest === type 
-                          ? "bg-[#041a14] text-[#F2A71D] border-[#041a14] shadow-md transform scale-[1.02]" 
-                          : "bg-white text-gray-600 border-gray-200 hover:border-[#E97323] hover:text-[#E97323]"
-                        }`}
-                      >
-                        {type}
-                      </button>
-                    ))}
+                {/* Selection Fields */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                   <div>
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3 block ml-1">Preferred Configuration</label>
+                    <div className="flex p-1.5 bg-gray-50 rounded-[1.5rem] border border-gray-100">
+                      {["3 BHK", "4 BHK"].map((type) => (
+                        <button
+                          key={type}
+                          type="button"
+                          onClick={() => setFormData({...formData, interest: type})}
+                          className={`flex-1 py-3 rounded-2xl text-[11px] font-black tracking-widest transition-all duration-300 ${
+                            formData.interest === type 
+                            ? "bg-white text-[#765229] shadow-sm scale-[1.02]" 
+                            : "text-gray-400 hover:text-gray-600"
+                          }`}
+                        >
+                          {type}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 block ml-1">Email Address</label>
-                    <input 
-                      type="email"
-                      required
-                      placeholder="john@example.com"
-                      className={inputStyle}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    />
-                  </div>
-
-                  <div className="relative">
-                    <label className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2 block ml-1">Best Time to Call</label>
+                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 mb-3 block ml-1">Callback Window</label>
                     <div className="relative">
                       <select 
-                        className={`${inputStyle} appearance-none cursor-pointer`}
+                        className={`${inputStyle} appearance-none cursor-pointer bg-gray-50/50`}
                         value={formData.callTime}
                         onChange={(e) => setFormData({...formData, callTime: e.target.value})}
                       >
@@ -302,44 +308,58 @@ export default function Contact() {
                         <option>Evening (4 PM - 8 PM)</option>
                         <option>Anytime</option>
                       </select>
-                      <ChevronDown className="absolute right-4 top-1/2 mt-1 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                      <ChevronDown className="absolute right-5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                     </div>
                   </div>
                 </div>
 
+                {/* Submit Button */}
                 <button 
                   type="submit"
                   disabled={!isOtpSent || loading}
-                  className={`w-full py-5 rounded-xl text-white font-bold text-lg tracking-wide shadow-lg transition-all duration-300 mt-4 flex items-center justify-center gap-2 ${
+                  className={`group w-full py-6 rounded-3xl font-black text-xs uppercase tracking-[0.3em] transition-all duration-500 flex items-center justify-center gap-4 ${
                     !isOtpSent || loading
-                    ? "bg-gray-300 cursor-not-allowed"
-                    : "bg-[#E97323] hover:bg-[#d64b27] hover:shadow-xl hover:-translate-y-1"
+                    ? "bg-gray-100 text-gray-300 cursor-not-allowed"
+                    : "bg-[#765229] text-white hover:bg-[#5d4121] shadow-[0_20px_40px_-10px_rgba(118,82,41,0.3)] hover:-translate-y-1"
                   }`}
                 >
-                  {loading ? "Processing..." : (
+                  {loading ? "Processing Securely..." : (
                     <>
-                      Confirm Inquiry <Send className="w-5 h-5" />
+                      Confirm Inquiry <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
                 </button>
+
+                <p className="text-[10px] text-center text-gray-400 font-medium tracking-wide">
+                  By clicking confirm, you agree to our <span className="underline cursor-pointer">Privacy Policy</span> and Terms.
+                </p>
 
               </form>
             ) : (
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="text-center h-full flex flex-col items-center justify-center p-8"
+                className="text-center h-full flex flex-col items-center justify-center py-20"
               >
-                <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6 text-green-600">
-                  <CheckCircle2 className="w-12 h-12" />
+                <div className="relative mb-10">
+                  <div className="absolute inset-0 bg-green-500/20 blur-3xl rounded-full scale-150" />
+                  <div className="relative w-28 h-28 bg-green-50 rounded-full flex items-center justify-center text-green-600 border border-green-100">
+                    <CheckCircle2 className="w-14 h-14" />
+                  </div>
                 </div>
-                <h3 className="text-3xl font-serif font-medium mb-3">Redirecting...</h3>
+                <h3 className="text-4xl font-serif italic mb-4">Inquiry Received.</h3>
+                <p className="text-gray-400 font-medium tracking-wide">Preparing your concierge experience...</p>
               </motion.div>
             )}
           </div>
 
-        </div>
+        </motion.div>
       </div>
+
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap');
+        .font-serif { font-family: 'Playfair Display', serif; }
+      `}</style>
     </section>
   );
 }

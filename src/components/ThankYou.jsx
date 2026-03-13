@@ -1,223 +1,186 @@
 "use client";
 
 import React from "react";
-import { ArrowUp, MapPin, ExternalLink, Award, Zap, Compass, Sparkles, Building } from "lucide-react";
-import { motion } from "framer-motion";
+import { ArrowUp, MapPin, Award, Sparkles, Building, MoveUpRight } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 
 export default function AboutSubham() {
-  const [selectedLocation, setSelectedLocation] = React.useState("GS ROAD, GUWAHATI");
+  const [selectedProject, setSelectedProject] = React.useState("Royal Residency");
+  const containerRef = React.useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Parallax and Scale effects
+  const yScroll = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.1, 1]);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // HANDLER FOR SITE VISIT BUTTON
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      const yOffset = -100;
-      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
-  };
-
   const colors = {
-    blackish: "#041a14",      
-    brightOrange: "#F2A71D", 
-    mediumOrange: "#E97323", 
-    darkOrange: "#D64B27",   
+    earth: "#765229",      
+    gold: "#dfab5e",  
+    cream: "#fdfdfc", 
   };
 
-  const completedProjects = [
-  { name: "Subham Enclave", location: "Hatigaon, Residential" },
-  { name: "Subham Park View", location: "Fatasil, Residential" },
-  { name: "Subham Heights", location: "Kahilipara, Residential" },
-  { name: "Subham Classic", location: "Ambikagiri Nagar, Residential" },
-  { name: "Subham Garden", location: "Jorhat, Residential" },
-  { name: "Subham Residency", location: "Kharguli, Residential" },
-  
-  
-  { name: "Subham Regency", location: "Hengrabari, Residential" },
-  { name: "Subham Elite", location: "Gandhibasti, Residential" },
-  { name: "Subham Manjushree", location: "Datalpara, Residential" },
-  { name: "Subham Solitaire", location: "Agartala, Residential cum Commercial" },
-  { name: "Subham Sapphire", location: "Nalapara, Residential" },
-  { name: "Subham Garden", location: "Kalapahar, Residential cum Commercial" },
-  { name: "Subham Greens", location: "Lokhra, Residential cum Commercial" },
-  { name: "Subham Buildwell", location: "Zoo Road,Residential cum Commercial" },
-  { name: "Subham Ashray", location: "Near Airport, Guwahati Residential" },
-  { name: "Subham Velocity", location: "G.S Road, Commercial" },
-  { name: "Subham Redstone", location: "Downtown, Commercial" },
-  
-  { name: "Subham Square", location: "Lokhra, Commercial" },
-  { name: "Bijay Crescent", location: "Pibco, Commercial" },
-  { name: "Subham Park", location: "Bongaigaon, Residential" },
-  { name: "Subham Park", location: "Jorhat, Residential" },
-];
+  const bhubaneswarProjects = [
+    { name: "Royal Lagoon", year: "2022" },
+    { name: "Royal Heritage", year: "2024" },
+    { name: "Royal Residency", year: "2026" },
+    { name: "Royal Habitat", year: "Upcoming" },
+  ];
 
   const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
+    initial: { opacity: 0, y: 60 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.6 }
+    transition: { duration: 1.2, ease: [0.19, 1, 0.22, 1] }
   };
 
   return (
-    <footer className="w-full bg-[#fafaf8] py-12 lg:py-24 font-sans text-[#041a14]">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer ref={containerRef} className="w-full bg-[#fdfdfc] py-24 lg:py-48 font-sans text-[#765229] overflow-hidden relative">
+      
+      {/* --- BACKGROUND: VERTICAL KINETIC TEXT --- */}
+      <div className="absolute left-4 top-0 h-full pointer-events-none overflow-hidden select-none">
+        <motion.h2 
+          style={{ 
+            y: yScroll,
+            WebkitTextStroke: "1px #765229" 
+          }}
+          className="text-[18vw] font-serif font-black text-transparent opacity-[0.05] leading-none whitespace-nowrap rotate-90 origin-top-left"
+        >
+          BHUBANESWAR • ROYAL • BHUBANESWAR • ROYAL
+        </motion.h2>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* --- SECTION 1: HEADER --- */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <motion.div {...fadeInUp} className="text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
-               <Zap className="w-5 h-5" style={{ color: colors.brightOrange }} />
-               <span className="text-[10px] font-black uppercase tracking-[0.4em]" style={{ color: colors.darkOrange }}>
-                 The Legacy
-               </span>
+        {/* --- SECTION 1: ASYMMETRIC HEADER --- */}
+        <div className="flex flex-col lg:flex-row justify-between items-start mb-40 gap-12">
+          <motion.div {...fadeInUp} className="max-w-3xl">
+            <div className="flex items-center gap-4 mb-8">
+               <div className="w-12 h-[1px] bg-earth/20" />
+               <span className="text-[9px] font-black uppercase tracking-[1em] text-earth/50">Architectural Narrative</span>
             </div>
-            <h2 className="font-serif text-5xl md:text-7xl tracking-tighter" style={{ color: colors.blackish }}>
-              Time-Bound Projects and Timeless <span className="italic font-light" style={{ color: colors.darkOrange }}>Relationships.</span>
+            <h2 className="font-serif text-6xl md:text-[10rem] tracking-tighter leading-[0.8] mb-12">
+              Sculpting <br />
+              <span className="italic font-light text-gold ml-[0.5em]">Eternity.</span>
             </h2>
+          </motion.div>
+          
+          <motion.div {...fadeInUp} className="lg:max-w-xs pt-12">
+            <p className="text-sm font-medium leading-relaxed opacity-70 border-l border-earth/10 pl-8">
+              In the heart of Bhubaneswar, we don't just build residences; we compose landmarks. Every line is intentional, every space is a sanctuary for the refined soul.
+            </p>
           </motion.div>
         </div>
 
-        {/* --- SECTION 2: BENTO GRID --- */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-16">
+        {/* --- SECTION 2: THE LAYERED GALLERY --- */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 mb-48 items-center">
           
-          {/* Main Story Card */}
+          {/* Main Visual */}
           <motion.div 
-            className="md:col-span-8 p-10 lg:p-16 rounded-[3.5rem] text-white flex flex-col justify-between relative overflow-hidden group shadow-2xl min-h-[520px]"
-            style={{ backgroundColor: colors.blackish }}
+            className="md:col-span-7 relative"
             {...fadeInUp}
           >
-            <div className="relative z-10 mb-12">
-               <img 
-                 src="/logo4.png" 
-                 alt="Subham Group" 
-                 className="h-10 md:h-14 w-auto object-contain brightness-150" 
-               />
-            </div>
-
-            <div className="relative z-10 max-w-2xl">
-              <p className="text-2xl md:text-3xl font-serif italic mb-8 leading-tight">
-                "We don't just build structures; <br/> we curate lifestyles."
-              </p>
-              <p className="text-white/60 text-lg leading-relaxed mb-8 font-light">
-                Since 2007, Subham Group has been the silent force behind Guwahati’s skyline, 
-                blending architectural bravery with the warmth of a home.
-              </p>
-              <div className="flex items-center gap-4">
-                 <Award className="w-6 h-6" style={{ color: colors.brightOrange }} />
-                 <span className="text-[10px] font-bold uppercase tracking-widest text-white/40">
-                    Awarded 'Most Trusted Developer' — Northeast India
-                 </span>
+            {/* Coordinate Tag */}
+            <div className="absolute -top-10 -right-10 z-20 hidden lg:block">
+              <div className="p-8 bg-white shadow-2xl rounded-2xl border border-earth/5">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gold mb-2">Coordinates</p>
+                <p className="text-sm font-serif italic">20.2961° N, 85.8245° E</p>
               </div>
             </div>
 
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#F2A71D]/5 rounded-full blur-[120px] -mr-32 -mt-32 group-hover:bg-[#F2A71D]/10 transition-all duration-1000" />
-          </motion.div>
-
-          {/* PREMIUM "EXPERIENCE" CARD */}
-          <motion.div 
-            className="md:col-span-4 p-10 rounded-[3.5rem] flex flex-col justify-between relative overflow-hidden group shadow-xl"
-            style={{ backgroundColor: colors.darkOrange }}
-            {...fadeInUp}
-          >
-            <div className="relative z-10">
-               <Compass className="w-10 h-10 text-white/30 mb-6 group-hover:rotate-45 transition-transform duration-700" />
-               <h4 className="text-white font-serif text-3xl leading-tight mb-4">See the Ascent <br/> for Yourself</h4>
-               <p className="text-white/70 text-sm font-medium leading-relaxed">
-                 Walk through the corridors of Kishori Heights and feel the spirit of active living.
-               </p>
-            </div>
-
-            {/* UPDATED BUTTON WITH ONCLICK */}
-            <button 
-              onClick={scrollToContact}
-              className="relative z-10 w-full py-5 rounded-2xl bg-white text-[11px] font-black uppercase tracking-widest transition-all hover:bg-[#fafafa] hover:scale-[1.02] shadow-xl active:scale-95"
-              style={{ color: colors.blackish }}
-            >
-              Book a Site Visit
-            </button>
-
-            <div className="absolute -bottom-10 -right-10 opacity-10">
-               <Building className="w-48 h-48 text-white" />
-            </div>
-          </motion.div>
-
-          {/* Feature Image Card */}
-          <motion.div 
-            className="md:col-span-5 h-[450px] rounded-[3.5rem] overflow-hidden relative group shadow-xl"
-            {...fadeInUp}
-          >
-            <img 
-              src="/final.png" 
-              alt="Architecture" 
-              className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105" 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-            <div className="absolute bottom-10 left-10 flex items-center gap-4">
-               <div className="p-3 bg-white/10 backdrop-blur-md rounded-xl border border-white/20">
-                  <Sparkles className="w-5 h-5 text-white" />
-               </div>
-               <p className="text-white font-serif text-2xl italic">Masterpiece <br/> Landmark</p>
-            </div>
-          </motion.div>
-
-          {/* Milestones Card */}
-          <motion.div 
-            className="md:col-span-7 p-10 lg:p-14 bg-white rounded-[3.5rem] border border-gray-100 shadow-xl flex flex-col justify-between"
-            {...fadeInUp}
-          >
-            <div>
-               <p className="text-[10px] font-black uppercase tracking-[0.4em] mb-8 opacity-40">The Subham Portfolio</p>
-               <div className="flex flex-wrap gap-2">
-                 {completedProjects.map((project, idx) => (
-  <span 
-    key={idx}
-    onClick={() => setSelectedLocation(project.location)}
-    className="px-5 py-2.5 rounded-full border text-[9px] font-bold uppercase tracking-widest transition-all cursor-pointer"
-    style={{ backgroundColor: "#ffffff", borderColor: `${colors.blackish}10`, color: colors.blackish }}
-    onMouseEnter={(e) => { e.target.style.backgroundColor = colors.blackish; e.target.style.color = "white"; }}
-    onMouseLeave={(e) => { e.target.style.backgroundColor = "#ffffff"; e.target.style.color = colors.blackish; }}
-  >
-    {project.name}
-  </span>
-))}
-                 {/* <span className="px-5 py-2.5 rounded-full text-white text-[9px] font-black uppercase tracking-widest flex items-center gap-2 shadow-lg" style={{ backgroundColor: colors.mediumOrange }}>
-                   Solitaire <ExternalLink className="w-3 h-3" />
-                 </span> */}
-               </div>
+            <div className="aspect-[4/5] overflow-hidden rounded-[2rem] lg:rounded-tr-[12rem] shadow-2xl group relative">
+              <motion.img 
+                style={{ scale: imageScale }}
+                src="/final2.jpg" 
+                alt="Architecture" 
+                className="w-full h-full object-cover transition-transform duration-1000" 
+              />
+              <div className="absolute inset-0 bg-earth/10 group-hover:bg-transparent transition-colors duration-700" />
             </div>
             
-            <div className="mt-12 flex items-center justify-between opacity-40">
-               <div className="flex items-center gap-3 text-[9px] font-black uppercase tracking-widest">
-                  <MapPin className="w-4 h-4" /> {selectedLocation}
+            {/* Floating Title Card */}
+            <div className="absolute -bottom-12 -left-8 lg:left-[-15%] z-20">
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="bg-[#765229] p-12 lg:p-16 rounded-[3rem] shadow-2xl text-[#fdfdfc] max-w-sm"
+              >
+                <Sparkles className="w-8 h-8 text-[#dfab5e] mb-8" />
+                <h4 className="text-4xl font-serif italic mb-4 leading-none">Royal Presidency</h4>
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">The New Zenith of Bhubaneswar</p>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Minimalist Portfolio List */}
+          <motion.div 
+            className="md:col-span-5 pt-24 md:pt-0"
+            {...fadeInUp}
+          >
+            <div className="flex flex-col">
+               <div className="mb-12">
+                  <span className="inline-block px-4 py-1 border border-earth/20 rounded-full text-[9px] font-black uppercase tracking-widest mb-4">Portfolio</span>
+                  <h3 className="text-4xl font-serif">Bhubaneswar <br/>Series</h3>
                </div>
-               <div className="w-12 h-[1px] bg-black/20" />
+               
+               {bhubaneswarProjects.map((project, idx) => (
+                  <motion.div 
+                    key={idx}
+                    onMouseEnter={() => setSelectedProject(project.name)}
+                    className="group py-8 border-b border-earth/10 flex items-center justify-between cursor-pointer"
+                  >
+                    <div className="flex flex-col gap-2">
+                       <span className={`text-[9px] font-black text-gold transition-opacity duration-500 uppercase tracking-widest ${selectedProject === project.name ? 'opacity-100' : 'opacity-0'}`}>
+                          {project.year}
+                       </span>
+                       <h5 className={`text-2xl font-serif transition-all duration-500 ${selectedProject === project.name ? 'translate-x-4 text-earth opacity-100' : 'opacity-40'}`}>
+                          {project.name}
+                       </h5>
+                    </div>
+                    <div className={`w-10 h-10 rounded-full border border-earth/10 flex items-center justify-center transition-all duration-500 ${selectedProject === project.name ? 'bg-earth text-white rotate-45 scale-110 opacity-100' : 'opacity-0'}`}>
+                       <MoveUpRight className="w-4 h-4" />
+                    </div>
+                  </motion.div>
+               ))}
             </div>
           </motion.div>
         </div>
 
-        {/* --- SECTION 3: COPYRIGHT BAR --- */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t gap-8" style={{ borderTopColor: `${colors.blackish}10` }}>
-          <div className="flex gap-12 text-[9px] font-black uppercase tracking-[0.3em] opacity-30">
-            <span>© 2026 Subham Group</span>
-            <span>Trust · Innovation · Relationships</span>
+        {/* --- SECTION 3: REFINED SIGNATURE FOOTER --- */}
+        <div className="flex flex-col md:flex-row justify-between items-center pt-20 border-t border-earth/10 gap-12">
+          <div className="flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-earth/40">
+            <div className="flex items-center gap-3">
+               <Building className="w-3 h-3" />
+               <span>EST. 2026</span>
+            </div>
+            <span className="hidden md:block">/</span>
+            <span className="hover:text-gold transition-colors cursor-pointer">Royal Presidency Bhubaneswar</span>
           </div>
 
-          <button 
+          <motion.button 
             onClick={scrollToTop}
-            className="flex items-center gap-4 px-10 py-5 rounded-full text-white shadow-2xl transition-all duration-300 group hover:scale-105"
-            style={{ backgroundColor: colors.blackish }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex flex-col items-center gap-4 group"
           >
-            <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: colors.brightOrange }}>Back to Top</span>
-            <ArrowUp className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
-          </button>
+            <div className="w-16 h-16 rounded-full border border-earth/20 flex items-center justify-center relative overflow-hidden transition-colors group-hover:border-earth">
+               <ArrowUp className="w-5 h-5 group-hover:-translate-y-8 transition-transform duration-500" />
+               <ArrowUp className="w-5 h-5 absolute translate-y-8 group-hover:translate-y-0 transition-transform duration-500" />
+            </div>
+            <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 transition-opacity">Back to Zenith</span>
+          </motion.button>
         </div>
         
       </div>
 
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap');
         .font-serif { font-family: 'Playfair Display', serif; }
       `}</style>
     </footer>

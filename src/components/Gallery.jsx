@@ -7,8 +7,7 @@ export default function Gallery() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
 
-  // Official Brand Palette
-  const colors = {
+ const colors = {
     blackish: "#765229",      
     vibrantOrange: "#ffdead", 
     goldenYellow: "#dfab5e",  
@@ -17,16 +16,24 @@ export default function Gallery() {
   };
 
   const galleryImages = [
-    { title: "Balcony View", tag: "Outdoor Living", src: "https://subhamgroup.com/img/subham-kishori-glry2.jpg" },
-    { title: "Kid's Play Area", tag: "Family & Kids", src: "https://subhamgroup.com/img/subham-kishori-glry3.jpg" },
-    { title: "Lawn", tag: "Green Spaces", src: "https://subhamgroup.com/img/subham-kishori-glry4.jpg" },
-    { title: "Swimming Pool", tag: "Leisure", src: "https://subhamgroup.com/img/subham-kishori-glry5.jpg" },
-    { title: "Community Hall", tag: "Social Hub", src: "https://subhamgroup.com/img/subham-kishori-glry6.jpg" },
-    { title: "Gymnasium", tag: "Health & Fitness", src: "https://subhamgroup.com/img/subham-kishori-glry7.jpg" },
-    { title: "Indoor Games Room", tag: "Indoor", src: "https://subhamgroup.com/img/subham-kishori-glry8.jpg" },
-    { title: "Reception Area", tag: "Grand Entrance", srBirtc: "https://subhamgroup.com/img/subham-kishori-glry9.jpg" },
-    { title: "Gate View", tag: "Gate", src: "/Gate_view.jpeg" },
-    { title: "Bird Night Eye View", tag: "Night Eye", src: "/night.jpeg" }
+    { title: "Gate View", tag: "Gate", src: "/gate.png" },
+    // { title: "Road View", tag: "Road", src: "/road.png" },
+    { title: "Kid's  Area", tag: "Family & Kids", src: "/kids.png" },
+    { title: "Airial Sport View", tag: "Sport View", src: "/ROYALPRESEDENSY-AIRIAL-SPORT-UP-SECOND.png" },
+    { title: "Royal Presidency Porch Area", tag: "Porch", src: "/ROYAL PRESEDENSY-PORCH.png" },
+    { title: "Royal Presidency Porch Entrance", tag: "/Porch Entrance", src: "ROYAL PRESEDENSY-PORCH-ENT.png" },
+    { title: "Gymnasium", tag: "Health & Fitness", src: "/Gym-High.png" },
+    { title: "Indoor Games Room", tag: "Games Area", src: "/Games Area.png" },
+    { title: "Garden Area", tag: "Green", src: "/garden.png" },
+    { title: "Presidency Corridor", tag: "Corridor", src: "/Presidency-Corridor.png" },
+    { title: "Living Area", tag: "Living", src: "/Living.png" },
+    { title: "Entrance Lobby", tag: "Lobby", src: "/Entrance Lobby_02.png" },
+    { title: "Kitchen Area", tag: "Kitchen", src: "/Kitchen.png" },
+    { title: "Dining Area", tag: "Dining", src: "/Dinning.png" },
+    { title: "Bedroom Area", tag: "Bedroom", src: "/Bedroom_02.png" },
+    
+    
+    { title: "Master Bedroom", tag: "Bedroom", src: "/Master Bedroom.png" }
   ];
 
   useEffect(() => {
@@ -134,7 +141,7 @@ export default function Gallery() {
           {/* Sidebar Scrollable Content */}
           <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 scroll-smooth">
             
-            {/* ✅ ADDED: Mobile Only Preview Image (Visible only on mobile inside sidebar) */}
+            {activeImage !== 0 && (
             <div className="lg:hidden w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg relative mb-6 border-2" style={{ borderColor: colors.brightOrange }}>
                <img src={galleryImages[activeImage].src} alt="Active" className="w-full h-full object-cover" />
                <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
@@ -142,22 +149,32 @@ export default function Gallery() {
                   <p className="text-white font-serif text-xl italic">{galleryImages[activeImage].title}</p>
                </div>
             </div>
-
+            )}
             {/* Image List */}
-            {galleryImages.map((image, idx) => (
-              <div 
-                key={idx}
-                className={`group relative rounded-xl lg:rounded-2xl overflow-hidden cursor-pointer border-4 transition-all duration-200 ${activeImage === idx ? "border-[#F2A71D]" : "border-transparent opacity-60 hover:opacity-100"}`}
-                onClick={() => setActiveImage(idx)}
-              >
-                <img src={image.src} alt="" className="w-full aspect-video object-cover" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity" style={{ backgroundColor: `${colors.blackish}66` }}>
-                   <p className="text-white font-bold text-[10px] uppercase tracking-widest">View Details</p>
-                </div>
-              </div>
-            ))}
-          </div>
+            {/* Image List */}
+{galleryImages.map((image, idx) => {
+  
 
+  return (
+    <div 
+      key={idx}
+      className={`group relative rounded-xl lg:rounded-2xl overflow-hidden cursor-pointer border-4 transition-all duration-200 ${
+        activeImage === idx
+          ? "border-[#F2A71D] opacity-100 scale-[1.03]"
+          : "border-transparent opacity-60 hover:opacity-100"
+      }`}
+      onClick={() => setActiveImage(idx)}
+    >
+      <img src={image.src} alt="" className="w-full aspect-video object-cover" />
+     <div className="absolute bottom-3 left-3 text-white">
+  <p className="text-[10px] text-[#F2A71D]">{image.tag}</p>
+  <p className="italic">{image.title}</p>
+</div>
+    </div>
+  );
+})}
+</div>
+                
           {/* Sidebar Footer */}
           <div className="p-6 lg:p-8 shrink-0" style={{ backgroundColor: colors.blackish, color: colors.brightOrange }}>
             <p className="text-[9px] lg:text-[10px] font-black uppercase tracking-widest mb-2 lg:mb-4 opacity-50">Currently Exploring</p>
@@ -173,11 +190,11 @@ export default function Gallery() {
 
         {/* Center Preview - Desktop Only */}
         <div className={`hidden lg:flex absolute left-0 top-0 h-full w-[calc(100%-450px)] items-center justify-center p-20 pointer-events-none transition-all duration-300 ${isOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
-           <div className="relative w-full max-w-5xl shadow-2xl rounded-[4rem] overflow-hidden">
+           <div className="relative w-full max-w-5xl shadow-2xl rounded-[4rem] overflow-hidden aspect-[16/9]">
               <img 
                 src={galleryImages[activeImage].src} 
                 alt="Selected View" 
-                className="w-full h-auto object-cover"
+                className="w-full h-full object-cover"
               />
               <div className="absolute bottom-12 left-12 text-white drop-shadow-lg">
                 <p className="text-[10px] uppercase tracking-[0.4em] mb-2" style={{ color: colors.brightOrange }}>{galleryImages[activeImage].tag}</p>

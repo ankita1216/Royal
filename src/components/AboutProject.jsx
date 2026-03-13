@@ -42,7 +42,7 @@ export default function ActiveLivingHero({ onOpenPopup }) {
             alt="Modern Architecture" 
             className="w-full h-full object-cover opacity-100" 
           />
-          <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter text-black">B+G+14 Floors</div>
+          <div className="absolute bottom-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-tighter text-black">LB+UB+G+27</div>
         </div>
         
         {/* --- RIGHT IMAGE --- */}
@@ -80,9 +80,10 @@ up to panoramic views from multiple balconies.
           {/* --- GRID --- */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 w-full">
             <div className="p-6 rounded-[2rem] border border-orange-100 flex flex-col items-center justify-center shadow-sm bg-white hover:bg-orange-50 transition-colors" >
-               <span className="block text-3xl font-serif font-bold italic" style={{ color: colors.deepOrange }}>71%</span>
-               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center">Open to Sky
-Area</span>
+               <span className="block text-3xl font-serif font-bold italic" style={{ color: colors.deepOrange }}>180°</span>
+               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center">View from Each
+Apartments
+</span>
             </div>
             <div className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center justify-center" style={{ backgroundColor: colors.blackish }}>
                <span className="block text-3xl font-serif font-bold italic text-white" >30+</span>
@@ -95,9 +96,10 @@ Amenities</span>
 Every Apartment</span>
             </div>
             <div className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center justify-center" style={{ backgroundColor: colors.blackish }}>
-               <span className="block text-xl font-serif font-bold italic text-white" >180°</span>
-               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center text-white">View from Each
-Apartments</span>
+               <span className="block text-xl font-serif font-bold italic text-white" >71%</span>
+               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center text-white">Open to Sky
+Area
+</span>
             </div>
           </div>
 
