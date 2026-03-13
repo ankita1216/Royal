@@ -43,9 +43,9 @@ export default function Location() {
                 <p className="text-[10px] font-black uppercase tracking-widest  text-white">The Address</p>
               </div>
               <p className="text-xl md:text-2xl font-medium leading-relaxed mb-8 text-white">
-                Subham Kishori Heights, <br />
-                Seujpur, Dibrugarh, <br />
-                Assam - 786001
+                Royal Presidency, <br />
+                Raghunathpur, Bhubaneswar,  <br />
+               Odisha 751024
               </p>
             </div>
             
