@@ -41,8 +41,8 @@ export default function Thankyou() {
       {/* --- LOGO PLACEMENT (Top Left) --- */}
       <Link to="/" className="absolute top-6 left-6 z-30 md:top-10 md:left-10 cursor-pointer hover:opacity-80 transition-opacity">
         <img 
-          src="/Logo.png" 
-          alt="Subham Group" 
+          src="/logo_2.png" 
+          alt="royal Group" 
           className="w-28 md:w-40 object-contain brightness-0 invert" // 'invert' makes black logos white for dark backgrounds
         />
       </Link>
@@ -61,7 +61,7 @@ export default function Thankyou() {
           <div className="absolute inset-0 bg-[#F2A71D] blur-[60px] opacity-20 rounded-full"></div>
           
           <img 
-            src="/profile_3.png" 
+            src="/final.jpg" 
             alt="Team Member" 
             className="relative w-40 md:w-56 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-10" 
           />
@@ -93,7 +93,7 @@ export default function Thankyou() {
 
           {/* Subtitle */}
           <p className="text-white/70 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-xl mx-auto">
-            Thank you for choosing Subham Kishori Heights. <br className="hidden md:block" />
+            Thank you for choosing Royal Presidency. <br className="hidden md:block" />
             We have successfully recorded your interest.
           </p>
 
@@ -129,7 +129,8 @@ export default function Thankyou() {
 
       {/* Decorative Elements */}
       <div className="absolute bottom-10 left-0 w-full text-center opacity-30 pointer-events-none">
-        <span className="text-[10px] uppercase tracking-[0.5em] text-white">Subham Group • Dibrugarh</span>
+        <span className="text-[10px] uppercase tracking-[0.5em] text-white">Royal Presidency • Raghunathpur, Bhubaneswar
+</span>
       </div>
 
     </section>
