@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { 
   Award, Waves, Dumbbell, Trees, Heart, Users, Car, Lock, Coffee, Plus, 
   Gamepad2, Bike, Flower2, Layout, Landmark, Utensils, Sparkles, Zap
@@ -38,77 +38,62 @@ export default function Specifications() {
   ];
 
   return (
-    <section id="specifications" className="w-full bg-[#FAF9F6] py-16 lg:py-24 overflow-hidden font-sans text-[#2D241E]">
+    <section id="specifications" className="w-full bg-[#FAF9F6] py-20 lg:py-32 overflow-hidden font-sans text-[#2D241E]">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* --- HEADER --- */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-8 mb-16">
-          <div className="max-w-3xl">
-            <div className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.4em] mb-6" style={{ color: colors.darkOrange }}>
-              <Award className="w-5 h-5 animate-pulse" />
-              Two Decades of Architectural Excellence
-            </div>
-            <h2 className="font-serif text-5xl md:text-7xl lg:text-[85px] leading-[0.9] tracking-tighter">
-              A Life of <span className="italic font-light" style={{ color: colors.vibrantOrange }}>Unmatched</span> <br />
-              Privilege.
-            </h2>
+        {/* --- HEADER SECTION --- */}
+        <div className="max-w-4xl mb-20 animate-fade-in">
+          <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] mb-4" style={{ color: colors.vibrantOrange }}>
+            <div className="w-8 h-px bg-[#dfab5e]"></div>
+            Architectural Excellence
           </div>
-          <div className="max-w-sm">
-             <p className="text-[#2D241E]/70 text-lg font-medium leading-relaxed border-l-2 pl-6" style={{ borderColor: colors.vibrantOrange }}>
-                Curated experiences designed for those who settle for nothing less than the extraordinary.
-             </p>
-          </div>
+          <h2 className="font-serif text-5xl md:text-7xl mb-8 leading-tight tracking-tight">
+            Curated for the <span className="italic" style={{ color: colors.vibrantOrange }}>Extraordinary</span>.
+          </h2>
+          <p className="text-xl text-gray-500 max-w-2xl leading-relaxed">
+            Every detail is meticulously planned to provide a seamless blend of luxury, comfort, and nature.
+          </p>
         </div>
 
-        {/* --- FULL WIDTH HERO IMAGE (NATURAL PROPORTIONS) --- */}
-        <div className="relative w-full mb-24 group">
-          <div className="overflow-hidden rounded-[2rem] lg:rounded-[3rem] shadow-2xl bg-white">
+        {/* --- HERO IMAGE (CLEAN & FLOATING) --- */}
+        <div className="relative mb-32 animate-slide-up">
+          <div className="rounded-[2rem] overflow-hidden shadow-2xl">
             <img 
               src="/theme_1.jpg" 
-              alt="Project Masterpiece" 
-              className="w-full h-auto block transition-transform duration-[6000ms] group-hover:scale-105"
+              alt="Luxury Living" 
+              className="w-full h-[400px] md:h-[600px] object-cover"
             />
           </div>
-          
-          {/* Floating Feature Card */}
-          <div className="absolute -bottom-8 left-6 right-6 md:left-auto md:right-12 bg-white p-6 md:p-8 rounded-3xl shadow-2xl flex items-center gap-6 z-10 border border-gray-100 max-w-md">
-             <div className="w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 animate-pulse-slow" style={{ backgroundColor: colors.blackish }}>
-                <Sparkles className="w-8 h-8" style={{ color: colors.vibrantOrange }} />
-             </div>
-             <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-1">Architecture</p>
-                <p className="text-base md:text-lg font-bold leading-tight">Designed for maximum natural light and ventilation.</p>
-             </div>
+          {/* Subtle Accent Box */}
+          <div className="absolute -bottom-10 right-10 hidden lg:block bg-[#2D241E] p-10 rounded-2xl text-white max-w-xs shadow-2xl">
+            <Sparkles className="mb-4" style={{ color: colors.vibrantOrange }} />
+            <p className="text-lg font-medium">Passive Design</p>
+            <p className="text-sm text-gray-400 mt-2">Optimized for natural cross-ventilation and daylight harvesting.</p>
           </div>
         </div>
 
-        {/* --- AMENITIES GRID WITH CARD ANIMATIONS --- */}
-        <div className="pt-10">
-          <div className="flex items-center gap-4 mb-16">
-            <h4 className="font-serif text-3xl md:text-4xl italic whitespace-nowrap">The Amenities</h4>
-            <div className="h-px w-full bg-gray-200" />
+        {/* --- AMENITIES SECTION --- */}
+        <div className="space-y-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
+            <h3 className="font-serif text-4xl">Lifestyle Amenities</h3>
+            <span className="text-sm font-bold uppercase tracking-widest text-gray-400">20 Unique Experiences</span>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
             {amenities.map((item, idx) => (
               <div 
                 key={idx} 
-                className="amenity-card group flex items-center gap-5 p-6 rounded-2xl bg-white border border-gray-100 transition-all duration-500 hover:border-[#dfab5e] hover:shadow-[0_20px_40px_rgba(223,171,94,0.1)] hover:-translate-y-2"
-                style={{ animationDelay: `${idx * 70}ms` }}
+                className="group flex flex-col gap-4 animate-reveal"
+                style={{ animationDelay: `${idx * 100}ms` }}
               >
-                <div 
-                  className="w-12 h-12 shrink-0 rounded-xl flex items-center justify-center transition-all duration-500 group-hover:bg-[#dfab5e] group-hover:text-white"
-                  style={{ backgroundColor: `${colors.vibrantOrange}15`, color: colors.darkOrange }}
-                >
-                  {React.cloneElement(item.icon, { size: 20, strokeWidth: 2, className: "transition-transform duration-500 group-hover:scale-110" })}
+                <div className="relative overflow-hidden w-14 h-14 rounded-full bg-white border border-gray-100 flex items-center justify-center transition-all duration-500 group-hover:bg-[#2D241E] group-hover:scale-110 shadow-sm group-hover:shadow-xl">
+                  <div className="group-hover:text-[#dfab5e] text-[#765229] transition-colors duration-300">
+                    {React.cloneElement(item.icon, { size: 24, strokeWidth: 1.5 })}
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <span className="text-sm md:text-base font-bold text-[#2D241E]/80 group-hover:text-black transition-colors">
-                    {item.name}
-                  </span>
-                </div>
-                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
-                  <Plus size={16} className="text-[#dfab5e]" />
+                <div>
+                  <h5 className="text-lg font-bold mb-1 group-hover:text-[#dfab5e] transition-colors">{item.name}</h5>
+                  <div className="h-0.5 w-0 bg-[#dfab5e] transition-all duration-300 group-hover:w-full"></div>
                 </div>
               </div>
             ))}
@@ -120,27 +105,32 @@ export default function Specifications() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
         .font-serif { font-family: 'Playfair Display', serif; }
 
-        /* Animation for cards entering the screen */
-        .amenity-card {
+        .animate-fade-in {
+          animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-slide-up {
+          animation: slideUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .animate-reveal {
           opacity: 0;
-          transform: translateY(20px);
-          animation: revealCard 0.6s ease forwards;
+          transform: translateY(30px);
+          animation: reveal 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        @keyframes revealCard {
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
 
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; transform: scale(1); }
-          50% { opacity: 0.8; transform: scale(0.95); }
+        @keyframes slideUp {
+          from { opacity: 0; transform: translateY(50px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
-        .animate-pulse-slow {
-          animation: pulse-slow 3s infinite ease-in-out;
+        @keyframes reveal {
+          to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
     </section>

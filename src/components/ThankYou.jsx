@@ -1,185 +1,190 @@
 "use client";
 
-import React from "react";
-import { ArrowUp, MapPin, Award, Sparkles, Building, MoveUpRight } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { ArrowUp, Building, MoveUpRight, Sparkles, Instagram, Linkedin, Globe, Mail, Phone, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function AboutSubham() {
-  const [selectedProject, setSelectedProject] = React.useState("Royal Residency");
-  const containerRef = React.useRef(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  // Parallax and Scale effects
-  const yScroll = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const imageScale = useTransform(scrollYProgress, [0, 0.5], [1.1, 1]);
+  const [hoveredProject, setHoveredProject] = useState("Royal Residency");
+  const containerRef = useRef(null);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const colors = {
-    earth: "#765229",      
-    gold: "#dfab5e",  
-    cream: "#fdfdfc", 
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    
+    warmCream: "#FFF4E6",     
   };
 
   const bhubaneswarProjects = [
-    { name: "Royal Lagoon", year: "2022" },
-    { name: "Royal Heritage", year: "2024" },
-    { name: "Royal Residency", year: "2026" },
-    { name: "Royal Habitat", year: "Upcoming" },
+    { name: "Royal Lagoon", year: "2022", type: "Luxury Living" },
+    { name: "Royal Heritage", year: "2024", type: "Classic Suites" },
+    { name: "Royal Residency", year: "2026", type: "Signature High-rise" },
+    { name: "Royal Habitat", year: "Upcoming", type: "Modern Eco-Homes" },
   ];
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 1.2, ease: [0.19, 1, 0.22, 1] }
-  };
-
   return (
-    <footer ref={containerRef} className="w-full bg-[#fdfdfc] py-24 lg:py-48 font-sans text-[#765229] overflow-hidden relative">
+    <footer ref={containerRef} className="w-full py-24 pb-12 font-sans overflow-hidden relative border-t" style={{ backgroundColor: colors.warmCream, color: colors.blackish, borderColor: `${colors.blackish}20` }}>
       
-      {/* --- BACKGROUND: VERTICAL KINETIC TEXT --- */}
-      <div className="absolute left-4 top-0 h-full pointer-events-none overflow-hidden select-none">
-        <motion.h2 
-          style={{ 
-            y: yScroll,
-            WebkitTextStroke: "1px #765229" 
-          }}
-          className="text-[18vw] font-serif font-black text-transparent opacity-[0.05] leading-none whitespace-nowrap rotate-90 origin-top-left"
-        >
-          BHUBANESWAR • ROYAL • BHUBANESWAR • ROYAL
-        </motion.h2>
-      </div>
-
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* --- SECTION 1: ASYMMETRIC HEADER --- */}
-        <div className="flex flex-col lg:flex-row justify-between items-start mb-40 gap-12">
-          <motion.div {...fadeInUp} className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-8">
-               <div className="w-12 h-[1px] bg-earth/20" />
-               <span className="text-[9px] font-black uppercase tracking-[1em] text-earth/50">Architectural Narrative</span>
-            </div>
-            <h2 className="font-serif text-6xl md:text-[10rem] tracking-tighter leading-[0.8] mb-12">
-              Sculpting <br />
-              <span className="italic font-light text-gold ml-[0.5em]">Eternity.</span>
-            </h2>
-          </motion.div>
+        {/* --- HEADER --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-end">
+          <div className="lg:col-span-8">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex items-center gap-4 mb-6"
+            >
+               <div className="w-12 h-[1px]" style={{ backgroundColor: colors.goldenYellow }} />
+               <span className="text-[10px] font-black uppercase tracking-[0.5em]" style={{ color: colors.goldenYellow }}>The Visionary Legacy</span>
+            </motion.div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="font-serif text-6xl md:text-8xl lg:text-[110px] leading-[0.85] tracking-tighter"
+            >
+              Beyond <br /> 
+              <span className="italic font-light" style={{ color: colors.goldenYellow }}>Boundaries.</span>
+            </motion.h2>
+          </div>
           
-          <motion.div {...fadeInUp} className="lg:max-w-xs pt-12">
-            <p className="text-sm font-medium leading-relaxed opacity-70 border-l border-earth/10 pl-8">
-              In the heart of Bhubaneswar, we don't just build residences; we compose landmarks. Every line is intentional, every space is a sanctuary for the refined soul.
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
+            className="lg:col-span-4"
+          >
+            <p className="text-lg font-medium leading-relaxed opacity-70 border-l-2 pl-6" style={{ borderColor: colors.goldenYellow }}>
+              Over 20 years of crafting the Bhubaneswar skyline. We don't just build homes; we build the future of urban living.
             </p>
           </motion.div>
         </div>
 
-        {/* --- SECTION 2: THE LAYERED GALLERY --- */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 mb-48 items-center">
+        {/* --- CONTENT GRID --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-40">
           
-          {/* Main Visual */}
-          <motion.div 
-            className="md:col-span-7 relative"
-            {...fadeInUp}
-          >
-            {/* Coordinate Tag */}
-            <div className="absolute -top-10 -right-10 z-20 hidden lg:block">
-              <div className="p-8 bg-white shadow-2xl rounded-2xl border border-earth/5">
-                <p className="text-[10px] font-black uppercase tracking-widest text-gold mb-2">Coordinates</p>
-                <p className="text-sm font-serif italic">20.2961° N, 85.8245° E</p>
+          {/* Projects & Contact Info */}
+          <div className="lg:col-span-7 space-y-20">
+            {/* Projects Section */}
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-widest opacity-40 mb-10">Curated Landmarks</h4>
+              <div className="space-y-2">
+                {bhubaneswarProjects.map((project, idx) => (
+                  <div 
+                    key={idx}
+                    onMouseEnter={() => setHoveredProject(project.name)}
+                    className="group py-6 border-b flex items-center justify-between cursor-pointer transition-all"
+                    style={{ borderColor: `${colors.blackish}15` }}
+                  >
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[10px] font-bold opacity-0 group-hover:opacity-100 transition-opacity tracking-widest" style={{ color: colors.goldenYellow }}>
+                        {project.year} — {project.type}
+                      </span>
+                      <h3 className={`text-3xl md:text-4xl font-serif transition-all duration-500 ${hoveredProject === project.name ? 'translate-x-2' : 'opacity-30'}`}>
+                        {project.name}
+                      </h3>
+                    </div>
+                    <MoveUpRight className={`w-6 h-6 transition-all duration-500 ${hoveredProject === project.name ? 'opacity-100' : 'opacity-0'}`} style={{ color: colors.goldenYellow }} />
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="aspect-[4/5] overflow-hidden rounded-[2rem] lg:rounded-tr-[12rem] shadow-2xl group relative">
-              <motion.img 
-                style={{ scale: imageScale }}
-                src="/final2.jpg" 
-                alt="Architecture" 
-                className="w-full h-full object-cover transition-transform duration-1000" 
-              />
-              <div className="absolute inset-0 bg-earth/10 group-hover:bg-transparent transition-colors duration-700" />
-            </div>
-            
-            {/* Floating Title Card */}
-            <div className="absolute -bottom-12 -left-8 lg:left-[-15%] z-20">
-              <motion.div 
-                whileHover={{ y: -10 }}
-                className="bg-[#765229] p-12 lg:p-16 rounded-[3rem] shadow-2xl text-[#fdfdfc] max-w-sm"
-              >
-                <Sparkles className="w-8 h-8 text-[#dfab5e] mb-8" />
-                <h4 className="text-4xl font-serif italic mb-4 leading-none">Royal Presidency</h4>
-                <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-40">The New Zenith of Bhubaneswar</p>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          {/* Minimalist Portfolio List */}
-          <motion.div 
-            className="md:col-span-5 pt-24 md:pt-0"
-            {...fadeInUp}
-          >
-            <div className="flex flex-col">
-               <div className="mb-12">
-                  <span className="inline-block px-4 py-1 border border-earth/20 rounded-full text-[9px] font-black uppercase tracking-widest mb-4">Portfolio</span>
-                  <h3 className="text-4xl font-serif">Bhubaneswar <br/>Series</h3>
+            {/* Contact Info Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-10 border-t" style={{ borderColor: `${colors.blackish}10` }}>
+               <div className="space-y-6">
+                  <div className="flex items-start gap-4">
+                    <MapPin size={18} style={{ color: colors.goldenYellow }} className="shrink-0 mt-1" />
+                    <p className="text-sm font-medium opacity-80">Plot No. 755, 755/4117
+Nandankanan Road, Opposite HP Petrol Pump
+<br />Raghunathpur, Bhubaneswar, Odisha - 751024</p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Phone size={18} style={{ color: colors.goldenYellow }} className="shrink-0" />
+                    <p className="text-sm font-medium opacity-80">+91 9668496111</p>
+                  </div>
                </div>
-               
-               {bhubaneswarProjects.map((project, idx) => (
-                  <motion.div 
-                    key={idx}
-                    onMouseEnter={() => setSelectedProject(project.name)}
-                    className="group py-8 border-b border-earth/10 flex items-center justify-between cursor-pointer"
-                  >
-                    <div className="flex flex-col gap-2">
-                       <span className={`text-[9px] font-black text-gold transition-opacity duration-500 uppercase tracking-widest ${selectedProject === project.name ? 'opacity-100' : 'opacity-0'}`}>
-                          {project.year}
-                       </span>
-                       <h5 className={`text-2xl font-serif transition-all duration-500 ${selectedProject === project.name ? 'translate-x-4 text-earth opacity-100' : 'opacity-40'}`}>
-                          {project.name}
-                       </h5>
-                    </div>
-                    <div className={`w-10 h-10 rounded-full border border-earth/10 flex items-center justify-center transition-all duration-500 ${selectedProject === project.name ? 'bg-earth text-white rotate-45 scale-110 opacity-100' : 'opacity-0'}`}>
-                       <MoveUpRight className="w-4 h-4" />
-                    </div>
-                  </motion.div>
-               ))}
+               <div className="space-y-6">
+                  <div className="flex items-center gap-4">
+                    <Mail size={18} style={{ color: colors.goldenYellow }} className="shrink-0" />
+                    <p className="text-sm font-medium opacity-80">info@royalpresidency.com</p>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Globe size={18} style={{ color: colors.goldenYellow }} className="shrink-0" />
+                    <p className="text-sm font-medium opacity-80">www.royalpresidency.com</p>
+                  </div>
+               </div>
             </div>
-          </motion.div>
-        </div>
-
-        {/* --- SECTION 3: REFINED SIGNATURE FOOTER --- */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-20 border-t border-earth/10 gap-12">
-          <div className="flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-earth/40">
-            <div className="flex items-center gap-3">
-               <Building className="w-3 h-3" />
-               <span>EST. 2026</span>
-            </div>
-            <span className="hidden md:block">/</span>
-            <span className="hover:text-gold transition-colors cursor-pointer">Royal Presidency Bhubaneswar</span>
           </div>
 
-          <motion.button 
-            onClick={scrollToTop}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex flex-col items-center gap-4 group"
-          >
-            <div className="w-16 h-16 rounded-full border border-earth/20 flex items-center justify-center relative overflow-hidden transition-colors group-hover:border-earth">
-               <ArrowUp className="w-5 h-5 group-hover:-translate-y-8 transition-transform duration-500" />
-               <ArrowUp className="w-5 h-5 absolute translate-y-8 group-hover:translate-y-0 transition-transform duration-500" />
-            </div>
-            <span className="text-[9px] font-black uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 transition-opacity">Back to Zenith</span>
-          </motion.button>
+          {/* Restored Image Section */}
+          <div className="lg:col-span-5 hidden lg:block">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="sticky top-10 aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl" 
+              style={{ backgroundColor: colors.blackish }}
+            >
+              <img 
+                src="/final2.jpg" 
+                alt="Architecture" 
+                className="w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-1000"
+              />
+              <div className="absolute bottom-10 left-10 z-20 text-white">
+                <Sparkles className="w-8 h-8 mb-4 animate-pulse" style={{ color: colors.goldenYellow }} />
+                <p className="text-[10px] font-black uppercase tracking-widest opacity-60">Currently Viewing</p>
+                <h5 className="text-4xl font-serif italic">{hoveredProject}</h5>
+              </div>
+            </motion.div>
+          </div>
         </div>
-        
+
+        {/* --- FOOTER BOTTOM --- */}
+        <div className="pt-12 border-t" style={{ borderColor: `${colors.blackish}15` }}>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="flex flex-col items-center md:items-start gap-4">
+              <div className="flex items-center gap-2 font-serif text-2xl font-bold italic">
+                Royal Presidency <span className="font-sans not-italic text-xs tracking-tighter uppercase font-black" style={{ color: colors.goldenYellow }}>Developers</span>
+              </div>
+              <div className="flex gap-6 opacity-40">
+                <Instagram className="w-4 h-4 hover:opacity-100 cursor-pointer transition-opacity" />
+                <Linkedin className="w-4 h-4 hover:opacity-100 cursor-pointer transition-opacity" />
+              </div>
+            </div>
+
+            <motion.button 
+              onClick={scrollToTop}
+              whileHover={{ y: -5 }}
+              className="flex flex-col items-center gap-3 group"
+            >
+              <div className="w-12 h-12 rounded-full border flex items-center justify-center transition-colors" style={{ borderColor: `${colors.blackish}30` }}>
+                <ArrowUp className="w-4 h-4 group-hover:translate-y-[-2px] transition-transform" />
+              </div>
+              <span className="text-[9px] font-black uppercase tracking-widest opacity-40">Back to Top</span>
+            </motion.button>
+
+            <div className="text-[10px] font-bold uppercase tracking-widest opacity-40 text-center md:text-right">
+              <div className="flex items-center gap-2 justify-center md:justify-end mb-1">
+                <Building className="w-3 h-3" />
+                <span>Bhubaneswar HQ</span>
+              </div>
+              © 2026 Royal Presidency.
+            </div>
+          </div>
+        </div>
       </div>
 
-      <style>{`
+      <style jsx>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,900;1,400&display=swap');
         .font-serif { font-family: 'Playfair Display', serif; }
       `}</style>

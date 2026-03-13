@@ -3,26 +3,29 @@
 import React, { useState, useRef, useEffect } from "react";
 import { 
   Play, Pause, Volume2, VolumeX, 
-  Building2, Trees, ShieldCheck 
+  Building2, Trees, ShieldCheck, Maximize2
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Walkthrough() {
   const [isActive, setIsActive] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
+  const [progress, setProgress] = useState(0);
   const videoRef = useRef(null);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   const colors = {
     blackish: "#765229",
     goldenYellow: "#dfab5e",
+    warmCream: "#FFF4E6",
+  };
+
+  // Handle video progress for the progress bar
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const currentProgress = (videoRef.current.currentTime / videoRef.current.duration) * 100;
+      setProgress(currentProgress);
+    }
   };
 
   const handleStart = () => {
@@ -45,155 +48,166 @@ export default function Walkthrough() {
   return (
     <section
       id="walkthrough"
-      className="w-full py-20 font-sans"
+      className="w-full py-24 relative overflow-hidden"
       style={{ backgroundColor: colors.blackish }}
     >
-
-      {/* HEADING ABOVE VIDEO */}
-      <div className="text-center mb-14 px-4">
-        <span
-          className="text-[10px] font-black uppercase tracking-[0.5em]"
-          style={{ color: colors.goldenYellow }}
-        >
-          Experience
-        </span>
-
-        <h2 className="text-3xl md:text-5xl font-serif italic text-white mt-3">
-          Walkthrough
-        </h2>
+      {/* --- BACKGROUND AMBIANCE --- */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-full opacity-10 pointer-events-none">
+        <div className="w-full h-full rounded-[100%] blur-[120px]" style={{ background: `radial-gradient(circle, ${colors.goldenYellow} 0%, transparent 70%)` }} />
       </div>
 
-      {/* VIDEO SECTION */}
-      <div className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden flex items-center justify-center">
-
-        {/* STAGE 1 OVERLAY */}
-        <div
-          className={`absolute inset-0 z-20 flex items-center justify-center transition-all duration-1000 ease-in-out
-          ${isActive ? "opacity-0 pointer-events-none scale-110" : "opacity-100"}`}
-        >
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-[4px]" />
-
-          <div className="relative z-30 text-center flex flex-col items-center px-4">
-            <button
-              onClick={handleStart}
-              className="group relative w-28 h-28 md:w-40 md:h-40 flex items-center justify-center mb-8"
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* --- HEADER --- */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <div className="max-w-xl">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.5em] mb-4"
+              style={{ color: colors.goldenYellow }}
             >
-              <div
-                className="absolute inset-0 rounded-full border animate-ping"
-                style={{ borderColor: `${colors.goldenYellow}40` }}
-              />
-              <div
-                className="w-full h-full rounded-full flex items-center justify-center transition-transform duration-500 group-hover:scale-110 shadow-2xl"
-                style={{
-                  backgroundColor: colors.goldenYellow,
-                  color: colors.blackish,
-                }}
-              >
-                <Play className="w-10 h-10 md:w-14 md:h-14 fill-current ml-2" />
-              </div>
-            </button>
-
-            <h2 className="font-serif text-5xl md:text-8xl text-white italic leading-none mb-6">
-              Witness the <br />
-              <span
-                className="not-italic font-bold uppercase tracking-tighter"
-                style={{ color: colors.goldenYellow }}
-              >
-                Air.
-              </span>
+              <div className="w-8 h-px" style={{ backgroundColor: colors.goldenYellow }} />
+              Cinematic Tour
+            </motion.div>
+            <h2 className="text-5xl md:text-7xl font-serif italic text-white leading-[0.9]">
+              The <span style={{ color: colors.goldenYellow }}>Grand</span> <br /> Walkthrough
             </h2>
+          </div>
+          <p className="text-white/40 text-sm max-w-xs font-medium leading-relaxed border-l border-white/10 pl-6 hidden md:block">
+            Take a virtual flight through the architectural masterpiece that is the Royal Residency.
+          </p>
+        </div>
 
-            <div className="flex items-center gap-4">
-              <div className="h-[1px] w-8 bg-white/30" />
-              <p className="text-[10px] font-black uppercase tracking-[0.6em] text-white/60">
-                Start Immersive Tour
-              </p>
-              <div className="h-[1px] w-8 bg-white/30" />
+        {/* --- CINEMATIC VIDEO CONTAINER --- */}
+        <div className="relative aspect-video w-full rounded-[2rem] md:rounded-[3rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] bg-black group">
+          
+          {/* STAGE 1: THE INITIAL COVER */}
+          <AnimatePresence>
+            {!isActive && (
+              <motion.div 
+                exit={{ opacity: 0, scale: 1.1 }}
+                transition={{ duration: 0.8 }}
+                className="absolute inset-0 z-30 flex items-center justify-center"
+              >
+                <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-all group-hover:bg-black/40" />
+                
+                <div className="relative z-40 text-center">
+                  <button
+                    onClick={handleStart}
+                    className="group/play relative w-32 h-32 md:w-44 md:h-44 flex items-center justify-center mb-8"
+                  >
+                    <div className="absolute inset-0 rounded-full border border-white/20 animate-pulse" />
+                    <div className="absolute inset-2 rounded-full border border-white/10" />
+                    <div
+                      className="w-20 h-20 md:w-28 md:h-28 rounded-full flex items-center justify-center transition-all duration-500 group-hover/play:scale-110 shadow-2xl"
+                      style={{ backgroundColor: colors.goldenYellow, color: colors.blackish }}
+                    >
+                      <Play size={40} className="fill-current ml-2" />
+                    </div>
+                  </button>
+                  <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-[11px] font-black uppercase tracking-[0.8em] text-white/70"
+                  >
+                    Enter the Vision
+                  </motion.p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* THE VIDEO ELEMENT */}
+          <video
+            ref={videoRef}
+            onTimeUpdate={handleTimeUpdate}
+            loop
+            muted={isMuted}
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/Royal Presidency walkthrough.mp4" type="video/mp4" />
+          </video>
+
+          {/* CINEMATIC CONTROLS (Only visible after play) */}
+          <div className={`absolute inset-0 z-20 transition-opacity duration-700 pointer-events-none ${isActive ? 'opacity-100' : 'opacity-0'}`}>
+            
+            {/* Top Stats Overlay */}
+            <div className="absolute top-8 left-8 right-8 flex justify-between items-start">
+              <div className="bg-black/20 backdrop-blur-md rounded-2xl p-4 border border-white/10 hidden md:block">
+                <div className="flex items-center gap-6">
+                   <div className="flex flex-col">
+                      <span className="text-[8px] font-bold uppercase tracking-widest text-white/40">Status</span>
+                      <span className="text-xs font-bold text-white flex items-center gap-2">
+                         <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" /> LIVE VIEW
+                      </span>
+                   </div>
+                   <div className="w-px h-6 bg-white/10" />
+                   <div className="flex flex-col">
+                      <span className="text-[8px] font-bold uppercase tracking-widest text-white/40">Resolution</span>
+                      <span className="text-xs font-bold text-white">4K ULTRA HD</span>
+                   </div>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                 <div className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-md border border-white/10 flex items-center justify-center text-white cursor-pointer hover:bg-white/20 transition-all pointer-events-auto">
+                    <Maximize2 size={16} />
+                 </div>
+              </div>
+            </div>
+
+            {/* Bottom Interaction Bar */}
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+              <div className="flex items-center justify-between pointer-events-auto">
+                
+                {/* Play/Pause & Mute */}
+                <div className="flex items-center gap-4 bg-black/40 backdrop-blur-md border border-white/10 p-2 rounded-full">
+                  <button onClick={togglePlay} className="w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/10 text-white transition-all">
+                    {isPlaying ? <Pause size={20} /> : <Play size={20} className="ml-1" />}
+                  </button>
+                  <button onClick={() => setIsMuted(!isMuted)} className="w-12 h-12 rounded-full flex items-center justify-center hover:bg-white/10 text-white transition-all">
+                    {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                  </button>
+                </div>
+
+                {/* Progress Bar */}
+                <div className="flex-grow mx-8 h-1 bg-white/10 rounded-full relative overflow-hidden hidden sm:block">
+                  <motion.div 
+                    className="absolute top-0 left-0 h-full"
+                    style={{ backgroundColor: colors.goldenYellow, width: `${progress}%` }}
+                  />
+                </div>
+
+                {/* Desktop Features */}
+                <div className="hidden lg:flex gap-8">
+                  <div className="flex items-center gap-3 text-right">
+                    <div>
+                       <p className="text-[9px] font-black uppercase text-white/40 tracking-widest">Open Space</p>
+                       <p className="text-xs font-bold text-white uppercase">1.3 Acres</p>
+                    </div>
+                    <Trees size={18} style={{ color: colors.goldenYellow }} />
+                  </div>
+                  <div className="flex items-center gap-3 text-right">
+                    <div>
+                       <p className="text-[9px] font-black uppercase text-white/40 tracking-widest">Elevation</p>
+                       <p className="text-xs font-bold text-white uppercase">G + 27</p>
+                    </div>
+                    <Building2 size={18} style={{ color: colors.goldenYellow }} />
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
         </div>
-
-        {/* VIDEO */}
-        <video
-          key={isMobile ? "mobile" : "desktop"}
-          ref={videoRef}
-          loop
-          muted={isMuted}
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source
-            src="/Royal Presidency walkthrough.mp4"
-            type="video/mp4"
-          />
-        </video>
-
-        {/* CONTROLS */}
-        <div
-          className={`absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-4 md:gap-6 transition-all duration-1000 delay-300 ${
-            isActive
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="flex items-center bg-black/40 backdrop-blur-xl border border-white/10 rounded-full p-2 gap-2">
-
-            <button
-              onClick={togglePlay}
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:bg-white/10 text-white"
-            >
-              {isPlaying ? (
-                <Pause className="w-5 h-5" />
-              ) : (
-                <Play className="w-5 h-5 ml-1" />
-              )}
-            </button>
-
-            <button
-              onClick={() => setIsMuted(!isMuted)}
-              className="w-12 h-12 rounded-full flex items-center justify-center transition-all hover:bg-white/10 text-white"
-            >
-              {isMuted ? (
-                <VolumeX className="w-5 h-5" />
-              ) : (
-                <Volume2 className="w-5 h-5" />
-              )}
-            </button>
-
-          </div>
-        </div>
-
-        {/* INFO OVERLAY DESKTOP */}
-        {!isMobile && (
-          <div
-            className={`absolute right-12 top-1/2 -translate-y-1/2 flex flex-col gap-8 transition-all duration-1000 delay-500 ${
-              isActive
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-10"
-            }`}
-          >
-            {[
-              { Icon: Building2, label: "Scale", val: "LB+UB+G+27" },
-              { Icon: Trees, label: "Open Space", val: "1.3 Acres of Space" },
-              { Icon: ShieldCheck, label: "Safety", val: "Signature Tower" },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="flex flex-col items-end text-right group"
-              >
-                <item.Icon
-                  className="w-5 h-5 mb-2 opacity-50 group-hover:opacity-100 transition-opacity"
-                  style={{ color: colors.goldenYellow }}
-                />
-                <p className="text-[9px] font-black uppercase tracking-widest text-white/40">
-                  {item.label}
-                </p>
-                <p className="text-xs font-bold text-white">{item.val}</p>
-              </div>
-            ))}
-          </div>
-        )}
       </div>
+
+      <style jsx>{`
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+        .font-serif { font-family: 'Playfair Display', serif; }
+      `}</style>
     </section>
   );
 }

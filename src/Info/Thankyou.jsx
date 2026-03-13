@@ -9,13 +9,14 @@ export default function Thankyou() {
   
   // Color Palette
   const colors = {
-    blackish: "#041a14",
-    brightOrange: "#F2A71D",
-    mediumOrange: "#E97323",
-    white: "#ffffff",
+    blackish: "#765229",      
+    vibrantOrange: "#ffdead", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
   };
 
-  const brochureLink = "https://subhamgroup.com/pdf/subham-kishori-heights-brohcure.pdf";
+  const brochureLink = "/Royal Presidency_Brochure.pdf";
 
   return (
     <section className="relative min-h-screen w-full flex items-center justify-center overflow-hidden font-sans">
@@ -105,7 +106,7 @@ export default function Thankyou() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative px-8 py-4 rounded-full font-bold text-white shadow-xl transition-all duration-300 hover:scale-105 flex items-center justify-center gap-3 overflow-hidden"
-              style={{ backgroundColor: colors.mediumOrange }}
+              style={{ backgroundColor: colors.deepOrange}}
             >
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
               <Download className="w-5 h-5 relative z-10" /> 
