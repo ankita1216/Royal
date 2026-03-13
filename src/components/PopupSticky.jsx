@@ -56,7 +56,7 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
       const payload = new URLSearchParams();
       Object.entries(data).forEach(([key, value]) => payload.append(key, value));
 
-      await fetch("https://connect.pabbly.com/workflow/sendbkajsbabvwebhookdata/IjU3NjcwNTZjMDYzMTA0MzA1MjZkNTUzMjUxMzMi_pc", {
+      await fetch("https://connect.pabbly.com/workflow/senddydybkfdyfuajsbabvwebhookdata/IjU3NjcwNTZjMDYzMTA0MzA1MjZkNTUzMjUxMzMi_pc", {
         method: "POST",
         mode: "no-cors",
         headers: {
