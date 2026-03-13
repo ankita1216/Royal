@@ -48,7 +48,7 @@ export default function ActiveLivingHero({ onOpenPopup }) {
         {/* --- RIGHT IMAGE --- */}
         <div className="absolute right-0 xl:right-[2%] top-[20%] w-44 h-44 rounded-full overflow-hidden shadow-2xl hidden xl:block border-6 border-white hover:rotate-3 transition-transform duration-500 z-0">
           <img 
-            src="/about22 .jpg" 
+            src="/ROYAL PRESEDENSY-PORCH.png" 
             alt="Wellness Lifestyle" 
             className="w-full h-full object-cover object-[50%_30%]" 
           />
@@ -96,9 +96,9 @@ Amenities</span>
 Every Apartment</span>
             </div>
             <div className="bg-white p-6 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center justify-center" style={{ backgroundColor: colors.blackish }}>
-               <span className="block text-xl font-serif font-bold italic text-white" >71%</span>
-               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center text-white">Open to Sky
-Area
+               <span className="block text-xl font-serif font-bold italic text-white" >LB+UB+G+27</span>
+               <span className="text-[10px] uppercase font-bold tracking-widest opacity-60 text-center text-white">
+
 </span>
             </div>
           </div>

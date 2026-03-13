@@ -118,7 +118,7 @@ export default function SubhamHeader({ onOpenPopup }) {
       <div className={`fixed inset-0 z-[100] transition-transform duration-700 ease-in-out ${isMobileMenuOpen ? "translate-y-0" : "-translate-y-full"}`} style={{ backgroundColor: colors.warmCream }}>
         <div className="flex flex-col h-full p-8 overflow-y-auto">
           <div className="flex justify-between items-center mb-12 shrink-0">
-            <img src="/Logo.png" alt="Subham Logo" className="h-12 w-auto object-contain" />
+            <img src="/logo_2.png" alt="RoyalLogo" className="h-12 w-auto object-contain" />
             <button onClick={() => setIsMobileMenuOpen(false)} className="w-12 h-12 rounded-full border border-orange-200 flex items-center justify-center">
               <span className="text-3xl" style={{ color: colors.deepOrange }}>×</span>
             </button>

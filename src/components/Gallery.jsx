@@ -20,8 +20,8 @@ export default function Gallery() {
     // { title: "Road View", tag: "Road", src: "/road.png" },
     { title: "Kid's  Area", tag: "Family & Kids", src: "/kids.png" },
     { title: "Airial Sport View", tag: "Sport View", src: "/ROYALPRESEDENSY-AIRIAL-SPORT-UP-SECOND.png" },
-    { title: "Royal Presidency Porch Area", tag: "Porch", src: "/ROYAL PRESEDENSY-PORCH.png" },
-    { title: "Royal Presidency Porch Entrance", tag: "/Porch Entrance", src: "ROYAL PRESEDENSY-PORCH-ENT.png" },
+    { title: " Porch Area", tag: "Porch", src: "/ROYAL PRESEDENSY-PORCH.png" },
+    { title: " Porch Entrance", tag: "Porch Entrance", src: "/ROYAL PRESEDENSY-PORCH-ENT.png" },
     { title: "Gymnasium", tag: "Health & Fitness", src: "/Gym-High.png" },
     { title: "Indoor Games Room", tag: "Games Area", src: "/Games Area.png" },
     { title: "Garden Area", tag: "Green", src: "/garden.png" },
@@ -48,7 +48,7 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto px-6 mb-12 lg:mb-20">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-3 text-[10px] lg:text-[11px] font-black uppercase tracking-[0.3em] lg:tracking-[0.5em] mb-4 lg:mb-8" style={{ color: colors.darkOrange }}>
+            <div className="flex items-center gap-3 text-[10px] lg:text-[11px] font-black uppercase tracking-[0.3em] lg:tracking-[0.5em] mb-4 lg:mb-8" style={{ color: colors.deepOrange }}>
               <Sparkles className="w-4 h-4" style={{ color: colors.goldenYellow
                }} />
               The Visual Journey

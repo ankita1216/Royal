@@ -91,7 +91,7 @@ export default function Contact() {
               <div className="flex items-center gap-3 mb-8">
                 <div className="h-[1px] w-8 bg-orange-400/50" />
                 <span className="text-[9px] font-black uppercase tracking-[0.4em] text-orange-400">
-                  Concierge
+                  Contact Us
                 </span>
               </div>
 

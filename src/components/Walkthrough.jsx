@@ -70,8 +70,8 @@ export default function Walkthrough() {
               <div className="w-8 h-px" style={{ backgroundColor: colors.goldenYellow }} />
               Cinematic Tour
             </motion.div>
-            <h2 className="text-5xl md:text-7xl font-serif italic text-white leading-[0.9]">
-              The <span style={{ color: colors.goldenYellow }}>Grand</span> <br /> Walkthrough
+            <h2 className="text-5xl md:text-7xl font-serif italic text-white leading-[1.1]">
+              The <span style={{ color: colors.goldenYellow }}>Grand </span> <br /> Walkthrough
             </h2>
           </div>
           <p className="text-white/40 text-sm max-w-xs font-medium leading-relaxed border-l border-white/10 pl-6 hidden md:block">
