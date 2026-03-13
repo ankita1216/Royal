@@ -156,7 +156,7 @@ const StickyContact = ({ isOpen, setIsOpen, hideSticky }) => {
             className="fixed bottom-6 left-0 w-full z-[80] hidden lg:flex justify-center pointer-events-none"
           >
             {/* Increased max-width to fit Email field */}
-            <div className="pointer-events-auto bg-[#041a14]/95 backdrop-blur-md text-white p-2 rounded-full shadow-2xl border border-white/10 flex items-center gap-2 max-w-6xl w-full mx-6 transition-all duration-500 hover:scale-[1.01]">
+            <div className="pointer-events-auto bg-[#765229]/95 backdrop-blur-md text-white p-2 rounded-full shadow-2xl border border-white/10 flex items-center gap-2 max-w-6xl w-full mx-6 transition-all duration-500 hover:scale-[1.01]">
               
               <div className="flex items-center gap-3 pl-4 pr-6 border-r border-white/10 shrink-0">
                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
@@ -285,7 +285,7 @@ const StickyContact = ({ isOpen, setIsOpen, hideSticky }) => {
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
               className="relative w-full bg-white rounded-t-[2.5rem] overflow-hidden"
             >
-              <div className="bg-[#041a14] p-6 pb-8 text-white relative overflow-hidden">
+              <div className="bg-[#765229] p-6 pb-8 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#F36F21] blur-[60px] opacity-20" />
                 <button onClick={() => setIsOpen(false)} className="absolute top-5 right-5 p-2 bg-white/10 rounded-full">
                   <X className="w-5 h-5" />
