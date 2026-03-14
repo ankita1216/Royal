@@ -2,10 +2,35 @@
 
 import React, { useEffect, useRef } from "react";
 import { 
-  Award, Waves, Dumbbell, Trees, Heart, Users, Car, Lock, Coffee, Plus, 
-  Gamepad2, Bike, Flower2, Layout, Landmark, Utensils, Sparkles, Zap
+  Trophy, Flower2, Building2, Baby, ParkingCircle, 
+  Landmark, Palmtree, Waves, Droplets, Dumbbell, Gamepad2, 
+  LayoutGrid, Users, Trees, Coffee, Utensils, ShieldCheck, 
+  Tent, MapPin, Sparkles
 } from "lucide-react";
+import { Footprints } from "lucide-react";
 
+const amenities = [
+  { name: "Sports Court", icon: <Trophy /> },
+  { name: "Jogging Track", icon: <Footprints /> },
+  { name: "Yoga Lawn", icon: <Flower2 /> },
+  { name: "Temple", icon: <Building2 /> }, // Religious/Sacred structure vibe
+  { name: "Kids’ Play Area", icon: <Baby /> },
+  { name: "Visitor Parking", icon: <ParkingCircle /> },
+  { name: "AC Grand Lobby", icon: <Landmark /> },
+  { name: "Balinese Landscaping", icon: <Palmtree /> },
+  { name: "Roof-top Swimming Pool", icon: <Waves /> },
+  { name: "Kids’ Splash Pool", icon: <Droplets /> },
+  { name: "AC Gym", icon: <Dumbbell /> },
+  { name: "Indoor Games Room", icon: <Gamepad2 /> },
+  { name: "Stepped Sit-Out", icon: <LayoutGrid /> },
+  { name: "Social Garden", icon: <Users /> },
+  { name: "Multipurpose Lawn", icon: <Trees /> },
+  { name: "Clubhouse Lounge", icon: <Coffee /> },
+  { name: "Banquet Walkway", icon: <Utensils /> },
+  { name: "24x7 Security", icon: <ShieldCheck /> },
+  { name: "Cabanas", icon: <Tent /> },
+  { name: "Drop-Off Zone", icon: <MapPin /> },
+];
 export default function Specifications() {
   const colors = {
     blackish: "#765229",      
@@ -15,31 +40,10 @@ export default function Specifications() {
     warmCream: "#FFF4E6",     
   };
 
-  const amenities = [
-    { name: "AC Grand Lobby", icon: <Landmark /> },
-    { name: "Balinese Landscaping", icon: <Trees /> },
-    { name: "Roof-top Swimming Pool", icon: <Waves /> },
-    { name: "Kids’ Splash Pool", icon: <Waves /> },
-    { name: "AC Gym", icon: <Dumbbell /> },
-    { name: "Indoor Games Room", icon: <Gamepad2 /> },
-    { name: "Sports Court", icon: <Zap /> },
-    { name: "Jogging Track", icon: <Bike /> },
-    { name: "Yoga Lawn", icon: <Heart /> },
-    { name: "Stepped Sit-Out", icon: <Layout /> },
-    { name: "Temple", icon: <Landmark /> },
-    { name: "Social Garden", icon: <Flower2 /> },
-    { name: "Multipurpose Lawn", icon: <Trees /> },
-    { name: "Clubhouse Lounge", icon: <Coffee /> },
-    { name: "Banquet Walkway", icon: <Utensils /> },
-    { name: "Kids’ Play Area", icon: <Users /> },
-    { name: "Visitor Parking", icon: <Car /> },
-    { name: "24x7 Security", icon: <Lock /> },
-    { name: "Cabanas", icon: <Flower2 /> },
-    { name: "Drop-Off Zone", icon: <Car /> },
-  ];
+  
 
   return (
-    <section id="specifications" className="w-full bg-[#FAF9F6] py-20 lg:py-32 overflow-hidden font-sans text-[#2D241E]">
+    <section id="highlights" className="w-full bg-[#FAF9F6] py-20 lg:py-32 overflow-hidden font-sans text-[#2D241E]">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* --- HEADER SECTION --- */}
@@ -48,9 +52,13 @@ export default function Specifications() {
             <div className="w-8 h-px bg-[#dfab5e]"></div>
             Architectural Excellence
           </div>
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight tracking-tight">
-            Curated for the <span className="italic" style={{ color: colors.deepOrange }}>Extraordinary</span>.
-          </h2>
+           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.blackish }}>
+    Curated for the <br />
+  <span className="italic font-light" style={{ color: colors.deepOrange }}>
+  Extraordinary
+  </span>
+</h1>
+          
           <p className="text-lg text-gray-500 max-w-2xl leading-relaxed">
             Every detail is meticulously planned to provide a seamless blend of luxury, comfort, and nature.
           </p>
@@ -76,7 +84,12 @@ export default function Specifications() {
         {/* --- AMENITIES SECTION --- */}
         <div className="space-y-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
-            <h3 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1]">Lifestyle Amenities</h3>
+           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.blackish }}>
+     Lifestyle 
+  <span className="italic font-light ml-3" style={{ color: colors.deepOrange }}>
+  Amenities
+  </span>
+</h1>
             <span className="text-xs font-bold uppercase tracking-widest text-gray-400">20 Unique Experiences</span>
           </div>
 

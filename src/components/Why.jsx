@@ -12,7 +12,7 @@ const ActiveLivingShowcase = () => {
 
   return (
     <section
-      id="highlights"
+      id="highlight"
       className="w-full bg-[#fafaf8] py-16 px-4 md:px-12 flex justify-center font-sans text-[#041a14]"
     >
       {/* MAIN CARD */}

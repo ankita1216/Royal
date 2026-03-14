@@ -23,7 +23,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative w-full min-h-screen bg-[#FCFAFB] flex flex-col font-sans overflow-hidden">
+    <section id="hero" className="relative w-full min-h-[90vh] bg-[#FCFAFB] flex flex-col font-sans overflow-hidden">
       
       {/* Decorative Background Element */}
       <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-[#FFF4E6] rounded-bl-[200px] -z-10 opacity-40" />

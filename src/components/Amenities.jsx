@@ -80,7 +80,7 @@ const Amenities = () => {
   ];
 
   return (
-    <section id="location" className="relative w-full bg-[#fdfdfb] py-16 lg:py-20 overflow-hidden font-sans text-[#041a14]">
+    <section id="amenities" className="relative w-full bg-[#fdfdfb] py-16 lg:py-20 overflow-hidden font-sans text-[#041a14]">
       
       {/* BACKGROUND DECOR */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F2A71D]/5 -skew-x-12 translate-x-1/2 pointer-events-none" />
@@ -115,15 +115,31 @@ const Amenities = () => {
         </div>
 
         {/* HEADER SECTION */}
-        <div className="mb-20">
+        {/* <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-2xl">
+            <p
+              style={{ fontFamily: "Inter, sans-serif" }}
+className="uppercase tracking-[0.35em] text-xs text-[#D64B27] font-semibold"
+            >
+             Prime Residential Zone
+            </p> */}
+        <div className="max-w-4xl mb-20 animate-fade-in">
+          <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: colors.vibrantOrange }}>
+            <div className="w-8 h-px bg-[#dfab5e]"></div>
+            Prime Residential Zone
+          </div>
+        {/* <div className="mb-20">
           <div className="flex items-center gap-3 text-[#D64B27] mb-4">
             <Sparkles size={18} className="animate-pulse" />
             <span className="text-xs font-black uppercase tracking-[0.4em]">Prime Residential Zone</span>
-          </div>
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] text-[#041a14] mb-8">
-            The World at <br />
-            <span className="italic font-light text-[#dfab5e]">Your Doorstep.</span>
-          </h2>
+          </div> */}
+           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.blackish }}>
+     The World at  <br />
+  <span className="italic font-light" style={{ color: colors.deepOrange }}>
+  Your Doorstep
+  </span>
+</h1>
+          
           <p className="max-w-2xl text-lg text-gray-500 font-medium">
             3 BHK & 4 BHK residences in the heart of Bhubaneswar's ultra-luxurious high-rise district. 
             Designed for those who demand effortless connectivity.

@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { X, CheckCircle2, Ruler, Layers, Home, ZoomIn, ZoomOut, Maximize } from "lucide-react";
 import { image } from "framer-motion/client";
-
+const colors = {
+    blackish: "#765229",      
+    vibrantOrange: "#dfab5e", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
+  };
 
 
 
@@ -165,23 +171,21 @@ const Plan = () => {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
 
         {/* HEADER */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <div className="max-w-2xl">
-            <p
-              style={{ fontFamily: "Inter, sans-serif" }}
-className="uppercase tracking-[0.35em] text-xs text-[#D64B27] font-semibold"
-            >
-              ARCHITECTURAL PLANS
-            </p>
-
-            <h2
-  style={{ fontFamily: "Playfair Display, serif" }}
-  className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] text-black mt-6"
->
-  Detailed <span className="text-[#dfab5e]">Floor Layouts</span>
-</h2>
-
+        
+        <div className="max-w-4xl mb-20 animate-fade-in">
+          <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: colors.vibrantOrange }}>
+            <div className="w-8 h-px bg-[#dfab5e]"></div>
+            Architectural Plans
           </div>
+
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.blackish }}>
+  Detailed <br />
+  <span className="italic font-light" style={{ color: colors.deepOrange }}>
+   Floor Layout
+  </span>
+</h1>
+
+        
 
           <p
             style={{ fontFamily: "Inter, sans-serif" }}

@@ -13,6 +13,7 @@ export default function Gallery() {
     goldenYellow: "#dfab5e",  
     deepOrange: "#dfab5e",    // Used in "Contact Now"
     warmCream: "#FFF4E6",     
+    mediumOrange: "#dfab5e",
   };
 
   const galleryImages = [
@@ -48,18 +49,27 @@ export default function Gallery() {
     <section id="gallery" className="relative w-full bg-[#fafaf8] py-20 lg:py-32 font-sans text-[#041a14]">
       
       {/* --- HEADER --- */}
+      {/* <div className="max-w-4xl mb-20 animate-fade-in">
+          <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: colors.vibrantOrange }}>
+            <div className="w-8 h-px bg-[#dfab5e]"></div>
+            The Visual Journey
+          </div> */}
       <div className="max-w-7xl mx-auto px-6 mb-12 lg:mb-20">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8">
+        <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] mb-4">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 text-xs lg:text-[11px] font-black uppercase tracking-[0.3em] lg:tracking-[0.5em] mb-4 lg:mb-8" style={{ color: colors.deepOrange }}>
-              <Sparkles className="w-4 h-4" style={{ color: colors.goldenYellow
+              <Sparkles className="w-8 h-px bg-[#dfab5e]" style={{ color: colors.goldenYellow
                }} />
               The Visual Journey
             </div>
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.blackish }}>
+     The  
+  <span className="italic font-light" style={{ color: colors.deepOrange }}>
+  Library
+  </span>
+</h1>
             {/* ✅ CHANGED: Responsive font size (text-5xl mobile vs text-100px desktop) */}
-            <h2 className="font-serif text-5xl md:text-8xl lg:text-8xl leading-[0.9] lg:leading-[0.85] text-[#041a14] mb-4 lg:mb-2">
-              The <span className="italic font-light" style={{ color: colors.darkOrange }}>Library.</span>
-            </h2>
+            
           </div>
           <p className="text-[#041a14]/60 max-w-sm text-base text-lg font-medium border-l-4 pl-6 lg:pl-8 py-2" style={{ borderLeftColor: colors.goldenYellow}}>
             A glimpse into the refined architecture of Royal Presidency.
