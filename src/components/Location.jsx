@@ -114,7 +114,7 @@ export default function Location() {
                 e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
             }}
           >
-            <span className="text-[10px] font-black uppercase tracking-widest text-white group-hover:text-black">Back to Top</span>
+            
             <ArrowUp className="w-4 h-4 text-white group-hover:text-black group-hover:-translate-y-1 transition-transform" />
           </button>
         </div>
