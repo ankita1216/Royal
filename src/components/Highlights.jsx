@@ -8,10 +8,11 @@ import {
 
 export default function Specifications() {
   const colors = {
-    blackish: "#2D241E",      
-    vibrantOrange: "#dfab5e",  
-    darkOrange: "#765229",    
-    warmCream: "#FAF9F6",     
+    blackish: "#765229",      
+    vibrantOrange: "#dfab5e", 
+    goldenYellow: "#dfab5e",  
+    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    warmCream: "#FFF4E6",     
   };
 
   const amenities = [
@@ -48,7 +49,7 @@ export default function Specifications() {
             Architectural Excellence
           </div>
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight tracking-tight">
-            Curated for the <span className="italic" style={{ color: colors.vibrantOrange }}>Extraordinary</span>.
+            Curated for the <span className="italic" style={{ color: colors.deepOrange }}>Extraordinary</span>.
           </h2>
           <p className="text-lg text-gray-500 max-w-2xl leading-relaxed">
             Every detail is meticulously planned to provide a seamless blend of luxury, comfort, and nature.

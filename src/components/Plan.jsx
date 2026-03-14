@@ -178,7 +178,7 @@ className="uppercase tracking-[0.35em] text-xs text-[#D64B27] font-semibold"
   style={{ fontFamily: "Playfair Display, serif" }}
   className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] text-black mt-6"
 >
-  Detailed <span className="text-[#F2A71D]">Floor Layouts</span>
+  Detailed <span className="text-[#dfab5e]">Floor Layouts</span>
 </h2>
 
           </div>
@@ -202,7 +202,7 @@ className="uppercase tracking-[0.35em] text-xs text-[#D64B27] font-semibold"
               }}
               className={`flex-shrink-0 px-8 py-4 rounded-xl border-2 flex items-center gap-3 transition-all ${
                 active.id === plan.id
-                  ? "bg-[#F2A71D] border-[#F2A71D] text-white shadow-lg scale-105"
+                  ? "bg-[#dfab5e] border-[#dfab5e] text-white shadow-lg scale-105"
                   : "bg-white/10 border-white/20 text-black hover:bg-white/20"
               }`}
             >

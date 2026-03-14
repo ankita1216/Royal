@@ -122,7 +122,7 @@ const Amenities = () => {
           </div>
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] text-[#041a14] mb-8">
             The World at <br />
-            <span className="italic font-light text-[#D64B27]">Your Doorstep.</span>
+            <span className="italic font-light text-[#dfab5e]">Your Doorstep.</span>
           </h2>
           <p className="max-w-2xl text-lg text-gray-500 font-medium">
             3 BHK & 4 BHK residences in the heart of Bhubaneswar's ultra-luxurious high-rise district. 
