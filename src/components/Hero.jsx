@@ -97,7 +97,7 @@ export default function HeroSection() {
             className="relative w-full h-[55vh] lg:h-[80vh] rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-2xl"
           >
             <img 
-              src="/hero22.webp" 
+              src="/hero22 (1) (1) (1).webp" 
               alt="Luxury Living" 
               className="absolute inset-0 w-full h-full object-cover"
             />
