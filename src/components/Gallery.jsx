@@ -62,18 +62,27 @@ export default function Gallery() {
                }} />
               The Visual Journey
             </div>
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.blackish }}>
-     The  
-  <span className="italic font-light" style={{ color: colors.deepOrange }}>
-  Library
+            {/* <h2 className="text-5xl lg:text-8xl md:text-7xl font-serif italic text-white leading-[1.1]">
+              The <span style={{ color: colors.goldenYellow }}>Library </span> <br /> Walkthrough
+            </h2> */}
+            <h2 
+  className="text-5xl lg:text-8xl md:text-7xl font-serif italic leading-[1.1] normal-case"
+  style={{ color: colors.blackish }}
+>
+  The{" "}
+  <span 
+    className="italic font-light ml-3"
+    style={{ color: colors.deepOrange }}
+  >
+    Library
   </span>
-</h1>
+</h2>
             {/* ✅ CHANGED: Responsive font size (text-5xl mobile vs text-100px desktop) */}
             
           </div>
-          <p className="text-[#041a14]/60 max-w-sm text-base text-lg font-medium border-l-4 pl-6 lg:pl-8 py-2" style={{ borderLeftColor: colors.goldenYellow}}>
+          {/* <p className="text-[#041a14]/60 max-w-sm text-base text-lg font-medium border-l-4 pl-6 lg:pl-8 py-2" style={{ borderLeftColor: colors.goldenYellow}}>
             A glimpse into the refined architecture of Royal Presidency.
-          </p>
+          </p> */}
         </div>
       </div>
 
