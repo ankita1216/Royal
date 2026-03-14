@@ -154,7 +154,7 @@ Nandankanan Road, Opposite HP Petrol Pump
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex flex-col items-center md:items-start gap-4">
               <div className="flex items-center gap-2 font-serif text-2xl font-bold italic">
-                Royal Presidency <span className="font-sans not-italic text-xs tracking-tighter uppercase font-black" style={{ color: colors.goldenYellow }}>Developers</span>
+                Royal Presidency <span className="font-sans not-italic text-xs tracking-tighter uppercase font-black" style={{ color: colors.goldenYellow }}></span>
               </div>
               <div className="flex gap-6 opacity-40">
                 <Instagram className="w-4 h-4 hover:opacity-100 cursor-pointer transition-opacity" />
