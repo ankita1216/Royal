@@ -38,7 +38,7 @@ export default function ActiveLivingHero({ onOpenPopup }) {
         {/* --- LEFT IMAGE --- */}
         <div className="absolute left-0 xl:left-[2%] top-[25%] w-40 h-56 rounded-[3rem] overflow-hidden shadow-2xl hidden xl:block hover:scale-105 transition-transform duration-500 z-0">
           <img 
-            src="/ROYAL PRESEDENSY-GATE.png" 
+            src="/ROYAL PRESEDENSY-GATE (1).webp" 
             alt="Modern Architecture" 
             className="w-full h-full object-cover opacity-100" 
           />
@@ -48,7 +48,7 @@ export default function ActiveLivingHero({ onOpenPopup }) {
         {/* --- RIGHT IMAGE --- */}
         <div className="absolute right-0 xl:right-[2%] top-[20%] w-44 h-44 rounded-full overflow-hidden shadow-2xl hidden xl:block border-6 border-white hover:rotate-3 transition-transform duration-500 z-0">
           <img 
-            src="/ROYAL PRESEDENSY-PORCH.png" 
+            src="/ROYAL PRESEDENSY-PORCH (1).webp" 
             alt="Wellness Lifestyle" 
             className="w-full h-full object-cover object-[50%_30%]" 
           />

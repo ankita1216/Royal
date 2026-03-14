@@ -136,7 +136,7 @@ Nandankanan Road, Opposite HP Petrol Pump
               style={{ backgroundColor: colors.blackish }}
             >
               <img 
-                src="/ROYAL PRESEDENSY-ROAD.png" 
+                src="/ROYAL PRESEDENSY-ROAD.webp" 
                 alt="Architecture" 
                 className="w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-1000"
               />

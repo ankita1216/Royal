@@ -16,27 +16,27 @@ export default function Gallery() {
   };
 
   const galleryImages = [
-    { title: "Gate View", tag: "Gate", src: "/ROYAL PRESEDENSY-GATE.png" },
-    { title: "Road View", tag: "Road", src: "/ROYAL PRESEDENSY-ROAD.png" },
-    { title: "Kid's  Area", tag: "Family & Kids", src: "/ROYAL PRESEDENSY-KIDS.png" },
-    { title: "Airial Sport View", tag: "Sport View", src: "/ROYAL PRESEDENSY-AIRIAL-SPORT-UP-SECOND.png" },
-    { title: " Porch Area", tag: "Porch", src: "/ROYAL PRESEDENSY-PORCH.png" },
-    { title: " Porch Entrance", tag: "Porch Entrance", src: "/ROYAL PRESEDENSY-PORCH-ENT.png" },
-    { title: "Gymnasium", tag: "Health & Fitness", src: "/Gym-High.png" },
-    { title: "Indoor Games Room", tag: "Games Area", src: "/Games Area.png" },
-    { title: "Garden Area", tag: "Green", src: "/ROYAL PRESEDENSY-GREEN-B.png" },
-    { title: "Presidency Corridor", tag: "Corridor", src: "/Presidency-Corridor.png" },
-    { title: "Living Area", tag: "Living", src: "/Living.png" },
-    { title: "Entrance Lobby", tag: "Lobby", src: "/Entrance Lobby_02.png" },
-    { title: "Kitchen Area", tag: "Kitchen", src: "/Kitchen.png" },
-    { title: "Dining Area", tag: "Dining", src: "/Dinning.png" },
-    { title: "Bedroom Area", tag: "Bedroom", src: "/Bedroom_02.png" },
-    { title: "Balcony Area", tag: "Balcony", src: "/ROYAL PRESEDENSY-Balcony.png" },
-    { title: "Bathroom ", tag: "Bathrom", src: "/Bathroom.png" },
+    { title: "Gate View", tag: "Gate", src: "/ROYAL PRESEDENSY-GATE (1).webp" },
+    { title: "Road View", tag: "Road", src: "/ROYAL PRESEDENSY-ROAD.webp" },
+    { title: "Kid's  Area", tag: "Family & Kids", src: "/ROYAL PRESEDENSY-KIDS (1).webp" },
+    { title: "Airial Sport View", tag: "Sport View", src: "/ROYAL PRESEDENSY-AIRIAL-SPORT-UP-SECOND (1).webp" },
+    { title: " Porch Area", tag: "Porch", src: "/ROYAL PRESEDENSY-PORCH (1).webp" },
+    { title: " Porch Entrance", tag: "Porch Entrance", src: "/ROYAL PRESEDENSY-PORCH-ENT (1) (1).webp" },
+    { title: "Gymnasium", tag: "Health & Fitness", src: "/Gym-High (1).webp" },
+    { title: "Indoor Games Room", tag: "Games Area", src: "/Games Area (1).webp" },
+    { title: "Garden Area", tag: "Green", src: "/ROYAL PRESEDENSY-GREEN-B (1).webp" },
+    { title: "Presidency Corridor", tag: "Corridor", src: "/Presidency-Corridor (1).jpg" },
+    { title: "Living Area", tag: "Living", src: "/Living (1).jpg" },
+    { title: "Entrance Lobby", tag: "Lobby", src: "/Entrance Lobby_02 (1).webp" },
+    { title: "Kitchen Area", tag: "Kitchen", src: "/Kitchen (1).webp" },
+    { title: "Dining Area", tag: "Dining", src: "/Dinning (1).webp" },
+    { title: "Bedroom Area", tag: "Bedroom", src: "/Bedroom_02 (1).webp" },
+    { title: "Balcony Area", tag: "Balcony", src: "/ROYAL PRESEDENSY-Balcony (1).jpg" },
+    { title: "Bathroom ", tag: "Bathrom", src: "/Bathroom (1).jpg" },
   
     
     
-    { title: "Master Bedroom", tag: "Bedroom", src: "/Master Bedroom.png" }
+    { title: "Master Bedroom", tag: "Bedroom", src: "/Master Bedroom (1).webp" }
   ];
 
   useEffect(() => {
