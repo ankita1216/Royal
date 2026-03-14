@@ -23,7 +23,7 @@ export default function Location() {
         
         {/* --- PART 1: PROJECT IDENTITY --- */}
         <div className="border-b border-white/10 pb-12 mb-12">
-          <p className="text-[10px] font-black uppercase tracking-[0.5em]  mb-4 text-white" >
+          <p className="text-xs font-black uppercase tracking-[0.5em]  mb-4 text-white" >
             Strategically Positioned
           </p>
           <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase leading-none text-white">
@@ -94,10 +94,10 @@ export default function Location() {
         {/* --- FOOTER ACTION --- */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/10 gap-8">
           <div className="flex flex-col gap-1">
-            <p className="text-[9px] font-black uppercase tracking-widest  text-white">
+            <p className="text-[10px] font-black uppercase tracking-widest  text-white">
                20 Years of Glorious Journey
             </p>
-            <p className="text-[9px] font-black uppercase tracking-widest  text-white">
+            <p className="text-[10px] font-black uppercase tracking-widest  text-white">
               108 Curated Air-Conditioned Apartments · Signature Tower
             </p>
           </div>

@@ -16,21 +16,24 @@ export default function Gallery() {
   };
 
   const galleryImages = [
-    { title: "Gate View", tag: "Gate", src: "/gate.png" },
-    // { title: "Road View", tag: "Road", src: "/road.png" },
-    { title: "Kid's  Area", tag: "Family & Kids", src: "/kids.png" },
-    { title: "Airial Sport View", tag: "Sport View", src: "/ROYALPRESEDENSY-AIRIAL-SPORT-UP-SECOND.png" },
+    { title: "Gate View", tag: "Gate", src: "/ROYAL PRESEDENSY-GATE.png" },
+    { title: "Road View", tag: "Road", src: "/ROYAL PRESEDENSY-ROAD.png" },
+    { title: "Kid's  Area", tag: "Family & Kids", src: "/ROYAL PRESEDENSY-KIDS.png" },
+    { title: "Airial Sport View", tag: "Sport View", src: "/ROYAL PRESEDENSY-AIRIAL-SPORT-UP-SECOND.png" },
     { title: " Porch Area", tag: "Porch", src: "/ROYAL PRESEDENSY-PORCH.png" },
     { title: " Porch Entrance", tag: "Porch Entrance", src: "/ROYAL PRESEDENSY-PORCH-ENT.png" },
     { title: "Gymnasium", tag: "Health & Fitness", src: "/Gym-High.png" },
     { title: "Indoor Games Room", tag: "Games Area", src: "/Games Area.png" },
-    { title: "Garden Area", tag: "Green", src: "/garden.png" },
+    { title: "Garden Area", tag: "Green", src: "/ROYAL PRESEDENSY-GREEN-B.png" },
     { title: "Presidency Corridor", tag: "Corridor", src: "/Presidency-Corridor.png" },
     { title: "Living Area", tag: "Living", src: "/Living.png" },
     { title: "Entrance Lobby", tag: "Lobby", src: "/Entrance Lobby_02.png" },
     { title: "Kitchen Area", tag: "Kitchen", src: "/Kitchen.png" },
     { title: "Dining Area", tag: "Dining", src: "/Dinning.png" },
     { title: "Bedroom Area", tag: "Bedroom", src: "/Bedroom_02.png" },
+    { title: "Balcony Area", tag: "Balcony", src: "/ROYAL PRESEDENSY-Balcony.png" },
+    { title: "Bathroom ", tag: "Bathrom", src: "/Bathroom.png" },
+  
     
     
     { title: "Master Bedroom", tag: "Bedroom", src: "/Master Bedroom.png" }
@@ -42,24 +45,24 @@ export default function Gallery() {
 
   return (
     // ✅ CHANGED: Reduced vertical padding for mobile (py-16)
-    <section id="gallery" className="relative w-full bg-[#fafaf8] py-16 lg:py-40 font-sans text-[#041a14]">
+    <section id="gallery" className="relative w-full bg-[#fafaf8] py-20 lg:py-32 font-sans text-[#041a14]">
       
       {/* --- HEADER --- */}
       <div className="max-w-7xl mx-auto px-6 mb-12 lg:mb-20">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8">
           <div className="max-w-2xl">
-            <div className="flex items-center gap-3 text-[10px] lg:text-[11px] font-black uppercase tracking-[0.3em] lg:tracking-[0.5em] mb-4 lg:mb-8" style={{ color: colors.deepOrange }}>
+            <div className="flex items-center gap-3 text-xs lg:text-[11px] font-black uppercase tracking-[0.3em] lg:tracking-[0.5em] mb-4 lg:mb-8" style={{ color: colors.deepOrange }}>
               <Sparkles className="w-4 h-4" style={{ color: colors.goldenYellow
                }} />
               The Visual Journey
             </div>
             {/* ✅ CHANGED: Responsive font size (text-5xl mobile vs text-100px desktop) */}
-            <h2 className="font-serif text-5xl md:text-8xl lg:text-[100px] leading-[0.9] lg:leading-[0.85] text-[#041a14] mb-4 lg:mb-2">
+            <h2 className="font-serif text-5xl md:text-8xl lg:text-8xl leading-[0.9] lg:leading-[0.85] text-[#041a14] mb-4 lg:mb-2">
               The <span className="italic font-light" style={{ color: colors.darkOrange }}>Library.</span>
             </h2>
           </div>
-          <p className="text-[#041a14]/60 max-w-sm text-base lg:text-lg font-medium border-l-4 pl-6 lg:pl-8 py-2" style={{ borderLeftColor: colors.goldenYellow}}>
-            A curated look at the architectural vertical lines and well-lit façades of Kishori Heights.
+          <p className="text-[#041a14]/60 max-w-sm text-base text-lg font-medium border-l-4 pl-6 lg:pl-8 py-2" style={{ borderLeftColor: colors.goldenYellow}}>
+            A glimpse into the refined architecture of Royal Presidency.
           </p>
         </div>
       </div>
@@ -82,7 +85,7 @@ export default function Gallery() {
               />
               <div className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity" style={{ backgroundColor: colors.blackish }}></div>
               <div className="absolute inset-0 p-6 lg:p-10 flex flex-col justify-end">
-                <span className="text-[9px] lg:text-[10px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: colors.goldenYellow }}>{image.tag}</span>
+                <span className="text-[10px] lg:text-[10px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: colors.goldenYellow }}>{image.tag}</span>
                 <h3 className="text-white font-serif text-2xl lg:text-3xl italic">{image.title}</h3>
               </div>
             </div>
@@ -127,7 +130,7 @@ export default function Gallery() {
           <div className="p-6 lg:p-8 flex justify-between items-center border-b border-gray-100 shrink-0">
             <div className="font-serif" style={{ color: colors.blackish }}>
               <p className="font-bold text-lg lg:text-xl uppercase tracking-tighter">Library View</p>
-              <p className="text-[10px] tracking-widest opacity-60">Kishori Heights</p>
+              <p className="text-[10px] tracking-widest opacity-60">Royal Presidency</p>
             </div>
             <button 
               onClick={() => setIsOpen(false)} 

@@ -64,17 +64,17 @@ export default function Walkthrough() {
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.5em] mb-4"
+              className="flex items-center gap-3 text-xs font-black uppercase tracking-[0.5em] mb-4"
               style={{ color: colors.goldenYellow }}
             >
               <div className="w-8 h-px" style={{ backgroundColor: colors.goldenYellow }} />
               Cinematic Tour
             </motion.div>
-            <h2 className="text-5xl md:text-7xl font-serif italic text-white leading-[1.1]">
+            <h2 className="text-5xl lg:text-8xl md:text-7xl font-serif italic text-white leading-[1.1]">
               The <span style={{ color: colors.goldenYellow }}>Grand </span> <br /> Walkthrough
             </h2>
           </div>
-          <p className="text-white/40 text-sm max-w-xs font-medium leading-relaxed border-l border-white/10 pl-6 hidden md:block">
+          <p className="text-white/40 text-lg max-w-xs font-medium leading-relaxed border-l border-white/10 pl-6 hidden md:block">
             Take a virtual flight through the architectural masterpiece that is the Royal Residency.
           </p>
         </div>
@@ -109,9 +109,9 @@ export default function Walkthrough() {
                   <motion.p 
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-[11px] font-black uppercase tracking-[0.8em] text-white/70"
+                    className="text-xs font-black uppercase tracking-[0.8em] text-white/70"
                   >
-                    Enter the Vision
+                    Enter the Air
                   </motion.p>
                 </div>
               </motion.div>

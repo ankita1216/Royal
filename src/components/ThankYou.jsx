@@ -42,7 +42,7 @@ export default function AboutSubham() {
               className="flex items-center gap-4 mb-6"
             >
                <div className="w-12 h-[1px]" style={{ backgroundColor: colors.goldenYellow }} />
-               <span className="text-[10px] font-black uppercase tracking-[0.5em]" style={{ color: colors.goldenYellow }}>The Visionary Legacy</span>
+               <span className="text-xs font-black uppercase tracking-[0.5em]" style={{ color: colors.goldenYellow }}>The Visionary Legacy</span>
             </motion.div>
             <motion.h2 
               initial={{ opacity: 0, y: 30 }}
@@ -136,7 +136,7 @@ Nandankanan Road, Opposite HP Petrol Pump
               style={{ backgroundColor: colors.blackish }}
             >
               <img 
-                src="/final2.jpg" 
+                src="/ROYAL PRESEDENSY-ROAD.png" 
                 alt="Architecture" 
                 className="w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-1000"
               />

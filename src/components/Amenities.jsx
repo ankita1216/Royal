@@ -80,7 +80,7 @@ const Amenities = () => {
   ];
 
   return (
-    <section id="location" className="relative w-full bg-[#fdfdfb] py-24 lg:py-32 overflow-hidden font-sans text-[#041a14]">
+    <section id="location" className="relative w-full bg-[#fdfdfb] py-16 lg:py-20 overflow-hidden font-sans text-[#041a14]">
       
       {/* BACKGROUND DECOR */}
       <div className="absolute top-0 right-0 w-1/3 h-full bg-[#F2A71D]/5 -skew-x-12 translate-x-1/2 pointer-events-none" />

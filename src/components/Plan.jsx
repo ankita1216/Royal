@@ -168,15 +168,15 @@ const Plan = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-2xl">
             <p
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-              className="uppercase tracking-[0.35em] text-sm text-[#D64B27] font-semibold"
+              style={{ fontFamily: "Inter, sans-serif" }}
+className="uppercase tracking-[0.35em] text-xs text-[#D64B27] font-semibold"
             >
               ARCHITECTURAL PLANS
             </p>
 
             <h2
   style={{ fontFamily: "Playfair Display, serif" }}
-  className="text-4xl md:text-5xl font-bold leading-[1.15] text-black mt-6"
+  className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] text-black mt-6"
 >
   Detailed <span className="text-[#F2A71D]">Floor Layouts</span>
 </h2>
@@ -209,8 +209,8 @@ const Plan = () => {
               <Home size={18} />
               <div className="text-left">
                 <p
-                  style={{ fontFamily: "Montserrat, sans-serif" }}
-                  className="text-[10px] uppercase opacity-70 leading-none"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+className="text-[10px] uppercase opacity-70 leading-none"
                 >
                   LAYOUT
                 </p>
@@ -242,8 +242,8 @@ const Plan = () => {
             </div>
 
             <p
-              style={{ fontFamily: "Montserrat, sans-serif" }}
-              className="text-center text-xs text-gray-400 mt-4 uppercase tracking-widest font-semibold"
+              style={{ fontFamily: "Inter, sans-serif" }}
+className="text-center text-xs text-gray-400 mt-4 uppercase tracking-widest font-semibold"
             >
               CLICK IMAGE TO EXPAND
             </p>
@@ -254,22 +254,22 @@ const Plan = () => {
 
             <div className="mb-8">
               <span
-                style={{ fontFamily: "Montserrat, sans-serif" }}
-                className="bg-[#F2A71D15] text-[#D64B27] px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"
+                 style={{ fontFamily: "Inter, sans-serif" }}
+className="bg-[#F2A71D15] text-[#D64B27] px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"
               >
                 PLAN INFORMATION
               </span>
 
               <h3
                 style={{ fontFamily: "Playfair Display, serif" }}
-                className="text-3xl md:text-4xl font-bold text-gray-900 mt-6 leading-[1.2]"
+                className="text-xl font-bold text-gray-900 mt-6 leading-[1.2]"
               >
                 {active.bhk}
               </h3>
 
               <p
                 style={{ fontFamily: "Inter, sans-serif" }}
-                className="text-lg font-medium text-gray-500 mt-2"
+                className="text-sm font-medium text-gray-500 mt-2"
               >
                 {active.area}
               </p>
@@ -287,8 +287,8 @@ const Plan = () => {
                 <Layers size={22} className="text-[#041a14]" />
                 <div>
                   <p
-                    style={{ fontFamily: "Montserrat, sans-serif" }}
-                    className="text-xs text-gray-400 font-semibold uppercase"
+                   style={{ fontFamily: "Inter, sans-serif" }}
+className="text-xs text-gray-400 font-semibold uppercase"
                   >
                     FLOOR
                   </p>
@@ -305,8 +305,8 @@ const Plan = () => {
                 <Ruler size={22} className="text-[#041a14]" />
                 <div>
                   <p
-                    style={{ fontFamily: "Montserrat, sans-serif" }}
-                    className="text-xs text-gray-400 font-semibold uppercase"
+                   style={{ fontFamily: "Inter, sans-serif" }}
+className="text-xs text-gray-400 font-semibold uppercase"
                   >
                     AREA INFO
                   </p>
@@ -377,8 +377,8 @@ const Plan = () => {
           </div>
 
           <div
-            style={{ fontFamily: "Montserrat, sans-serif" }}
-            className="absolute bottom-8 text-white/50 text-xs font-semibold uppercase tracking-[0.2em]"
+            style={{ fontFamily: "Inter, sans-serif" }}
+className="absolute bottom-8 text-white/50 text-xs font-semibold uppercase tracking-[0.2em]"
           >
             USE CONTROLS TO INSPECT DETAILS • ZOOM: {Math.round(zoom * 100)}%
           </div>

@@ -43,14 +43,14 @@ export default function Specifications() {
         
         {/* --- HEADER SECTION --- */}
         <div className="max-w-4xl mb-20 animate-fade-in">
-          <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] mb-4" style={{ color: colors.vibrantOrange }}>
+          <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: colors.vibrantOrange }}>
             <div className="w-8 h-px bg-[#dfab5e]"></div>
             Architectural Excellence
           </div>
-          <h2 className="font-serif text-5xl md:text-7xl mb-8 leading-tight tracking-tight">
+          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight tracking-tight">
             Curated for the <span className="italic" style={{ color: colors.vibrantOrange }}>Extraordinary</span>.
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl leading-relaxed">
+          <p className="text-lg text-gray-500 max-w-2xl leading-relaxed">
             Every detail is meticulously planned to provide a seamless blend of luxury, comfort, and nature.
           </p>
         </div>
@@ -75,8 +75,8 @@ export default function Specifications() {
         {/* --- AMENITIES SECTION --- */}
         <div className="space-y-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
-            <h3 className="font-serif text-4xl">Lifestyle Amenities</h3>
-            <span className="text-sm font-bold uppercase tracking-widest text-gray-400">20 Unique Experiences</span>
+            <h3 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1]">Lifestyle Amenities</h3>
+            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">20 Unique Experiences</span>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">

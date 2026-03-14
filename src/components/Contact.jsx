@@ -90,17 +90,17 @@ export default function Contact() {
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-8">
                 <div className="h-[1px] w-8 bg-orange-400/50" />
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-orange-400">
+                <span className="text-xs font-black uppercase tracking-[0.4em] text-orange-400">
                   Contact Us
                 </span>
               </div>
 
-              <h2 className="font-serif text-5xl lg:text-6xl leading-tight mb-6 tracking-tighter">
+              <h2 className="font-serif text-5xl md:text-7xl lg:text-6xl leading-tight mb-6 tracking-tighter">
                 Request <br />
-                <span className="italic font-light opacity-80 text-4xl lg:text-5xl">A Private View.</span>
+                <span className="italic font-light opacity-80 text-3xl md:text-4xl">A Private View.</span>
               </h2>
               
-              <p className="text-white/60 text-base leading-relaxed max-w-xs mb-10">
+              <p className="text-white/60 text-lg leading-relaxed max-w-xs mb-10">
                 Begin your journey to Royal Presidency. Leave your details for a tailored walkthrough.
               </p>
 
@@ -108,7 +108,7 @@ export default function Contact() {
                 <div className="flex items-center gap-4 bg-white/5 border border-white/10 p-4 rounded-2xl">
                   <MapPin className="w-4 h-4 text-orange-400" />
                   <div>
-                    <p className="text-[8px] uppercase tracking-widest text-white/40">Location</p>
+                    <p className="text-[10px] uppercase tracking-widest text-white/40">Location</p>
                     <p className="text-xs font-bold">Raghunathpur, Bhubaneswar</p>
                   </div>
                 </div>
@@ -116,7 +116,7 @@ export default function Contact() {
                 <div className="flex items-center gap-4 bg-white/5 border border-white/10 p-4 rounded-2xl">
                   <ShieldCheck className="w-4 h-4 text-orange-400" />
                   <div>
-                    <p className="text-[8px] uppercase tracking-widest text-white/40">Privacy</p>
+                    <p className="text-[10px] uppercase tracking-widest text-white/40">Privacy</p>
                     <p className="text-xs font-bold">Secure Communication</p>
                   </div>
                 </div>
