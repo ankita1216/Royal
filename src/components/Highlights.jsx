@@ -2,29 +2,32 @@
 
 import React, { useEffect, useRef } from "react";
 import { 
-  Trophy, Flower2, Building2, Baby, ParkingCircle, 
-  Landmark, Palmtree, Waves, Droplets, Dumbbell, Gamepad2, 
-  LayoutGrid, Users, Trees, Coffee, Utensils, ShieldCheck, 
+  Trophy,  Building2, Baby, ParkingCircle, 
+   Palmtree, Waves, Droplets, Dumbbell, Gamepad2, 
+   Users,  Coffee, Utensils, ShieldCheck, 
   Tent, MapPin, Sparkles
 } from "lucide-react";
 import { Footprints } from "lucide-react";
-
+import { Armchair } from "lucide-react";
+import { Wind } from "lucide-react";
+import { PersonStanding } from "lucide-react";
+import { Sprout } from "lucide-react";
 const amenities = [
   { name: "Sports Court", icon: <Trophy /> },
   { name: "Jogging Track", icon: <Footprints /> },
-  { name: "Yoga Lawn", icon: <Flower2 /> },
+  { name: "Yoga Lawn", icon: <PersonStanding /> },
   { name: "Temple", icon: <Building2 /> }, // Religious/Sacred structure vibe
   { name: "Kids’ Play Area", icon: <Baby /> },
   { name: "Visitor Parking", icon: <ParkingCircle /> },
-  { name: "AC Grand Lobby", icon: <Landmark /> },
+  { name: "AC Grand Lobby", icon: < Wind /> },
   { name: "Balinese Landscaping", icon: <Palmtree /> },
   { name: "Roof-top Swimming Pool", icon: <Waves /> },
   { name: "Kids’ Splash Pool", icon: <Droplets /> },
   { name: "AC Gym", icon: <Dumbbell /> },
   { name: "Indoor Games Room", icon: <Gamepad2 /> },
-  { name: "Stepped Sit-Out", icon: <LayoutGrid /> },
+  { name: "Stepped Sit-Out", icon: <Armchair /> },
   { name: "Social Garden", icon: <Users /> },
-  { name: "Multipurpose Lawn", icon: <Trees /> },
+  { name: "Multipurpose Lawn", icon: <Sprout /> },
   { name: "Clubhouse Lounge", icon: <Coffee /> },
   { name: "Banquet Walkway", icon: <Utensils /> },
   { name: "24x7 Security", icon: <ShieldCheck /> },

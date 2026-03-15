@@ -44,7 +44,13 @@ export default function AboutSubham() {
                <div className="w-12 h-[1px]" style={{ backgroundColor: colors.goldenYellow }} />
                <span className="text-xs font-black uppercase tracking-[0.5em]" style={{ color: colors.goldenYellow }}>The Visionary Legacy</span>
             </motion.div>
-            <motion.h2 
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6 normal-case" style={{ color: colors.blackish }}>
+     Beyond <br />
+  <span className="italic font-light ml-4" style={{ color: colors.deepOrange }}>
+  Boundaries
+  </span>
+</h1>
+            {/* <motion.h2 
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -53,7 +59,7 @@ export default function AboutSubham() {
             >
               Beyond <br /> 
               <span className="italic font-light" style={{ color: colors.goldenYellow }}>Boundaries.</span>
-            </motion.h2>
+            </motion.h2> */}
           </div>
           
           <motion.div 

@@ -26,10 +26,17 @@ export default function Location() {
           <p className="text-xs font-black uppercase tracking-[0.5em]  mb-4 text-white" >
             Strategically Positioned
           </p>
-          <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase leading-none text-white">
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.warmCream }}>
+     Project 
+  <span className="italic font-light ml-4" style={{ color: colors.deepOrange }}>
+  Location
+  </span>
+</h1>
+          
+          {/* <h2 className="font-serif text-5xl md:text-7xl lg:text-8xl tracking-tighter uppercase leading-none text-white">
             Project <br />
-            <span className="italic font-light" style={{ color: colors.darkOrange }}>Location.</span>
-          </h2>
+            <span className="italic font-light" style={{ color: colors.darkOrange }}>Location</span>
+          </h2> */}
         </div>
 
         {/* --- PART 2 & 3: ADDRESS & MAP --- */}

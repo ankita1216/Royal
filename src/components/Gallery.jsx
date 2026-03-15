@@ -65,7 +65,13 @@ export default function Gallery() {
             {/* <h2 className="text-5xl lg:text-8xl md:text-7xl font-serif italic text-white leading-[1.1]">
               The <span style={{ color: colors.goldenYellow }}>Library </span> <br /> Walkthrough
             </h2> */}
-            <h2 
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6 normal-case" style={{ color: colors.blackish }}>
+     The
+  <span className="italic font-light ml-4" style={{ color: colors.deepOrange }}>
+  Library
+  </span>
+</h1>
+            {/* <h2 
   className="text-5xl lg:text-8xl md:text-7xl font-serif italic leading-[1.1] normal-case"
   style={{ color: colors.blackish }}
 >
@@ -76,7 +82,7 @@ export default function Gallery() {
   >
     Library
   </span>
-</h2>
+</h2> */}
             {/* ✅ CHANGED: Responsive font size (text-5xl mobile vs text-100px desktop) */}
             
           </div>
