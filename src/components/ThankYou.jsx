@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef } from "react";
-import { ArrowUp, Building, MoveUpRight, Sparkles, Instagram, Linkedin, Globe, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowUp, Building, MoveUpRight, Sparkles, Instagram, Linkedin, Globe, Mail, Phone, MapPin, Users, Home, CheckCircle, Construction, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function AboutSubham() {
@@ -20,6 +20,15 @@ export default function AboutSubham() {
     warmCream: "#FFF4E6",     
   };
 
+  const stats = [
+    { label: "Happy Family Members", value: "5000+", icon: <Users size={20} /> },
+    { label: "Happy Customers", value: "2000+", icon: <Users size={20} /> },
+    { label: "Delivered Projects", value: "09", icon: <CheckCircle size={20} /> },
+    { label: "sq.ft Completed", value: "2.2 Million", icon: <Home size={20} /> },
+    { label: "sq.ft Ongoing", value: "1 Million", icon: <Clock size={20} /> },
+    { label: "sq.ft Under Process", value: "3 Million", icon: <Construction size={20} /> },
+  ];
+
   const bhubaneswarProjects = [
     { name: "Royal Lagoon", year: "2022", type: "Luxury Living" },
     { name: "Royal Heritage", year: "2024", type: "Classic Suites" },
@@ -32,6 +41,51 @@ export default function AboutSubham() {
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
+        {/* --- NEW STATS / ACHIEVEMENT SECTION --- */}
+        <div className="mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+            <div className="lg:col-span-4">
+               <motion.div 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="flex items-center gap-4 mb-6"
+              >
+                 <div className="w-12 h-[1px]" style={{ backgroundColor: colors.goldenYellow }} />
+                 <span className="text-xs font-black uppercase tracking-[0.5em]" style={{ color: colors.goldenYellow }}>Our Legacy</span>
+              </motion.div>
+              
+              <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-6">
+              Two Decades of <br /><span className="italic" style={{ color: colors.goldenYellow }}>Building Trust.</span>
+              </h2>
+            </div>
+            <div className="lg:col-span-8">
+              <p className="text-lg font-medium leading-relaxed opacity-70">
+                Founded in 2004, we have emerged as the most preferred realty brand in Odisha for classy developments in the large gated residential sector, premium boutique properties, and commercial buildings. Within 20 years of inception, we have completed more than 2 million sq.ft of premium residential projects.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-12 border-t border-b py-12" style={{ borderColor: `${colors.blackish}15` }}>
+            {stats.map((stat, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="flex flex-col gap-3"
+              >
+                <div style={{ color: colors.goldenYellow }}>{stat.icon}</div>
+                <div>
+                  <div className="text-2xl md:text-3xl font-serif font-bold">{stat.value}</div>
+                  <div className="text-[10px] font-black uppercase tracking-widest opacity-50 mt-1">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
         {/* --- HEADER --- */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-end">
           <div className="lg:col-span-8">
@@ -41,25 +95,15 @@ export default function AboutSubham() {
               viewport={{ once: true }}
               className="flex items-center gap-4 mb-6"
             >
-               <div className="w-12 h-[1px]" style={{ backgroundColor: colors.goldenYellow }} />
-               <span className="text-xs font-black uppercase tracking-[0.5em]" style={{ color: colors.goldenYellow }}>The Visionary Legacy</span>
+                <div className="w-12 h-[1px]" style={{ backgroundColor: colors.goldenYellow }} />
+                <span className="text-xs font-black uppercase tracking-[0.5em]" style={{ color: colors.goldenYellow }}>The Visionary Legacy</span>
             </motion.div>
             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6 normal-case" style={{ color: colors.blackish }}>
-     Beyond <br />
-  <span className="italic font-light ml-4" style={{ color: colors.deepOrange }}>
-  Boundaries
-  </span>
-</h1>
-            {/* <motion.h2 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="font-serif text-6xl md:text-8xl lg:text-[110px] leading-[0.85] tracking-tighter"
-            >
-              Beyond <br /> 
-              <span className="italic font-light" style={{ color: colors.goldenYellow }}>Boundaries.</span>
-            </motion.h2> */}
+              Beyond <br />
+              <span className="italic font-light ml-4" style={{ color: colors.deepOrange }}>
+              Boundaries
+              </span>
+            </h1>
           </div>
           
           <motion.div 
@@ -82,7 +126,7 @@ export default function AboutSubham() {
           <div className="lg:col-span-7 space-y-20">
             {/* Projects Section */}
             <div>
-              <h4 className="text-xs font-black uppercase tracking-widest opacity-40 mb-10">Curated Landmarks</h4>
+              <h4 className="text-xs font-black uppercase tracking-widest opacity-40 mb-10">Completed Projects</h4>
               <div className="space-y-2">
                 {bhubaneswarProjects.map((project, idx) => (
                   <div 
@@ -110,9 +154,7 @@ export default function AboutSubham() {
                <div className="space-y-6">
                   <div className="flex items-start gap-4">
                     <MapPin size={18} style={{ color: colors.goldenYellow }} className="shrink-0 mt-1" />
-                    <p className="text-sm font-medium opacity-80">Plot No. 755, 755/4117
-Nandankanan Road, Opposite HP Petrol Pump
-<br />Raghunathpur, Bhubaneswar, Odisha - 751024</p>
+                    <p className="text-sm font-medium opacity-80">Plot No. 755, 755/4117 Nandankanan Road, Opposite HP Petrol Pump<br />Raghunathpur, Bhubaneswar, Odisha - 751024</p>
                   </div>
                   <div className="flex items-center gap-4">
                     <Phone size={18} style={{ color: colors.goldenYellow }} className="shrink-0" />
@@ -160,7 +202,7 @@ Nandankanan Road, Opposite HP Petrol Pump
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex flex-col items-center md:items-start gap-4">
               <div className="flex items-center gap-2 font-serif text-2xl font-bold italic">
-                Royal Presidency <span className="font-sans not-italic text-xs tracking-tighter uppercase font-black" style={{ color: colors.goldenYellow }}></span>
+                Royal Presidency
               </div>
               <div className="flex gap-6 opacity-40">
                 <Instagram className="w-4 h-4 hover:opacity-100 cursor-pointer transition-opacity" />
