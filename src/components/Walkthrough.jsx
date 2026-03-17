@@ -75,7 +75,7 @@ export default function Walkthrough() {
             </h2>
           </div>
           <p className="text-white/40 text-lg max-w-xs font-medium leading-relaxed border-l border-white/10 pl-6 hidden md:block">
-            Take a virtual flight through the architectural masterpiece that is the Royal Residency.
+            Take a virtual flight through the architectural masterpiece that is the Royal Presidency.
           </p>
         </div>
 

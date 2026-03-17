@@ -19,6 +19,17 @@ const Amenities = () => {
 
   const connectivityData = [
     {
+      category: "Miscellaneous",
+      icon: <Sparkles className="w-5 h-5" />,
+      items: [
+        { name: "Ashiana Regal" , dist: "1.7 kms" },
+        { name: "Royal Lagoon", dist: "2.0 kms" },
+        { name: "Mani Tribhuvan", dist: "3.0 kms" },
+        { name: "Z1 Apartments", dist: "3.2 kms" },
+        { name: "KIIT Square", dist: "4.8 kms" },
+      ],
+    },
+    {
       category: "Transport",
       icon: <Train className="w-5 h-5" />,
       items: [
@@ -48,12 +59,15 @@ const Amenities = () => {
       ],
     },
     {
-      category: "University",
+      category: "Hotels ",
       icon: <GraduationCap className="w-5 h-5" />,
       items: [
-        { name: "DHSK College", dist: "850 m" },
-        { name: "St. Fernando Nursing", dist: "3.1 km" },
-        { name: "Dibrugarh University", dist: "7.2 km" },
+        { name: "Welcomhotel by ITC   ", dist: "8.2 kms" },
+        { name: "Suryansh", dist: "9.6 kms" },
+        { name: "Lemon Tree", dist: "10.0 kms" },
+        { name: "Swosti Premium", dist: "10.2 kms" },
+        { name: "Trident", dist: "10.9 kms" },
+        { name: "Mayfair Lagoon", dist: "11.0 kms" },
       ],
     },
     {
@@ -87,7 +101,7 @@ const Amenities = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* TOP SPECIFICATION BAR */}
+        {/* TOP SPECIFICATION BAR
         <div className="flex flex-wrap items-center justify-between gap-6 mb-16 p-8 bg-white rounded-3xl shadow-sm border border-gray-100">
            <div className="flex items-center gap-4">
              <div className="p-3 bg-orange-100 rounded-xl text-[#D64B27]"><Building2 size={24}/></div>
@@ -112,7 +126,7 @@ const Amenities = () => {
                <p className="font-bold text-sm text-[#041a14]">Nandankanan Road, Raghunathpur</p>
              </div>
            </div>
-        </div>
+        </div> */}
 
         {/* HEADER SECTION */}
         {/* <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
@@ -182,9 +196,9 @@ className="uppercase tracking-[0.35em] text-xs text-[#D64B27] font-semibold"
         </div>
 
         {/* T&C FOOTNOTE */}
-        <div className="mt-12 text-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+        {/* <div className="mt-12 text-center text-[10px] font-bold text-gray-400 uppercase tracking-widest">
           *T&C Apply. High-Rise Ultra-Luxurious Living in Bhubaneswar.
-        </div>
+        </div> */}
       </div>
     </section>
   );

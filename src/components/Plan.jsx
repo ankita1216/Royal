@@ -1,393 +1,152 @@
-import { useState } from "react";
-import { X, CheckCircle2, Ruler, Layers, Home, ZoomIn, ZoomOut, Maximize } from "lucide-react";
-import { image } from "framer-motion/client";
-const colors = {
-    blackish: "#765229",      
-    vibrantOrange: "#dfab5e", 
-    goldenYellow: "#dfab5e",  
-    deepOrange: "#dfab5e",    // Used in "Contact Now"
-    warmCream: "#FFF4E6",     
-  };
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ZoomIn, ZoomOut, X, Maximize2, RotateCcw } from 'lucide-react';
 
-
-
-
- const plans = [
-
-{
-id: 1,
-name: "MASTER PLAN",
-bhk: "Royal Presidency Site Layout",
-area: "Complete Development Layout",
-floors: "Entire Project Layout",
-image: "/plan-a.jpg",
-highlight:
-"Integrated masterplan showing residential towers, landscaped gardens, sports court and arrival zones.",
-features: [
-"Main Entrance & Internal Driveway",
-"Residential Tower Placement",
-"Central Landscaped Garden",
-"Sports Court",
-"Parking Area",
-"Pedestrian Walkways",
-"Landscape Zones"
-]
-},
-
-{
-id: 2,
-name: "1ST FLOOR PLAN",
-bhk: "Terrace Residences",
-area: "Units A, B, C & D",
-floors: "1st Floor",
-image: "/plan-g.jpg",
-highlight:
-"First floor layout featuring large private terraces and open outdoor living areas.",
-features: [
-"Unit A Terrace 291 sq.ft",
-"Unit B Terrace 453 sq.ft",
-"Unit C Terrace 570 sq.ft",
-"Unit D Terrace 935 sq.ft",
-"Private Outdoor Spaces",
-"Central Lift Lobby",
-"Double Height Cutout"
-]
-},
-
-{
-id: 3,
-name: "TYPICAL FLOOR PLAN",
-bhk: "Residential Layout",
-area: "Units A, B, C & D",
-floors: "2nd – 27th Floor",
-image: "/plan-f.jpg",
-highlight:
-"Typical residential floor arrangement with four unit types around central circulation core.",
-features: [
-"Central Lift Lobby",
-"Multiple Lift Shafts",
-"Fire Staircase Core",
-"Service Shaft",
-"Open to Sky Ventilation",
-"Efficient Corridor Layout",
-"Balanced Unit Distribution"
-]
-},
-
-{
-id: 4,
-name: "UNIT A PLAN",
-bhk: "3BHK + 3T Residence",
-area: "1737 sq.ft Built-up Area",
-floors: "2nd – 27th Floor",
-image: "/plan-e.jpg",
-highlight:
-"Smartly designed 3BHK residence with spacious drawing room and multiple balconies.",
-features: [
-"Carpet Area 1324 sq.ft",
-"Balcony Area 331 sq.ft",
-"Built-up Area 1737 sq.ft",
-"3 Bedrooms with Dress Area",
-"Dining & Living Area",
-"Utility Balcony",
-"Natural Ventilation Layout"
-]
-},
-
-{
-id: 5,
-name: "UNIT B PLAN",
-bhk: "3BHK + 3T Residence",
-area: "1780 sq.ft Built-up Area",
-floors: "2nd – 27th Floor",
-image: "/plan-d.jpg",
-highlight:
-"Comfortable 3BHK apartment featuring a large drawing and dining space.",
-features: [
-"Carpet Area 1356 sq.ft",
-"Balcony Area 330 sq.ft",
-"Built-up Area 1780 sq.ft",
-"3 Bedrooms",
-"Large Living Area",
-"Utility Balcony",
-"Multiple Balconies"
-]
-},
-
-{
-id: 6,
-name: "UNIT C PLAN",
-bhk: "3BHK + 3T Residence",
-area: "1792 sq.ft Built-up Area",
-floors: "2nd – 27th Floor",
-image: "/plan-c.jpg",
-highlight:
-"Well-planned 3BHK residence with spacious rooms and balcony access.",
-features: [
-"Carpet Area 1356 sq.ft",
-"Balcony Area 335 sq.ft",
-"Built-up Area 1792 sq.ft",
-"3 Bedrooms with Dress Area",
-"Drawing / Dining Layout",
-"Utility Balcony",
-"Multiple Balconies"
-]
-},
-
-{
-id: 7,
-name: "UNIT D PLAN",
-bhk: "4BHK + 4T Residence",
-area: "2213 sq.ft Built-up Area",
-floors: "2nd – 27th Floor",
-image: "/plan-b.jpg",
-highlight:
-"Premium 4BHK apartment with spacious living areas and multiple balconies.",
-features: [
-"Carpet Area 1723 sq.ft",
-"Balcony Area 379 sq.ft",
-"Built-up Area 2213 sq.ft",
-"4 Bedrooms with Dress Area",
-"Large Drawing Room",
-"Dining Room Layout",
-"Multiple Balconies"
-]
-}
-
-];
 const Plan = () => {
-  const [active, setActive] = useState(plans[0]);
-  const [showImage, setShowImage] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
   const [zoom, setZoom] = useState(1);
 
-  const handleZoomIn = () => setZoom((prev) => Math.min(prev + 0.25, 3));
-  const handleZoomOut = () => setZoom((prev) => Math.max(prev - 0.25, 0.5));
+  const colors = {
+    blackish: "#765229",
+    vibrantOrange: "#ffdead",
+    goldenYellow: "#dfab5e",
+    deepOrange: "#dfab5e",
+    warmCream: "#FFF4E6",
+  };
+
+  const floorPlans = [
+    { id: 1, title: 'MASTER PLAN', img: '/plan-a.jpg' },
+    { id: 2, title: '1ST FLOOR PLAN', img: '/plan-b.jpg' },
+    { id: 3, title: 'TYPICAL FLOOR PLAN', img: '/plan-c.jpg' },
+    { id: 4, title: 'UNIT-A FLOOR PLAN', img: '/plan-d.jpg' },
+    { id: 5, title: 'UNIT-B FLOOR PLAN', img: '/plan-e.jpg' },
+    { id: 6, title: 'UNIT-C FLOOR PLAN', img: '/plan-f.jpg' },
+    { id: 7, title: 'UNIT-D FLOOR PLAN', img: '/plan-g.jpg' },
+  ];
+
+  const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.5, 4));
+  const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.5, 1));
   const resetZoom = () => setZoom(1);
 
+  const closeModal = () => {
+    setSelectedPlan(null);
+    setZoom(1);
+  };
+
   return (
-    <section id="plan" className="py-28 bg-[#fdfdfb] relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-[400px]bg-[#fdfdfb]" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-
-        {/* HEADER */}
-        
-        <div className="max-w-4xl mb-20 animate-fade-in">
-          <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: colors.vibrantOrange }}>
-            <div className="w-8 h-px bg-[#dfab5e]"></div>
-            Architectural Plans
-          </div>
-
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6" style={{ color: colors.blackish }}>
-  Detailed <br />
-  <span className="italic font-light" style={{ color: colors.deepOrange }}>
-   Floor Layout
-  </span>
-</h1>
-
-        
-
-          <p
-            style={{ fontFamily: "Inter, sans-serif" }}
-            className="text-black max-w-sm text-lg leading-[1.75]"
+    <section className="py-16 md:py-24 px-4 sm:px-6 overflow-hidden" style={{ backgroundColor: colors.warmCream, fontFamily: "'Inter', sans-serif" }}>
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl md:text-5xl font-bold mb-4" 
+            style={{ color: colors.blackish, fontFamily: "'DM Sans', sans-serif" }}
           >
-            Clear planning for residential comfort and commercial efficiency.
-          </p>
+            Our Floor Plans
+          </motion.h2>
+          <motion.p 
+            className="text-base md:text-lg max-w-2xl mx-auto opacity-90" 
+            style={{ color: colors.blackish }}
+          >
+            Explore thoughtfully designed layouts.
+          </motion.p>
         </div>
 
-        {/* PLAN SELECTOR */}
-        <div className="flex gap-4 mb-10 overflow-x-auto pb-4 scrollbar-hide">
-          {plans.map((plan) => (
-            <button
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {floorPlans.map((plan) => (
+            <motion.div
               key={plan.id}
-              onClick={() => {
-                setActive(plan);
-                resetZoom();
-              }}
-              className={`flex-shrink-0 px-8 py-4 rounded-xl border-2 flex items-center gap-3 transition-all ${
-                active.id === plan.id
-                  ? "bg-[#dfab5e] border-[#dfab5e] text-white shadow-lg scale-105"
-                  : "bg-white/10 border-white/20 text-black hover:bg-white/20"
-              }`}
+              whileHover={{ y: -8 }}
+              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col cursor-pointer"
+              onClick={() => setSelectedPlan(plan)}
             >
-              <Home size={18} />
-              <div className="text-left">
-                <p
-                  style={{ fontFamily: "Inter, sans-serif" }}
-className="text-[10px] uppercase opacity-70 leading-none"
-                >
-                  LAYOUT
-                </p>
-                <p
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                  className="text-sm font-medium"
-                >
-                  {plan.name}
-                </p>
+              <div className="relative overflow-hidden aspect-[4/3] bg-gray-50 flex items-center justify-center p-4">
+                <img 
+                  src={plan.img} 
+                  alt={plan.title} 
+                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                  <div className="bg-white/90 p-3 rounded-full mb-2 shadow-lg">
+                    <Maximize2 size={24} style={{ color: colors.blackish }} />
+                  </div>
+                  <span className="text-white font-bold tracking-wide uppercase text-xs">View {plan.title}</span>
+                </div>
               </div>
-            </button>
+
+              {/* Title Only Footer */}
+              <div className="p-5 flex justify-center items-center bg-white border-t border-gray-50">
+                <h3 className="font-bold text-lg text-center" style={{ color: colors.blackish }}>{plan.title}</h3>
+              </div>
+            </motion.div>
           ))}
-        </div>
-
-        {/* MAIN CARD */}
-        <div className="bg-white rounded-[2rem] shadow-2xl overflow-hidden border border-gray-100 flex flex-col lg:flex-row min-h-[500px]">
-
-          {/* IMAGE */}
-          <div className="lg:w-1/2 p-6 md:p-10 bg-gray-50 flex flex-col justify-center">
-            <div
-              className="relative cursor-zoom-in overflow-hidden rounded-2xl bg-white border border-gray-200 p-4"
-              onClick={() => setShowImage(true)}
-            >
-              <img
-                src={active.image}
-                alt={active.name}
-                className="w-full h-[300px] md:h-[450px] object-contain"
-              />
-            </div>
-
-            <p
-              style={{ fontFamily: "Inter, sans-serif" }}
-className="text-center text-xs text-gray-400 mt-4 uppercase tracking-widest font-semibold"
-            >
-              CLICK IMAGE TO EXPAND
-            </p>
-          </div>
-
-          {/* DETAILS */}
-          <div className="lg:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-
-            <div className="mb-8">
-              <span
-                 style={{ fontFamily: "Inter, sans-serif" }}
-className="bg-[#F2A71D15] text-[#D64B27] px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-wider"
-              >
-                PLAN INFORMATION
-              </span>
-
-              <h3
-                style={{ fontFamily: "Playfair Display, serif" }}
-                className="text-xl font-bold text-gray-900 mt-6 leading-[1.2]"
-              >
-                {active.bhk}
-              </h3>
-
-              <p
-                style={{ fontFamily: "Inter, sans-serif" }}
-                className="text-sm font-medium text-gray-500 mt-2"
-              >
-                {active.area}
-              </p>
-
-              <p
-                style={{ fontFamily: "Inter, sans-serif" }}
-                className="text-gray-600 mt-6 italic text-sm border-l-2 border-[#F2A71D] pl-4 leading-relaxed"
-              >
-                "{active.highlight}"
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-6 mb-10">
-              <div className="flex items-center gap-4">
-                <Layers size={22} className="text-[#041a14]" />
-                <div>
-                  <p
-                   style={{ fontFamily: "Inter, sans-serif" }}
-className="text-xs text-gray-400 font-semibold uppercase"
-                  >
-                    FLOOR
-                  </p>
-                  <p
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                    className="text-sm font-semibold text-gray-800"
-                  >
-                    {active.floors}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <Ruler size={22} className="text-[#041a14]" />
-                <div>
-                  <p
-                   style={{ fontFamily: "Inter, sans-serif" }}
-className="text-xs text-gray-400 font-semibold uppercase"
-                  >
-                    AREA INFO
-                  </p>
-                  <p
-                    style={{ fontFamily: "Inter, sans-serif" }}
-                    className="text-sm font-semibold text-gray-800"
-                  >
-                    {active.area}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-2 border-t border-gray-100 pt-8">
-              {active.features.map((feature, idx) => (
-                <div
-                  key={idx}
-                  style={{ fontFamily: "Inter, sans-serif" }}
-                  className="flex items-center gap-3 text-gray-700 text-sm font-medium"
-                >
-                  <CheckCircle2 size={18} className="text-[#F2A71D]" />
-                  {feature}
-                </div>
-              ))}
-            </div>
-
-          </div>
         </div>
       </div>
 
-      {/* MODAL remains unchanged */}
-      {showImage && (
-        <div className="fixed inset-0 bg-black/95 z-[100] flex flex-col items-center justify-center p-6">
-          <div className="absolute top-8 right-8 flex items-center gap-6 z-[110]">
-            <div className="flex items-center gap-2 bg-white/10 rounded-full p-2 border border-white/20">
-              <button onClick={handleZoomOut} className="p-2 hover:bg-white/20 text-white rounded-full">
-                <ZoomOut size={24} />
-              </button>
-              <button onClick={resetZoom} className="p-2 hover:bg-white/20 text-white rounded-full">
-                <Maximize size={20} />
-              </button>
-              <button onClick={handleZoomIn} className="p-2 hover:bg-white/20 text-white rounded-full">
-                <ZoomIn size={24} />
-              </button>
-            </div>
-
-            <button
-              onClick={() => {
-                setShowImage(false);
-                resetZoom();
-              }}
-              className="text-white hover:text-[#F2A71D]"
-            >
-              <X size={40} />
-            </button>
-          </div>
-
-          <div className="w-full h-full overflow-auto flex items-center justify-center">
-            <img
-              src={active.image}
-              alt="Plan"
-              style={{
-                transform: `scale(${zoom})`,
-                transition: "transform 0.2s ease-out",
-              }}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-            />
-          </div>
-
-          <div
-            style={{ fontFamily: "Inter, sans-serif" }}
-className="absolute bottom-8 text-white/50 text-xs font-semibold uppercase tracking-[0.2em]"
+      {/* Lightbox / Modal */}
+      <AnimatePresence>
+        {selectedPlan && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-0 md:p-10"
           >
-            USE CONTROLS TO INSPECT DETAILS • ZOOM: {Math.round(zoom * 100)}%
-          </div>
-        </div>
-      )}
+            <div className="absolute inset-0 cursor-zoom-out" onClick={closeModal}></div>
+
+            <motion.div 
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full h-full md:h-auto md:max-w-5xl bg-white md:rounded-3xl overflow-hidden flex flex-col shadow-2xl z-10"
+            >
+              {/* Modal Header */}
+              <div className="flex items-center justify-between p-4 border-b md:border-none md:absolute md:top-6 md:right-6 md:z-20 md:p-0 md:bg-transparent">
+                <div>
+                  <h3 className="font-bold text-lg md:hidden" style={{ color: colors.blackish }}>{selectedPlan.title}</h3>
+                </div>
+                
+                <div className="flex items-center gap-2">
+                  <div className="flex bg-gray-100 md:bg-white/90 rounded-full p-1 shadow-md border border-gray-200 md:border-none">
+                    <button onClick={(e) => { e.stopPropagation(); handleZoomOut(); }} disabled={zoom <= 1} className="p-2 hover:bg-gray-200 rounded-full transition-colors disabled:opacity-20">
+                      <ZoomOut size={20} />
+                    </button>
+                    <button onClick={(e) => { e.stopPropagation(); handleZoomIn(); }} disabled={zoom >= 4} className="p-2 hover:bg-gray-200 rounded-full transition-colors disabled:opacity-20">
+                      <ZoomIn size={20} />
+                    </button>
+                    <button onClick={(e) => { e.stopPropagation(); resetZoom(); }} className="p-2 hover:bg-gray-200 rounded-full transition-colors">
+                      <RotateCcw size={20} />
+                    </button>
+                  </div>
+                  <button onClick={closeModal} className="p-2 bg-gray-900 text-white md:bg-white/90 md:text-gray-900 rounded-full hover:rotate-90 transition-all shadow-md">
+                    <X size={20} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Main Image Viewport */}
+              <div className="flex-1 overflow-auto bg-[#fdfdfd] flex items-center justify-center p-4 md:p-12 min-h-0">
+                <div className="relative transition-transform duration-300 ease-out inline-block" style={{ transform: `scale(${zoom})` }}>
+                   <img 
+                    src={selectedPlan.img} 
+                    alt={selectedPlan.title} 
+                    className="max-w-full h-auto max-h-[60vh] md:max-h-[70vh] rounded shadow-lg"
+                  />
+                </div>
+              </div>
+
+              {/* Modal Footer (Title Only) */}
+              <div className="p-4 md:p-6 bg-white border-t text-center">
+                 <h3 className="text-xl md:text-2xl font-bold" style={{ color: colors.blackish }}>{selectedPlan.title}</h3>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
