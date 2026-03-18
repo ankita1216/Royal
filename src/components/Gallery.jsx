@@ -7,18 +7,18 @@ export default function Gallery() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(0);
 
- const colors = {
-    blackish: "#765229",      
-    vibrantOrange: "#ffdead", 
-    goldenYellow: "#dfab5e",  
-    deepOrange: "#dfab5e",    // Used in "Contact Now"
-    warmCream: "#FFF4E6",     
+  const colors = {
+    blackish: "#765229",
+    vibrantOrange: "#ffdead",
+    goldenYellow: "#dfab5e",
+    deepOrange: "#dfab5e",
+    warmCream: "#FFF4E6",
     mediumOrange: "#dfab5e",
   };
 
   const galleryImages = [
     { title: "Gate View", tag: "Gate", src: "/ROYAL PRESEDENSY-GATE (1).webp" },
-    { title: "Road View", tag: "Road", src: "/ROYAL PRESEDENSY-ROAD.webp" },
+    
     { title: "Kid's  Area", tag: "Family & Kids", src: "/ROYAL PRESEDENSY-KIDS (1).webp" },
     { title: "Airial Sport View", tag: "Sport View", src: "/ROYAL PRESEDENSY-AIRIAL-SPORT-UP-SECOND (1).webp" },
     { title: " Porch Area", tag: "Porch", src: "/ROYAL PRESEDENSY-PORCH (1).webp" },
@@ -28,15 +28,14 @@ export default function Gallery() {
     { title: "Garden Area", tag: "Green", src: "/ROYAL PRESEDENSY-GREEN-B (1).webp" },
     { title: "Presidency Corridor", tag: "Corridor", src: "/Presidency-Corridor (1).jpg" },
     { title: "Living Area", tag: "Living", src: "/Living (1).jpg" },
+    // { title: "Road View", tag: "Road", src: "/ROYAL PRESEDENSY-ROAD.webp" },
     { title: "Entrance Lobby", tag: "Lobby", src: "/Entrance Lobby_02 (1).webp" },
     { title: "Kitchen Area", tag: "Kitchen", src: "/Kitchen (1).webp" },
     { title: "Dining Area", tag: "Dining", src: "/Dinning (1).webp" },
+
     { title: "Bedroom Area", tag: "Bedroom", src: "/Bedroom_02 (1).webp" },
     { title: "Balcony Area", tag: "Balcony", src: "/ROYAL PRESEDENSY-Balcony (1).jpg" },
     { title: "Bathroom ", tag: "Bathrom", src: "/Bathroom (1).jpg" },
-  
-    
-    
     { title: "Master Bedroom", tag: "Bedroom", src: "/Master Bedroom (1).webp" }
   ];
 
@@ -45,71 +44,40 @@ export default function Gallery() {
   }, [isOpen]);
 
   return (
-    // ✅ CHANGED: Reduced vertical padding for mobile (py-16)
     <section id="gallery" className="relative w-full bg-[#fafaf8] py-20 lg:py-32 font-sans text-[#041a14]">
       
-      {/* --- HEADER --- */}
-      {/* <div className="max-w-4xl mb-20 animate-fade-in">
-          <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] mb-4" style={{ color: colors.vibrantOrange }}>
-            <div className="w-8 h-px bg-[#dfab5e]"></div>
-            The Visual Journey
-          </div> */}
       <div className="max-w-7xl mx-auto px-6 mb-12 lg:mb-20">
         <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.3em] mb-4">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 text-xs lg:text-[11px] font-black uppercase tracking-[0.3em] lg:tracking-[0.5em] mb-4 lg:mb-8" style={{ color: colors.deepOrange }}>
-              <Sparkles className="w-8 h-px bg-[#dfab5e]" style={{ color: colors.goldenYellow
-               }} />
+              <Sparkles className="w-8 h-px bg-[#dfab5e]" style={{ color: colors.goldenYellow }} />
               The Visual Journey
             </div>
-            {/* <h2 className="text-5xl lg:text-8xl md:text-7xl font-serif italic text-white leading-[1.1]">
-              The <span style={{ color: colors.goldenYellow }}>Library </span> <br /> Walkthrough
-            </h2> */}
             <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1] mb-6 normal-case" style={{ color: colors.blackish }}>
-     The
-  <span className="italic font-light ml-4" style={{ color: colors.deepOrange }}>
-  Library
-  </span>
-</h1>
-            {/* <h2 
-  className="text-5xl lg:text-8xl md:text-7xl font-serif italic leading-[1.1] normal-case"
-  style={{ color: colors.blackish }}
->
-  The{" "}
-  <span 
-    className="italic font-light ml-3"
-    style={{ color: colors.deepOrange }}
-  >
-    Library
-  </span>
-</h2> */}
-            {/* ✅ CHANGED: Responsive font size (text-5xl mobile vs text-100px desktop) */}
-            
+              The <span className="italic font-light ml-4" style={{ color: colors.deepOrange }}>Library</span>
+            </h1>
           </div>
-          {/* <p className="text-[#041a14]/60 max-w-sm text-base text-lg font-medium border-l-4 pl-6 lg:pl-8 py-2" style={{ borderLeftColor: colors.goldenYellow}}>
-            A glimpse into the refined architecture of Royal Presidency.
-          </p> */}
         </div>
       </div>
 
       {/* --- GRID --- */}
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        {/* ✅ CHANGED: Single column mobile, adjusted gaps */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {galleryImages.slice(0, 6).map((image, idx) => (
             <div 
               key={idx} 
-              // ✅ CHANGED: Rounded corners adjusted for mobile
               className="group relative rounded-[2rem] lg:rounded-[2.5rem] overflow-hidden bg-white aspect-[4/3] cursor-pointer shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
               onClick={() => { setActiveImage(idx); setIsOpen(true); }}
             >
               <img 
                 src={image.src} 
                 alt={image.title} 
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                // ✅ FIX: object-contain for Road View (idx 1), object-cover for others
+                className={`w-full h-full transition-transform duration-700 group-hover:scale-110 ${idx === 9 ? "object-contain bg-gray-50" : "object-cover"}`} 
               />
               <div className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity" style={{ backgroundColor: colors.blackish }}></div>
               <div className="absolute inset-0 p-6 lg:p-10 flex flex-col justify-end">
+                {/* ✅ FIX: font-black added for bold tag */}
                 <span className="text-[10px] lg:text-[10px] font-black uppercase tracking-[0.2em] mb-2" style={{ color: colors.goldenYellow }}>{image.tag}</span>
                 <h3 className="text-white font-serif text-2xl lg:text-3xl italic">{image.title}</h3>
               </div>
@@ -141,17 +109,14 @@ export default function Gallery() {
         className={`fixed inset-0 z-[100] ${isOpen ? "visible" : "invisible"}`}
         style={{ transition: 'visibility 0s linear 0s' }}
       >
-        {/* Backdrop */}
         <div 
           className={`absolute inset-0 backdrop-blur-md transition-opacity duration-300 ease-out ${isOpen ? "opacity-100" : "opacity-0"}`}
           style={{ backgroundColor: `${colors.blackish}E6` }} 
           onClick={() => setIsOpen(false)}
         ></div>
 
-        {/* Sidebar Container */}
         <div className={`absolute right-0 top-0 h-full w-full lg:w-[450px] bg-white shadow-2xl transform transition-transform duration-400 cubic-bezier(0.2, 0, 0, 1) flex flex-col z-[110] ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
           
-          {/* Sidebar Header */}
           <div className="p-6 lg:p-8 flex justify-between items-center border-b border-gray-100 shrink-0">
             <div className="font-serif" style={{ color: colors.blackish }}>
               <p className="font-bold text-lg lg:text-xl uppercase tracking-tighter">Library View</p>
@@ -167,53 +132,52 @@ export default function Gallery() {
             </button>
           </div>
 
-          {/* Sidebar Scrollable Content */}
           <div className="flex-1 overflow-y-auto p-4 lg:p-6 space-y-4 scroll-smooth">
             
-            {activeImage !== 0 && (
-            <div className="lg:hidden w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg relative mb-6 border-2" style={{ borderColor: colors.goldenYellow}}>
-               <img src={galleryImages[activeImage].src} alt="Active" className="w-full h-full object-cover" />
-               <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
-                  <p className="text-[9px] text-[#F2A71D] font-bold uppercase tracking-widest mb-1">{galleryImages[activeImage].tag}</p>
-                  <p className="text-white font-serif text-xl italic">{galleryImages[activeImage].title}</p>
-               </div>
-            </div>
+            {activeImage !== null && (
+              <div className="lg:hidden w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg relative mb-6 border-2" style={{ borderColor: colors.goldenYellow}}>
+                 <img 
+                   src={galleryImages[activeImage].src} 
+                   alt="Active" 
+                   // ✅ FIX: object-contain for Road View (index 1) in mobile preview
+                   className={`w-full h-full ${activeImage === 1 ? "object-contain bg-gray-50" : "object-cover"}`} 
+                 />
+                 <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/80 to-transparent">
+                    {/* ✅ FIX: font-bold added for tag */}
+                    <p className="text-[9px] text-[#F2A71D] font-bold uppercase tracking-widest mb-1">{galleryImages[activeImage].tag}</p>
+                    <p className="text-white font-serif text-xl italic">{galleryImages[activeImage].title}</p>
+                 </div>
+              </div>
             )}
-            {/* Image List */}
-            {/* Image List */}
-{galleryImages.map((image, idx) => {
-  
 
-  return (
-    <div 
-      key={idx}
-      className={`group relative rounded-xl lg:rounded-2xl overflow-hidden cursor-pointer border-4 transition-all duration-200 ${
-        activeImage === idx
-          ? "border-[#F2A71D] opacity-100 scale-[1.03]"
-          : "border-transparent opacity-60 hover:opacity-100"
-      }`}
-      onClick={() => setActiveImage(idx)}
-    >
-      <img src={image.src} alt="" className="w-full aspect-video object-cover" />
-     <div className="absolute bottom-3 left-3 text-white">
-  <p className="text-[10px] text-[#F2A71D]">{image.tag}</p>
-  <p className="italic">{image.title}</p>
-</div>
-    </div>
-  );
-})}
-</div>
-                
-          {/* Sidebar Footer */}
+            {galleryImages.map((image, idx) => (
+              <div 
+                key={idx}
+                className={`group relative rounded-xl lg:rounded-2xl overflow-hidden cursor-pointer border-4 transition-all duration-200 ${
+                  activeImage === idx
+                    ? "border-[#F2A71D] opacity-100 scale-[1.03]"
+                    : "border-transparent opacity-60 hover:opacity-100"
+                }`}
+                onClick={() => setActiveImage(idx)}
+              >
+                <img 
+                  src={image.src} 
+                  alt="" 
+                  // ✅ FIX: object-contain for Road View in sidebar list
+                  className={`w-full aspect-video ${idx === 1 ? "object-contain bg-gray-50" : "object-cover"}`} 
+                />
+                <div className="absolute bottom-3 left-3 text-white">
+                  {/* ✅ FIX: font-bold added for tag */}
+                  <p className="text-[12px] text-[#F2A71D] font-bold">{image.tag}</p>
+                  <p className="italic">{image.title}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+                  
           <div className="p-6 lg:p-8 shrink-0" style={{ backgroundColor: colors.blackish, color: colors.goldenYellow }}>
             <p className="text-[9px] lg:text-[10px] font-black uppercase tracking-widest mb-2 lg:mb-4 opacity-50">Currently Exploring</p>
             <h4 className="font-serif text-2xl lg:text-3xl italic mb-4 lg:mb-6 leading-none text-white">{galleryImages[activeImage].title}</h4>
-            {/* <button 
-              className="w-full py-4 lg:py-5 rounded-xl lg:rounded-2xl font-bold text-[10px] lg:text-xs uppercase tracking-[0.2em] hover:scale-[1.02] transition-transform"
-              style={{ backgroundColor: colors.mediumOrange, color: "white" }}
-            >
-              Download Brochure
-            </button> */}
           </div>
         </div>
 
@@ -223,10 +187,12 @@ export default function Gallery() {
               <img 
                 src={galleryImages[activeImage].src} 
                 alt="Selected View" 
-                className="w-full h-full object-cover"
+                // ✅ FIX: object-contain for Road View in desktop preview
+                className={`w-full h-full ${activeImage === 1 ? "object-contain bg-gray-50" : "object-cover"}`}
               />
               <div className="absolute bottom-12 left-12 text-white drop-shadow-lg">
-                <p className="text-[10px] uppercase tracking-[0.4em] mb-2" style={{ color: colors.goldenYellow }}>{galleryImages[activeImage].tag}</p>
+                {/* ✅ FIX: font-black added for tag */}
+                <p className="text-[10px] font-black uppercase tracking-[0.4em] mb-2" style={{ color: colors.goldenYellow }}>{galleryImages[activeImage].tag}</p>
                 <h3 className="text-5xl font-serif italic leading-none">{galleryImages[activeImage].title}</h3>
               </div>
            </div>

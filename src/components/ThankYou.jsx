@@ -41,53 +41,8 @@ export default function AboutSubham() {
       
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* --- NEW STATS / ACHIEVEMENT SECTION --- */}
-        <div className="mb-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
-            <div className="lg:col-span-4">
-               <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="flex items-center gap-4 mb-6"
-              >
-                 <div className="w-12 h-[1px]" style={{ backgroundColor: colors.goldenYellow }} />
-                 <span className="text-xs font-black uppercase tracking-[0.5em]" style={{ color: colors.goldenYellow }}>Our Legacy</span>
-              </motion.div>
-              
-              <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-6">
-              Two Decades of <br /><span className="italic" style={{ color: colors.goldenYellow }}>Building Trust.</span>
-              </h2>
-            </div>
-            <div className="lg:col-span-8">
-              <p className="text-lg font-medium leading-relaxed opacity-70">
-                Founded in 2004, we have emerged as the most preferred realty brand in Odisha for classy developments in the large gated residential sector, premium boutique properties, and commercial buildings. Within 20 years of inception, we have completed more than 2 million sq.ft of premium residential projects.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-12 border-t border-b py-12" style={{ borderColor: `${colors.blackish}15` }}>
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex flex-col gap-3"
-              >
-                <div style={{ color: colors.goldenYellow }}>{stat.icon}</div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-serif font-bold">{stat.value}</div>
-                  <div className="text-[10px] font-black uppercase tracking-widest opacity-50 mt-1">{stat.label}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* --- HEADER --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-end">
+        {/* --- HEADER (NOW FIRST) --- */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24 items-end">
           <div className="lg:col-span-8">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -117,6 +72,41 @@ export default function AboutSubham() {
               Over 20 years of crafting the Bhubaneswar skyline. We don't just build homes; we build the future of urban living.
             </p>
           </motion.div>
+        </div>
+
+        {/* --- STATS / ACHIEVEMENT SECTION (NOW SECOND) --- */}
+        <div className="mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+            <div className="lg:col-span-4">
+              <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-6">
+                Two Decades of <br /><span className="italic" style={{ color: colors.goldenYellow }}>Building Trust.</span>
+              </h2>
+            </div>
+            <div className="lg:col-span-8">
+              <p className="text-lg font-medium leading-relaxed opacity-70">
+                Founded in 2004, we have emerged as the most preferred realty brand in Odisha for classy developments in the large gated residential sector, premium boutique properties, and commercial buildings.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-12 border-t border-b py-12" style={{ borderColor: `${colors.blackish}15` }}>
+            {stats.map((stat, index) => (
+              <motion.div 
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="flex flex-col gap-3"
+              >
+                <div style={{ color: colors.goldenYellow }}>{stat.icon}</div>
+                <div>
+                  <div className="text-2xl md:text-3xl font-serif font-bold">{stat.value}</div>
+                  <div className="text-[10px] font-black uppercase tracking-widest opacity-50 mt-1">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* --- CONTENT GRID --- */}
