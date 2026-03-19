@@ -3,17 +3,16 @@
 import React from "react";
 import { 
   Trophy, Building2, Baby, ParkingCircle, 
-  Palmtree, Waves, Droplets, Dumbbell, Gamepad2, 
+  Waves, Dumbbell, Gamepad2, 
   ShieldCheck, Tent, MapPin, Footprints, 
-  Armchair, Wind, PersonStanding, Sparkles,
+  PersonStanding, Sparkles,
   Hotel,    // For Banquet Hall
   Castle,   // For Clubhouse
   Flower2,  // For Social Garden
   Sprout    // For Multipurpose Lawn
 } from "lucide-react";
 
-// --- CUSTOM ICONS (Balinese, Stepped Sit-out, Splash Pool, AC Lobby) ---
-
+// --- CUSTOM ICONS ---
 const BalineseIcon = (props) => (
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
     <path d="M12 22V12M12 12c4.5 0 8-3.5 8-8 0 0-3.5 1-8 1s-8-1-8-1c0 4.5 3.5 8 8 8z" />
@@ -73,7 +72,8 @@ export default function Specifications() {
   const colors = {
     blackish: "#765229",      
     vibrantOrange: "#dfab5e", 
-    deepOrange: "#dfab5e",    
+    deepOrange: "#dfab5e",
+    ashColor: "#F1F1F1", // Added Ash Color for the box
   };
 
   return (
@@ -95,7 +95,7 @@ export default function Specifications() {
           </p>
         </div>
 
-        {/* --- RESTORED HERO IMAGE SECTION --- */}
+        {/* --- HERO IMAGE SECTION --- */}
         <div className="relative mb-32 animate-slide-up">
           <div className="rounded-[2rem] overflow-hidden shadow-2xl">
             <img 
@@ -111,45 +111,41 @@ export default function Specifications() {
           </div>
         </div>
 
-        {/* --- AMENITIES GRID SECTION --- */}
-        <div className="space-y-16">
+        {/* --- AMENITIES GRID SECTION WITH ASH BACKGROUND WRAPPER --- */}
+        <div className="space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
-            {/* Added flex-row and items-baseline to keep text side-by-side on mobile */}
-            <h1 
-  className="font-serif text-4xl md:text-7xl lg:text-8xl leading-[1] 
-             flex flex-row items-baseline flex-wrap 
-             justify-start sm:justify-start text-left"
-  style={{ color: colors.blackish }}
->
-  Lifestyle 
-  <span 
-    className="italic font-light ml-1 md:ml-3"
-    style={{ color: colors.deepOrange }}
-  >
-    Amenities
-  </span>
-</h1>
-         
+            <h1 className="font-serif text-4xl md:text-7xl lg:text-8xl leading-[1] flex flex-row items-baseline flex-wrap justify-start sm:justify-start text-left" style={{ color: colors.blackish }}>
+              Lifestyle 
+              <span className="italic font-light ml-1 md:ml-3" style={{ color: colors.deepOrange }}>
+                Amenities
+              </span>
+            </h1>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-            {amenities.map((item, idx) => (
-              <div key={idx} className="group flex flex-col gap-4">
-                <div className="w-16 h-16 rounded-full bg-white border border-gray-200 flex items-center justify-center transition-all duration-500 group-hover:bg-[#2D241E] shadow-sm">
-                  <div className="text-[#765229] group-hover:text-[#dfab5e] transition-colors duration-300">
-                    {React.cloneElement(item.icon, { 
-                      size: 28, 
-                      strokeWidth: 2,
-                      color: "currentColor" 
-                    })}
+          {/* Changed background from bg-white/70 to bg-[#F1F1F1] (Ash Color) */}
+          <div 
+            className="rounded-[3rem] p-8 md:p-16 border border-gray-100 shadow-[0_32px_64px_-16px_rgba(118,82,41,0.06)]"
+            style={{ backgroundColor: colors.ashColor }}
+          >
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+              {amenities.map((item, idx) => (
+                <div key={idx} className="group flex flex-col gap-4">
+                  <div className="w-16 h-16 rounded-full bg-white border border-gray-100 flex items-center justify-center transition-all duration-500 group-hover:bg-[#2D241E] shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">
+                    <div className="text-[#765229] group-hover:text-[#dfab5e] transition-colors duration-300">
+                      {React.cloneElement(item.icon, { 
+                        size: 28, 
+                        strokeWidth: 2,
+                        color: "currentColor" 
+                      })}
+                    </div>
+                  </div>
+                  <div>
+                    <h5 className="text-lg font-bold mb-1 group-hover:text-[#765229] transition-colors">{item.name}</h5>
+                    <div className="h-0.5 w-0 bg-[#dfab5e] transition-all duration-500 group-hover:w-full opacity-60"></div>
                   </div>
                 </div>
-                <div>
-                  <h5 className="text-lg font-bold mb-1 group-hover:text-[#dfab5e] transition-colors">{item.name}</h5>
-                  <div className="h-0.5 w-0 bg-[#dfab5e] transition-all duration-300 group-hover:w-full"></div>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>

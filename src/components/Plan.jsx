@@ -79,7 +79,12 @@ const Plan = () => {
         {/* Grid Layout (Displays filtered plans) */}
         <motion.div 
           layout
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          // Flex used to center single items (like Master Plan), Grid used for multiple items
+          className={`w-full ${
+            filteredPlans.length === 1 
+              ? 'flex justify-center' 
+              : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'
+          }`}
         >
           <AnimatePresence mode='popLayout'>
             {filteredPlans.map((plan) => (
@@ -91,7 +96,8 @@ const Plan = () => {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 whileHover={{ y: -8 }}
-                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col cursor-pointer"
+                // Added max-width to ensure single cards don't stretch too wide
+                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col cursor-pointer w-full max-w-sm"
                 onClick={() => setSelectedPlan(plan)}
               >
                 <div className="relative overflow-hidden aspect-[4/3] bg-gray-50 flex items-center justify-center p-4">

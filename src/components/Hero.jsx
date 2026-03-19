@@ -1,10 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronDown, MapPin, MousePointer2 } from "lucide-react"; 
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
+  const [petals, setPetals] = useState([]);
+
+  // Petals generate karne ka logic
+  useEffect(() => {
+    const petalCount = 15; // Animation density control
+    const newPetals = Array.from({ length: petalCount }).map((_, i) => ({
+      id: i,
+      left: Math.random() * 100, // Random horizontal position
+      delay: Math.random() * 5, // Random start time
+      duration: 6 + Math.random() * 4, // Random fall speed
+      size: 10 + Math.random() * 15, // Random petal size
+    }));
+    setPetals(newPetals);
+  }, []);
+
   const scrollToAbout = () => {
     const element = document.getElementById("about");
     if (element) {
@@ -25,6 +40,37 @@ export default function HeroSection() {
   return (
     <section id="hero" className="relative w-full min-h-[90vh] bg-[#FCFAFB] flex flex-col font-sans overflow-hidden">
       
+      {/* --- PETALS ANIMATION LAYER --- */}
+      <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+        {petals.map((petal) => (
+          <motion.div
+            key={petal.id}
+            initial={{ y: -50, x: `${petal.left}vw`, opacity: 0, rotate: 0 }}
+            animate={{ 
+              y: "110vh", 
+              x: `${petal.left + (Math.random() * 10 - 5)}vw`, // Slight horizontal drift
+              opacity: [0, 1, 1, 0], // Fade in then fade out at bottom
+              rotate: 360 
+            }}
+            transition={{
+              duration: petal.duration,
+              repeat: Infinity,
+              delay: petal.delay,
+              ease: "linear",
+            }}
+            style={{
+              position: "absolute",
+              width: petal.size,
+              height: petal.size,
+              backgroundColor: "#dfab5e", // Using your theme's golden color
+              borderRadius: "100% 0% 100% 0%", // Petal shape
+              opacity: 0.4,
+              filter: "blur(0.5px)"
+            }}
+          />
+        ))}
+      </div>
+
       {/* Decorative Background Element */}
       <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-[#FFF4E6] rounded-bl-[200px] -z-10 opacity-40" />
 
@@ -117,7 +163,7 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Floating Location Card - Adjusted mt-4 for mobile to push it down slightly */}
+          {/* Floating Location Card */}
           <motion.div 
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
