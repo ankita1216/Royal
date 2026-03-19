@@ -2,25 +2,21 @@
 import React, { useState, useEffect } from "react";
 import { 
   X, Send, Phone, ShieldCheck, 
-  Sparkles, Lock, CheckCircle2, 
+  Sparkles, CheckCircle2, 
   ChevronDown, User, Mail 
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { auth, RecaptchaVerifier, signInWithPhoneNumber } from "../lib/firebase";
 import { useNavigate } from "react-router-dom";
 
 export default function PopupSticky({ isOpen, setIsOpen }) {
   const [loading, setLoading] = useState(false);
-  const [isOtpSent, setIsOtpSent] = useState(false);
-  const [otp, setOtp] = useState("");
-  const [confirmationResult, setConfirmationResult] = useState(null);
   const navigate = useNavigate();
 
- const colors = {
+  const colors = {
     blackish: "#765229",      
     vibrantOrange: "#ffdead", 
     goldenYellow: "#dfab5e",  
-    deepOrange: "#dfab5e",    // Used in "Contact Now"
+    deepOrange: "#dfab5e",    
     warmCream: "#FFF4E6",     
   };
 
@@ -37,7 +33,6 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
     utm_content: ""
   });
 
-  // --- Capture UTM Parameters ---
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     setFormData(prev => ({
@@ -50,12 +45,15 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
     }));
   }, []);
 
-  // --- 1. Consistent Webhook Logic ---
-  const sendToWebhook = async (data) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
     try {
       const payload = new URLSearchParams();
-      Object.entries(data).forEach(([key, value]) => payload.append(key, value));
+      Object.entries(formData).forEach(([key, value]) => payload.append(key, value));
 
+      // Direct Webhook Submission
       await fetch("https://connect.pabbly.com/workflow/senddydybkfdyfuajsbabvwebhookdata/IjU3NjcwNTZjMDYzMTA0MzA1MjZkNTUzMjUxMzMi_pc", {
         method: "POST",
         mode: "no-cors",
@@ -64,58 +62,13 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
         },
         body: payload.toString(),
       });
-      return true;
-    } catch (err) {
-      console.error("Webhook Error:", err);
-      return false;
-    }
-  };
 
-  const setupRecaptcha = () => {
-    if (!window.recaptchaVerifierPopup) {
-      window.recaptchaVerifierPopup = new RecaptchaVerifier(
-        auth,
-        "recaptcha-popup-container",
-        { size: "invisible" }
-      );
-    }
-  };
-
-  const handleSendOtp = async () => {
-    if (!formData.phone || formData.phone.length < 10) return alert("Enter 10-digit phone");
-    setLoading(true);
-    try {
-      setupRecaptcha();
-      const phoneNumber = `+91${formData.phone.replace(/\D/g, "")}`;
-      const result = await signInWithPhoneNumber(auth, phoneNumber, window.recaptchaVerifierPopup);
-      setConfirmationResult(result);
-      setIsOtpSent(true);
-    } catch (error) {
-      console.error(error);
-      alert("Verification failed. Please retry.");
-      if (window.recaptchaVerifierPopup) window.recaptchaVerifierPopup.clear();
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!otp) return alert("Please enter OTP");
-    setLoading(true);
-
-    try {
-      // 1. Verify OTP
-      await confirmationResult.confirm(otp);
-      
-      // 2. Send Data to Webhook
-      await sendToWebhook(formData);
-
-      // 3. Close & Redirect
+      // Close and Redirect immediately
       setIsOpen(false);
       navigate("/Info/Thankyou");
     } catch (error) {
-      alert("Invalid OTP code.");
+      console.error("Submission Error:", error);
+      alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -125,8 +78,6 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
 
   return (
     <>
-      <div id="recaptcha-popup-container"></div>
-
       <AnimatePresence>
         {isOpen && (
           <div className="fixed inset-0 z-[10000] flex items-center justify-center p-4">
@@ -194,39 +145,12 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
                     <input 
                       placeholder="10-digit Phone" 
                       maxLength={10}
-                      disabled={isOtpSent}
-                      className={`${inputClass} pl-11 pr-24`} 
+                      required
+                      type="tel"
+                      className={`${inputClass} pl-11`} 
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
                     />
-                    {formData.phone.length >= 10 && !isOtpSent && (
-                      <button 
-                        type="button" 
-                        onClick={handleSendOtp} 
-                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#041a14] text-[#F2A71D] px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-black transition-all"
-                      >
-                        {loading ? "..." : "Verify"}
-                      </button>
-                    )}
-                    {isOtpSent && <CheckCircle2 className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />}
                   </div>
-
-                  <AnimatePresence>
-                    {isOtpSent && (
-                      <motion.div 
-                        initial={{ height: 0, opacity: 0 }} 
-                        animate={{ height: "auto", opacity: 1 }} 
-                        className="relative overflow-hidden"
-                      >
-                        <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#E97323]" />
-                        <input 
-                          placeholder="6-Digit OTP" 
-                          required
-                          className={`${inputClass} pl-11 border-[#E97323]/30 bg-orange-50/30`} 
-                          onChange={(e) => setOtp(e.target.value)} 
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="relative">
@@ -237,7 +161,6 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
                       >
                         <option>3 BHK</option>
                         <option>4 BHK</option>
-                        {/* <option>Duplex</option> */}
                       </select>
                       <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                     </div>
@@ -257,9 +180,9 @@ export default function PopupSticky({ isOpen, setIsOpen }) {
 
                   <button 
                     type="submit" 
-                    disabled={!isOtpSent || loading}
+                    disabled={loading}
                     className={`w-full py-5 rounded-2xl text-white font-bold text-lg tracking-wide shadow-2xl transition-all flex items-center justify-center gap-3 ${
-                      !isOtpSent || loading ? "bg-gray-200 cursor-not-allowed" : "bg-[#E97323] hover:bg-[#D64B27] hover:-translate-y-1"
+                      loading ? "bg-gray-200 cursor-not-allowed" : "bg-[#E97323] hover:bg-[#D64B27] hover:-translate-y-1"
                     }`}
                   >
                     {loading ? "Processing..." : <>Confirm Inquiry <Send className="w-5 h-5" /></>}

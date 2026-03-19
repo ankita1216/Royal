@@ -77,16 +77,16 @@ export default function AboutSubham() {
         {/* --- STATS / ACHIEVEMENT SECTION (NOW SECOND) --- */}
         <div className="mb-32">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
-            <div className="lg:col-span-4">
+            {/* <div className="lg:col-span-4">
               <h2 className="font-serif text-4xl md:text-5xl leading-tight mb-6">
                 Two Decades of <br /><span className="italic" style={{ color: colors.goldenYellow }}>Building Trust.</span>
               </h2>
-            </div>
-            <div className="lg:col-span-8">
+            </div> */}
+            {/* <div className="lg:col-span-8">
               <p className="text-lg font-medium leading-relaxed opacity-70">
                 Founded in 2004, we have emerged as the most preferred realty brand in Odisha for classy developments in the large gated residential sector, premium boutique properties, and commercial buildings.
-              </p>
-            </div>
+              </p> */}
+            {/* </div> */}
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 pt-12 border-t border-b py-12" style={{ borderColor: `${colors.blackish}15` }}>

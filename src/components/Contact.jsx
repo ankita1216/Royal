@@ -22,7 +22,7 @@ export default function Contact() {
 
   const [formData, setFormData] = useState({
     name: "",
-    email: "", // Added to match typical Pabbly payloads, even if hidden
+    email: "", 
     phone: "",
     interest: "3 BHK",
     callTime: "Morning (9 AM - 12 PM)",
@@ -45,6 +45,7 @@ export default function Contact() {
     }));
   }, []);
 
+  // Updated handler: Direct submission and redirect
   const handleFinalSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -53,6 +54,7 @@ export default function Contact() {
       const payload = new URLSearchParams();
       Object.entries(formData).forEach(([key, value]) => payload.append(key, value));
 
+      // Sending data to Pabbly Webhook
       await fetch("https://connect.pabbly.com/workflow/sendwebhookdata/IjU3NjcwNTZjMDYzMTA0MzA1MjZkNTUzMjUxMzMi_pc", {
         method: "POST",
         mode: "no-cors",
@@ -60,10 +62,12 @@ export default function Contact() {
         body: payload.toString(),
       });
 
+      // Update UI state and redirect immediately
       setSubmitted(true);
-      setTimeout(() => navigate("/Info/Thankyou"), 2000);
+      navigate("/Info/Thankyou");
+      
     } catch (error) {
-      alert("Something went wrong.");
+      alert("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -74,7 +78,6 @@ export default function Contact() {
 
   return (
     <section id="contact" className="relative w-full bg-[#fdfdfc] py-16 lg:py-24 overflow-hidden font-sans">
-      {/* Subtle Background Element */}
       <div className="absolute top-0 right-0 w-[40%] h-full bg-[#765229]/[0.02] -skew-x-12 translate-x-20 pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 relative z-10">
@@ -209,7 +212,7 @@ export default function Contact() {
                     <CheckCircle2 className="w-8 h-8 text-green-500"/>
                   </div>
                   <h3 className="text-3xl font-serif italic mb-2">Inquiry Received.</h3>
-                  <p className="text-gray-400 text-sm font-medium tracking-wide">We will contact you shortly.</p>
+                  <p className="text-gray-400 text-sm font-medium tracking-wide">Redirecting...</p>
                 </motion.div>
               )}
             </AnimatePresence>

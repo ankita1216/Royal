@@ -58,13 +58,13 @@ export default function Thankyou() {
           className="mb-8 relative"
         >
           {/* Glowing Effect Behind Image */}
-          <div className="absolute inset-0 bg-[#F2A71D] blur-[60px] opacity-20 rounded-full"></div>
+          {/* <div className="absolute inset-0 bg-[#F2A71D] blur-[60px] opacity-20 rounded-full"></div>
           
           <img 
             src="/final.jpg" 
             alt="Team Member" 
             className="relative w-40 md:w-56 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] z-10" 
-          />
+          /> */}
           
           {/* Floating Success Badge attached to image */}
           <motion.div 

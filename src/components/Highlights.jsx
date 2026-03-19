@@ -129,7 +129,7 @@ export default function Specifications() {
     Amenities
   </span>
 </h1>
-            <span className="text-xs font-bold uppercase tracking-widest text-gray-400">20 Unique Experiences</span>
+         
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">

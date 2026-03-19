@@ -5,6 +5,8 @@ import { ZoomIn, ZoomOut, X, Maximize2, RotateCcw } from 'lucide-react';
 const Plan = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
   const [zoom, setZoom] = useState(1);
+  // State for the active tab - Default is 'MASTER PLAN'
+  const [activeTab, setActiveTab] = useState('MASTER PLAN');
 
   const colors = {
     blackish: "#765229",
@@ -15,14 +17,20 @@ const Plan = () => {
   };
 
   const floorPlans = [
-    { id: 1, title: 'MASTER PLAN', img: '/plan-a.jpg' },
-    { id: 2, title: '1ST FLOOR PLAN', img: '/plan-b.jpg' },
-    { id: 3, title: 'TYPICAL FLOOR PLAN', img: '/plan-c.jpg' },
-    { id: 4, title: 'UNIT-A FLOOR PLAN', img: '/plan-d.jpg' },
-    { id: 5, title: 'UNIT-B FLOOR PLAN', img: '/plan-e.jpg' },
-    { id: 6, title: 'UNIT-C FLOOR PLAN', img: '/plan-f.jpg' },
-    { id: 7, title: 'UNIT-D FLOOR PLAN', img: '/plan-g.jpg' },
+    { id: 1, title: 'MASTER PLAN', category: 'MASTER PLAN', img: '/plan-a.jpg' },
+    { id: 2, title: '1ST FLOOR PLAN', category: 'FLOOR PLANS', img: '/plan-b.jpg' },
+    { id: 3, title: 'TYPICAL FLOOR PLAN', category: 'FLOOR PLANS', img: '/plan-c.jpg' },
+    { id: 4, title: 'UNIT-A FLOOR PLAN', category: 'UNIT PLANS', img: '/plan-d.jpg' },
+    { id: 5, title: 'UNIT-B FLOOR PLAN', category: 'UNIT PLANS', img: '/plan-e.jpg' },
+    { id: 6, title: 'UNIT-C FLOOR PLAN', category: 'UNIT PLANS', img: '/plan-f.jpg' },
+    { id: 7, title: 'UNIT-D FLOOR PLAN', category: 'UNIT PLANS', img: '/plan-g.jpg' },
   ];
+
+  // Define the tab buttons
+  const tabs = ['MASTER PLAN', 'FLOOR PLANS', 'UNIT PLANS'];
+
+  // Filter plans based on the active tab
+  const filteredPlans = floorPlans.filter(plan => plan.category === activeTab);
 
   const handleZoomIn = () => setZoom(prev => Math.min(prev + 0.5, 4));
   const handleZoomOut = () => setZoom(prev => Math.max(prev - 0.5, 1));
@@ -39,58 +47,74 @@ const Plan = () => {
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
           <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1]" style={{ color: colors.blackish }}>
-              Our Floor <span className="italic font-light ml-3" style={{ color: colors.deepOrange }}>Plans</span>
-            </h1>
-            <p className="max-w-2xl text-lg text-gray-500 font-medium mx-auto text-center mt-4">
-  Explore thoughtfully designed layouts.
-</p>
-          {/* <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold mb-4" 
-            style={{ color: colors.blackish, fontFamily: "'DM Sans', sans-serif" }}
-          >
-            Our Floor Plans
-          </motion.h2> */}
-          {/* <motion.p 
-            className="text-base md:text-lg max-w-2xl mx-auto opacity-90" 
-            style={{ color: colors.blackish }}
-          >
+            Our Floor <span className="italic font-light ml-3" style={{ color: colors.deepOrange }}>Plans</span>
+          </h1>
+          <p className="max-w-2xl text-lg text-gray-500 font-medium mx-auto text-center mt-4">
             Explore thoughtfully designed layouts.
-          </motion.p> */}
+          </p>
         </div>
 
-        {/* Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {floorPlans.map((plan) => (
-            <motion.div
-              key={plan.id}
-              whileHover={{ y: -8 }}
-              className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col cursor-pointer"
-              onClick={() => setSelectedPlan(plan)}
+        {/* Tabs System */}
+        <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-6 py-2 rounded-full text-sm md:text-base font-bold transition-all duration-300 border-2 ${
+                activeTab === tab 
+                ? 'shadow-md' 
+                : 'hover:bg-white/50'
+              }`}
+              style={{
+                backgroundColor: activeTab === tab ? colors.blackish : 'transparent',
+                color: activeTab === tab ? '#fff' : colors.blackish,
+                borderColor: colors.blackish,
+              }}
             >
-              <div className="relative overflow-hidden aspect-[4/3] bg-gray-50 flex items-center justify-center p-4">
-                <img 
-                  src={plan.img} 
-                  alt={plan.title} 
-                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
-                />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
-                  <div className="bg-white/90 p-3 rounded-full mb-2 shadow-lg">
-                    <Maximize2 size={24} style={{ color: colors.blackish }} />
-                  </div>
-                  <span className="text-white font-bold tracking-wide uppercase text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>View {plan.title}</span>
-                </div>
-              </div>
-
-              {/* Title Only Footer */}
-              <div className="p-5 flex justify-center items-center bg-white border-t border-gray-50">
-                <h3 className="font-bold text-lg text-center" style={{ color: colors.blackish, fontFamily: "'Inter', sans-serif" }}>{plan.title}</h3>
-              </div>
-            </motion.div>
+              {tab}
+            </button>
           ))}
         </div>
+
+        {/* Grid Layout (Displays filtered plans) */}
+        <motion.div 
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+        >
+          <AnimatePresence mode='popLayout'>
+            {filteredPlans.map((plan) => (
+              <motion.div
+                key={plan.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                whileHover={{ y: -8 }}
+                className="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col cursor-pointer"
+                onClick={() => setSelectedPlan(plan)}
+              >
+                <div className="relative overflow-hidden aspect-[4/3] bg-gray-50 flex items-center justify-center p-4">
+                  <img 
+                    src={plan.img} 
+                    alt={plan.title} 
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center">
+                    <div className="bg-white/90 p-3 rounded-full mb-2 shadow-lg">
+                      <Maximize2 size={24} style={{ color: colors.blackish }} />
+                    </div>
+                    <span className="text-white font-bold tracking-wide uppercase text-xs">View {plan.title}</span>
+                  </div>
+                </div>
+
+                <div className="p-5 flex justify-center items-center bg-white border-t border-gray-50">
+                  <h3 className="font-bold text-lg text-center" style={{ color: colors.blackish }}>{plan.title}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
 
       {/* Lightbox / Modal */}
@@ -107,17 +131,13 @@ const Plan = () => {
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{
-                
-                
-                
-              scale: 0.9, opacity: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               className="relative w-full h-full md:h-auto md:max-w-5xl bg-white md:rounded-3xl overflow-hidden flex flex-col shadow-2xl z-10"
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between p-4 border-b md:border-none md:absolute md:top-6 md:right-6 md:z-20 md:p-0 md:bg-transparent">
                 <div>
-                  <h3 className="font-bold text-lg md:hidden" style={{ color: colors.blackish, fontFamily: "'Inter', sans-serif" }}>{selectedPlan.title}</h3>
+                  <h3 className="font-bold text-lg md:hidden" style={{ color: colors.blackish }}>{selectedPlan.title}</h3>
                 </div>
                 
                 <div className="flex items-center gap-2">
@@ -149,7 +169,7 @@ const Plan = () => {
                 </div>
               </div>
 
-              {/* Modal Footer (Title Only) */}
+              {/* Modal Footer */}
               <div className="p-4 md:p-6 bg-white border-t text-center">
                  <h3 className="text-xl md:text-2xl font-bold" style={{ color: colors.blackish }}>{selectedPlan.title}</h3>
               </div>

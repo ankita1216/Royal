@@ -18,17 +18,7 @@ const Amenities = () => {
   };
 
   const connectivityData = [
-    {
-      category: "Miscellaneous",
-      icon: <Sparkles className="w-5 h-5" />,
-      items: [
-        { name: "Ashiana Regal" , dist: "1.7 kms" },
-        { name: "Royal Lagoon", dist: "2.0 kms" },
-        { name: "Mani Tribhuvan", dist: "3.0 kms" },
-        { name: "Z1 Apartments", dist: "3.2 kms" },
-        { name: "KIIT Square", dist: "4.8 kms" },
-      ],
-    },
+    
     {
       category: "Transport",
       icon: <Train className="w-5 h-5" />,
@@ -58,18 +48,7 @@ const Amenities = () => {
         { name: "Loyola High School", dist: "10.9 kms" },
       ],
     },
-    {
-      category: "Hotels ",
-      icon: <GraduationCap className="w-5 h-5" />,
-      items: [
-        { name: "Welcomhotel by ITC   ", dist: "8.2 kms" },
-        { name: "Suryansh", dist: "9.6 kms" },
-        { name: "Lemon Tree", dist: "10.0 kms" },
-        { name: "Swosti Premium", dist: "10.2 kms" },
-        { name: "Trident", dist: "10.9 kms" },
-        { name: "Mayfair Lagoon", dist: "11.0 kms" },
-      ],
-    },
+    
     {
       category: "Shopping",
       icon: <ShoppingBag className="w-5 h-5" />,
@@ -89,6 +68,30 @@ const Amenities = () => {
         { name: "NIFT Bhubaneswar", dist: "5.7 kms" },
         { name: "College of Engineering Bhubaneswar", dist: "6.3 kms" },
         { name: "Utkal University", dist: "13.4 kms" },
+      ],
+    },
+    {
+      category: "Hotels ",
+      icon: <GraduationCap className="w-5 h-5" />,
+      items: [
+        { name: "Welcomhotel by ITC   ", dist: "8.2 kms" },
+        { name: "Suryansh", dist: "9.6 kms" },
+        { name: "Lemon Tree", dist: "10.0 kms" },
+        { name: "Swosti Premium", dist: "10.2 kms" },
+        { name: "Trident", dist: "10.9 kms" },
+        { name: "Mayfair Lagoon", dist: "11.0 kms" },
+      ],
+    },
+    
+    {
+      category: "Miscellaneous",
+      icon: <Sparkles className="w-5 h-5" />,
+      items: [
+        { name: "Ashiana Regal" , dist: "1.7 kms" },
+        { name: "Royal Lagoon", dist: "2.0 kms" },
+        { name: "Mani Tribhuvan", dist: "3.0 kms" },
+        { name: "Z1 Apartments", dist: "3.2 kms" },
+        { name: "KIIT Square", dist: "4.8 kms" },
       ],
     },
   ];
