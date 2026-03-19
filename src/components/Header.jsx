@@ -16,6 +16,7 @@ export default function SubhamHeader({ onOpenPopup }) {
     goldenYellow: "#dfab5e",  
     deepOrange: "#dfab5e",    // Used in "Contact Now"
     warmCream: "#FFF4E6",     
+    heroBg: "#FCFAFB",
   };
 
   const mainNav = [
@@ -54,7 +55,7 @@ export default function SubhamHeader({ onOpenPopup }) {
 
   return (
     <>
-      <div className="h-[100px] lg:h-[140px] w-full bg-white" />
+      <div className="h-[100px] lg:h-[140px] w-full bg-[#FCFAFB]" />
 
       <header 
         className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-in-out px-4 md:px-8 lg:px-12 
@@ -64,7 +65,7 @@ export default function SubhamHeader({ onOpenPopup }) {
         <div 
           className="max-w-7xl mx-auto rounded-full px-6 md:px-10 h-[80px] flex justify-between items-center shadow-[0_15px_40px_rgba(243,111,33,0.15)] transition-all duration-300 border border-[#F36F21]/10 backdrop-blur-md"
           style={{ 
-            backgroundColor: isScrolled ? "rgba(255, 244, 230, 0.96)" : colors.warmCream, 
+            backgroundColor: isScrolled ? "rgba(255, 244, 230, 0.96)" : colors.heroBg, 
             transform: isScrolled ? "scale(0.98)" : "scale(1)" 
           }}
         >

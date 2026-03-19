@@ -78,30 +78,29 @@ export default function HeroSection() {
             </button>
             
             <div className="flex items-center gap-3 text-[#765229] font-bold text-xs cursor-pointer hover:opacity-70 transition-opacity uppercase tracking-widest">
-               <div className="w-10 h-10 rounded-full border border-[#765229]/20 flex items-center justify-center">
-                  <MousePointer2 className="w-4 h-4" />
-               </div>
-               Virtual Tour
+                <div className="w-10 h-10 rounded-full border border-[#765229]/20 flex items-center justify-center">
+                   <MousePointer2 className="w-4 h-4" />
+                </div>
+                Virtual Tour
             </div>
           </div>
         </motion.div>
 
-        {/* --- RIGHT CONTENT (Image with corner gaps) --- */}
-        <div className="lg:col-span-7 relative h-full flex items-center p-6 md:p-10 lg:p-16">
+        {/* --- RIGHT CONTENT --- */}
+        <div className="lg:col-span-7 relative h-full flex flex-col lg:flex-row items-center p-6 md:p-10 lg:p-16">
           
-          {/* Main Image Container - Now with full rounding and padding for the 'gap' */}
+          {/* Main Image Container */}
           <motion.div 
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="relative w-full h-[55vh] lg:h-[80vh] rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-2xl"
+            className="relative w-full h-[50vh] lg:h-[80vh] rounded-[3rem] lg:rounded-[5rem] overflow-hidden shadow-2xl z-10"
           >
             <img 
               src="/hero22 (1) (1) (1).webp" 
               alt="Luxury Living" 
               className="absolute inset-0 w-full h-full object-cover"
             />
-            {/* Soft overlay for text readability on the image if needed */}
             <div className="absolute inset-0 bg-black/10 transition-opacity duration-500 hover:opacity-0" />
             
             {/* Stats Badge */}
@@ -118,36 +117,24 @@ export default function HeroSection() {
             </motion.div>
           </motion.div>
 
-          {/* Floating Location Card - Positioned to bridge the gap */}
+          {/* Floating Location Card - Adjusted mt-4 for mobile to push it down slightly */}
           <motion.div 
             initial={{ y: 40, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="absolute left-2 lg:left-4 bottom-10 lg:bottom-28 bg-white p-6 rounded-[2.5rem] shadow-[0_25px_60px_-15px_rgba(118,82,41,0.2)] border border-stone-50 max-w-[240px] z-30"
+            className="relative lg:absolute mt-4 lg:mt-0 left-1/2 -translate-x-1/2 lg:translate-x-0 lg:left-12 bottom-6 lg:bottom-16 bg-white py-3 px-4 rounded-[1.75rem] shadow-xl border border-stone-50 w-[85%] max-w-[210px] lg:max-w-[190px] z-30"
           >
-            <div className="flex items-start gap-4">
-              <div className="bg-[#dfab5e] p-3 rounded-2xl text-white shadow-lg">
-                <MapPin className="w-5 h-5" />
+            <div className="flex items-center gap-3">
+              <div className="bg-[#dfab5e] p-2 rounded-xl text-white shadow-sm flex-shrink-0">
+                <MapPin className="w-4 h-4" />
               </div>
-              <div>
-                <h4 className="font-bold text-[#765229] text-base">Bhubaneswar</h4>
-                <p className="text-[12px] text-stone-400 font-medium">Raghunathpur</p>
-                <div className="mt-2 flex items-center gap-2 text-[8px] font-black text-[#dfab5e] uppercase tracking-[0.1em]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                  Booking Open
-                </div>
+              <div className="min-w-0">
+                <h4 className="font-bold text-[#765229] text-sm truncate leading-tight">Bhubaneswar</h4>
+                <p className="text-[11px] text-stone-400 font-medium truncate">Raghunathpur</p>
               </div>
             </div>
           </motion.div>
         </div>
-      </div>
-
-      {/* Subtle bottom detail */}
-      <div className="absolute bottom-10 left-20 hidden lg:block">
-         <div className="flex items-center gap-4 opacity-20">
-            <span className="text-[9px] font-bold uppercase tracking-[0.6em] text-[#765229]">Lohia Group Initiative</span>
-            <div className="w-16 h-[1px] bg-[#765229]" />
-         </div>
       </div>
     </section>
   );

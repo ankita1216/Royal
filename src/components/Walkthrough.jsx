@@ -58,20 +58,21 @@ export default function Walkthrough() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         
-        {/* --- HEADER --- */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        {/* --- HEADER (Updated for Mobile Alignment) --- */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-center md:items-end md:text-left mb-16 gap-8">
           <div className="max-w-xl">
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-3 text-xs font-black uppercase tracking-[0.5em] mb-4"
+              className="flex items-center justify-center md:justify-start gap-3 text-xs font-black uppercase tracking-[0.5em] mb-6 md:mb-4"
               style={{ color: colors.goldenYellow }}
             >
-              <div className="w-8 h-px" style={{ backgroundColor: colors.goldenYellow }} />
+              {/* Line is hidden on mobile to ensure the text is perfectly centered */}
+              <div className="hidden md:block w-8 h-px" style={{ backgroundColor: colors.goldenYellow }} />
               Cinematic Tour
             </motion.div>
-            <h2 className="text-5xl lg:text-8xl md:text-7xl font-serif italic text-white leading-[1.1]">
-              The <span style={{ color: colors.goldenYellow }}>Grand </span> <br /> Walkthrough
+            <h2 className="text-5xl lg:text-8xl md:text-7xl font-serif italic text-white leading-[1.2] md:leading-[1.1]">
+              The <span style={{ color: colors.goldenYellow }}>Grand </span> <br className="md:block" /> Walkthrough
             </h2>
           </div>
           <p className="text-white/40 text-lg max-w-xs font-medium leading-relaxed border-l border-white/10 pl-6 hidden md:block">

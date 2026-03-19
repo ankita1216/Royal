@@ -114,9 +114,21 @@ export default function Specifications() {
         {/* --- AMENITIES GRID SECTION --- */}
         <div className="space-y-16">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-gray-200 pb-8">
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1]" style={{ color: colors.blackish }}>
-              Lifestyle <span className="italic font-light ml-3" style={{ color: colors.deepOrange }}>Amenities</span>
-            </h1>
+            {/* Added flex-row and items-baseline to keep text side-by-side on mobile */}
+            <h1 
+  className="font-serif text-4xl md:text-7xl lg:text-8xl leading-[1] 
+             flex flex-row items-baseline flex-wrap 
+             justify-start sm:justify-start text-left"
+  style={{ color: colors.blackish }}
+>
+  Lifestyle 
+  <span 
+    className="italic font-light ml-1 md:ml-3"
+    style={{ color: colors.deepOrange }}
+  >
+    Amenities
+  </span>
+</h1>
             <span className="text-xs font-bold uppercase tracking-widest text-gray-400">20 Unique Experiences</span>
           </div>
 

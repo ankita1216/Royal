@@ -38,7 +38,13 @@ const Plan = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
-          <motion.h2 
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1]" style={{ color: colors.blackish }}>
+              Our Floor <span className="italic font-light ml-3" style={{ color: colors.deepOrange }}>Plans</span>
+            </h1>
+            <p className="max-w-2xl text-lg text-gray-500 font-medium mx-auto text-center mt-4">
+  Explore thoughtfully designed layouts.
+</p>
+          {/* <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -46,13 +52,13 @@ const Plan = () => {
             style={{ color: colors.blackish, fontFamily: "'DM Sans', sans-serif" }}
           >
             Our Floor Plans
-          </motion.h2>
-          <motion.p 
+          </motion.h2> */}
+          {/* <motion.p 
             className="text-base md:text-lg max-w-2xl mx-auto opacity-90" 
             style={{ color: colors.blackish }}
           >
             Explore thoughtfully designed layouts.
-          </motion.p>
+          </motion.p> */}
         </div>
 
         {/* Grid Layout */}
@@ -74,13 +80,13 @@ const Plan = () => {
                   <div className="bg-white/90 p-3 rounded-full mb-2 shadow-lg">
                     <Maximize2 size={24} style={{ color: colors.blackish }} />
                   </div>
-                  <span className="text-white font-bold tracking-wide uppercase text-xs">View {plan.title}</span>
+                  <span className="text-white font-bold tracking-wide uppercase text-xs" style={{ fontFamily: "'Inter', sans-serif" }}>View {plan.title}</span>
                 </div>
               </div>
 
               {/* Title Only Footer */}
               <div className="p-5 flex justify-center items-center bg-white border-t border-gray-50">
-                <h3 className="font-bold text-lg text-center" style={{ color: colors.blackish }}>{plan.title}</h3>
+                <h3 className="font-bold text-lg text-center" style={{ color: colors.blackish, fontFamily: "'Inter', sans-serif" }}>{plan.title}</h3>
               </div>
             </motion.div>
           ))}
@@ -101,13 +107,17 @@ const Plan = () => {
             <motion.div 
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              exit={{
+                
+                
+                
+              scale: 0.9, opacity: 0 }}
               className="relative w-full h-full md:h-auto md:max-w-5xl bg-white md:rounded-3xl overflow-hidden flex flex-col shadow-2xl z-10"
             >
               {/* Modal Header */}
               <div className="flex items-center justify-between p-4 border-b md:border-none md:absolute md:top-6 md:right-6 md:z-20 md:p-0 md:bg-transparent">
                 <div>
-                  <h3 className="font-bold text-lg md:hidden" style={{ color: colors.blackish }}>{selectedPlan.title}</h3>
+                  <h3 className="font-bold text-lg md:hidden" style={{ color: colors.blackish, fontFamily: "'Inter', sans-serif" }}>{selectedPlan.title}</h3>
                 </div>
                 
                 <div className="flex items-center gap-2">

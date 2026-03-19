@@ -128,6 +128,12 @@ Every Apartment</span>
         .animate-marquee {
           animation: marquee 40s linear infinite;
         }
+          /* ✅ Mobile fast */
+  @media (max-width: 640px) {
+    .animate-marquee {
+      animation: marquee 10s linear infinite;
+    }
+  }
         .font-serif {
           font-family: 'Playfair Display', serif;
         }
